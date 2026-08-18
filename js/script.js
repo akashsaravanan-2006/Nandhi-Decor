@@ -187,32 +187,23 @@ function initializePage() {
 
 function initLoader() {
 
-    const loader =
-        document.getElementById(
-            "pageLoader"
-        );
+    const loader = document.getElementById("pageLoader");
 
     if (!loader) {
         return;
     }
 
-    window.addEventListener(
-        "load",
-        function () {
+    function hideLoader() {
+        setTimeout(() => {
+            loader.classList.add("hide");
+        }, 800);
+    }
 
-            setTimeout(
-                function () {
-
-                    loader.classList.add(
-                        "hide"
-                    );
-
-                },
-                800
-            );
-
-        }
-    );
+    if (document.readyState === "complete") {
+        hideLoader();
+    } else {
+        window.addEventListener("load", hideLoader, { once: true });
+    }
 }
 /* =========================================================
    MOBILE MENU

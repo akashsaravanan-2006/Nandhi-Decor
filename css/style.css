@@ -6694,4 +6694,1328 @@ img {
 
     }
 
+}/* =========================================================
+   FINAL SMALL CHANGE
+   REMOVE ONLY THE ARROW FROM ABOUT POINTS
+   ========================================================= */
+
+.about-point .point-arrow {
+    display: none !important;
+}
+
+
+/* =========================================================
+   NANDHI DECOR
+   PREMIUM GALLERY ANIMATION UPGRADE
+   GALLERY ONLY
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   GALLERY CARD BASE
+   --------------------------------------------------------- */
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+
+    transform:
+        translate3d(0,0,0);
+
+    will-change:
+        transform;
+
+    transition:
+        transform 1s cubic-bezier(.16,1,.3,1),
+        border-radius .8s ease,
+        box-shadow 1s ease,
+        filter .8s ease;
+}
+
+
+/* ---------------------------------------------------------
+   CINEMATIC DARK LAYER
+   --------------------------------------------------------- */
+
+.gallery-item::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    z-index: 2;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(212,175,55,.16),
+            transparent 30%,
+            transparent 70%,
+            rgba(212,175,55,.08)
+        );
+
+    opacity: .35;
+
+    transition:
+        opacity .8s ease;
+}
+
+
+/* ---------------------------------------------------------
+   MOVING LIGHT BEAM
+   --------------------------------------------------------- */
+
+.gallery-item::after {
+    content: "";
+
+    position: absolute;
+
+    top: -40%;
+    left: -80%;
+
+    width: 45%;
+    height: 180%;
+
+    z-index: 8;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.20),
+            rgba(212,175,55,.12),
+            transparent
+        );
+
+    transform:
+        rotate(20deg)
+        translateX(-150%);
+
+    transition:
+        transform 1.4s cubic-bezier(.16,1,.3,1);
+}
+
+
+/* ---------------------------------------------------------
+   IMAGE BASE
+   --------------------------------------------------------- */
+
+.gallery-item img {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transform:
+        scale(1.06)
+        translate3d(0,0,0);
+
+    filter:
+        brightness(.72)
+        saturate(1)
+        contrast(1.05);
+
+    will-change:
+        transform,
+        filter;
+
+    transition:
+        transform 1.4s cubic-bezier(.16,1,.3,1),
+        filter 1s ease;
+}
+
+
+/* =========================================================
+   DIFFERENT INFINITE IMAGE ANIMATIONS
+   EACH IMAGE MOVES DIFFERENTLY
+   ========================================================= */
+
+
+/* IMAGE 1 */
+
+.gallery-item:nth-child(1) img {
+    animation:
+        galleryImage01
+        10s
+        ease-in-out
+        infinite;
+}
+
+@keyframes galleryImage01 {
+
+    0%,
+    100% {
+        transform:
+            scale(1.06)
+            translate3d(0,0,0);
+    }
+
+    25% {
+        transform:
+            scale(1.10)
+            translate3d(-8px,-5px,0);
+    }
+
+    50% {
+        transform:
+            scale(1.14)
+            translate3d(5px,4px,0);
+    }
+
+    75% {
+        transform:
+            scale(1.10)
+            translate3d(-4px,7px,0);
+    }
+
+}
+
+
+/* IMAGE 2 */
+
+.gallery-item:nth-child(2) img {
+    animation:
+        galleryImage02
+        12s
+        ease-in-out
+        infinite;
+}
+
+@keyframes galleryImage02 {
+
+    0%,
+    100% {
+        transform:
+            scale(1.08)
+            translate3d(0,0,0);
+    }
+
+    25% {
+        transform:
+            scale(1.13)
+            translate3d(7px,-8px,0);
+    }
+
+    50% {
+        transform:
+            scale(1.17)
+            translate3d(-6px,3px,0);
+    }
+
+    75% {
+        transform:
+            scale(1.11)
+            translate3d(5px,8px,0);
+    }
+
+}
+
+
+/* IMAGE 3 */
+
+.gallery-item:nth-child(3) img {
+    animation:
+        galleryImage03
+        9s
+        ease-in-out
+        infinite;
+}
+
+@keyframes galleryImage03 {
+
+    0%,
+    100% {
+        transform:
+            scale(1.05)
+            translate3d(0,0,0)
+            rotate(0deg);
+    }
+
+    50% {
+        transform:
+            scale(1.12)
+            translate3d(0,-7px,0)
+            rotate(.5deg);
+    }
+
+}
+
+
+/* IMAGE 4 */
+
+.gallery-item:nth-child(4) img {
+    animation:
+        galleryImage04
+        11s
+        ease-in-out
+        infinite;
+}
+
+@keyframes galleryImage04 {
+
+    0%,
+    100% {
+        transform:
+            scale(1.07)
+            translate3d(0,0,0);
+    }
+
+    50% {
+        transform:
+            scale(1.15)
+            translate3d(-10px,6px,0);
+    }
+
+}
+
+
+/* IMAGE 5 */
+
+.gallery-item:nth-child(5) img {
+    animation:
+        galleryImage05
+        13s
+        ease-in-out
+        infinite;
+}
+
+@keyframes galleryImage05 {
+
+    0%,
+    100% {
+        transform:
+            scale(1.06)
+            translate3d(0,0,0);
+    }
+
+    33% {
+        transform:
+            scale(1.12)
+            translate3d(8px,-6px,0);
+    }
+
+    66% {
+        transform:
+            scale(1.15)
+            translate3d(-7px,5px,0);
+    }
+
+}
+
+
+/* IMAGE 6 */
+
+.gallery-item:nth-child(6) img {
+    animation:
+        galleryImage06
+        10.5s
+        ease-in-out
+        infinite;
+}
+
+@keyframes galleryImage06 {
+
+    0%,
+    100% {
+        transform:
+            scale(1.06)
+            translate3d(0,0,0);
+    }
+
+    50% {
+        transform:
+            scale(1.13)
+            translate3d(6px,-10px,0);
+    }
+
+}
+
+
+/* IMAGE 7 */
+
+.gallery-item:nth-child(7) img {
+    animation:
+        galleryImage07
+        14s
+        ease-in-out
+        infinite;
+}
+
+@keyframes galleryImage07 {
+
+    0%,
+    100% {
+        transform:
+            scale(1.07)
+            translate3d(0,0,0);
+    }
+
+    25% {
+        transform:
+            scale(1.11)
+            translate3d(-6px,6px,0);
+    }
+
+    50% {
+        transform:
+            scale(1.16)
+            translate3d(8px,-5px,0);
+    }
+
+    75% {
+        transform:
+            scale(1.11)
+            translate3d(-4px,-8px,0);
+    }
+
+}
+
+
+/* IMAGE 8 */
+
+.gallery-item:nth-child(8) img {
+    animation:
+        galleryImage08
+        11.5s
+        ease-in-out
+        infinite;
+}
+
+@keyframes galleryImage08 {
+
+    0%,
+    100% {
+        transform:
+            scale(1.06)
+            translate3d(0,0,0)
+            rotate(0deg);
+    }
+
+    50% {
+        transform:
+            scale(1.14)
+            translate3d(5px,-7px,0)
+            rotate(-.6deg);
+    }
+
+}
+
+
+/* =========================================================
+   CARD FLOATING ANIMATION
+   ========================================================= */
+
+.gallery-item:nth-child(1) {
+    animation:
+        galleryCardFloat1
+        8s
+        ease-in-out
+        infinite;
+}
+
+.gallery-item:nth-child(2) {
+    animation:
+        galleryCardFloat2
+        10s
+        ease-in-out
+        infinite;
+}
+
+.gallery-item:nth-child(3) {
+    animation:
+        galleryCardFloat3
+        7s
+        ease-in-out
+        infinite;
+}
+
+.gallery-item:nth-child(4) {
+    animation:
+        galleryCardFloat4
+        11s
+        ease-in-out
+        infinite;
+}
+
+.gallery-item:nth-child(5) {
+    animation:
+        galleryCardFloat5
+        9s
+        ease-in-out
+        infinite;
+}
+
+.gallery-item:nth-child(6) {
+    animation:
+        galleryCardFloat6
+        12s
+        ease-in-out
+        infinite;
+}
+
+.gallery-item:nth-child(7) {
+    animation:
+        galleryCardFloat7
+        8.5s
+        ease-in-out
+        infinite;
+}
+
+.gallery-item:nth-child(8) {
+    animation:
+        galleryCardFloat8
+        10.5s
+        ease-in-out
+        infinite;
+}
+
+
+/* CARD 1 */
+
+@keyframes galleryCardFloat1 {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
+    50% {
+        transform:
+            translateY(-9px)
+            rotate(.15deg);
+    }
+
+}
+
+
+/* CARD 2 */
+
+@keyframes galleryCardFloat2 {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
+    50% {
+        transform:
+            translateY(-12px)
+            rotate(-.25deg);
+    }
+
+}
+
+
+/* CARD 3 */
+
+@keyframes galleryCardFloat3 {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translateY(-7px)
+            scale(1.015);
+    }
+
+}
+
+
+/* CARD 4 */
+
+@keyframes galleryCardFloat4 {
+
+    0%,
+    100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-10px);
+    }
+
+}
+
+
+/* CARD 5 */
+
+@keyframes galleryCardFloat5 {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
+    50% {
+        transform:
+            translateY(-8px)
+            rotate(.3deg);
+    }
+
+}
+
+
+/* CARD 6 */
+
+@keyframes galleryCardFloat6 {
+
+    0%,
+    100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-11px);
+    }
+
+}
+
+
+/* CARD 7 */
+
+@keyframes galleryCardFloat7 {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
+    50% {
+        transform:
+            translateY(-9px)
+            rotate(-.2deg);
+    }
+
+}
+
+
+/* CARD 8 */
+
+@keyframes galleryCardFloat8 {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translateY(-8px)
+            scale(1.018);
+    }
+
+}
+
+
+/* =========================================================
+   PREMIUM HOVER
+   ========================================================= */
+
+.gallery-item:hover {
+    transform:
+        translateY(-16px)
+        scale(1.025);
+
+    z-index: 50;
+
+    border-color:
+        rgba(212,175,55,.65);
+
+    box-shadow:
+        0 35px 100px rgba(0,0,0,.75),
+        0 0 45px rgba(212,175,55,.10);
+
+    filter:
+        brightness(1.04);
+}
+
+
+.gallery-item:hover::before {
+    opacity: .9;
+}
+
+
+.gallery-item:hover::after {
+    transform:
+        rotate(20deg)
+        translateX(500%);
+}
+
+
+.gallery-item:hover img {
+    transform:
+        scale(1.20)
+        translate3d(0,-4px,0);
+
+    filter:
+        brightness(.92)
+        saturate(1.18)
+        contrast(1.08);
+}
+
+
+/* =========================================================
+   GOLD FRAME ANIMATION
+   ========================================================= */
+
+.gallery-item {
+    --gallery-gold:
+        rgba(212,175,55,.65);
+}
+
+.gallery-item .gallery-frame {
+    transition:
+        inset 1s cubic-bezier(.16,1,.3,1),
+        border-color .8s ease,
+        opacity .6s ease;
+}
+
+
+.gallery-item:hover .gallery-frame {
+    inset: 14px !important;
+
+    border-color:
+        var(--gallery-gold) !important;
+
+    opacity: 1;
+
+    box-shadow:
+        inset 0 0 25px rgba(212,175,55,.05);
+}
+
+
+/* =========================================================
+   GALLERY NUMBER ANIMATION
+   ========================================================= */
+
+.gallery-item .gallery-number {
+    transition:
+        transform .6s cubic-bezier(.16,1,.3,1),
+        color .4s ease,
+        letter-spacing .4s ease;
+}
+
+
+.gallery-item:hover .gallery-number {
+    color:
+        var(--gold);
+
+    transform:
+        translateY(-5px)
+        scale(1.08);
+
+    letter-spacing:
+        3px;
+}
+
+
+/* =========================================================
+   GALLERY TITLE ANIMATION
+   ========================================================= */
+
+.gallery-item .gallery-overlay h3 {
+    transition:
+        transform .7s cubic-bezier(.16,1,.3,1),
+        letter-spacing .6s ease;
+}
+
+
+.gallery-item:hover .gallery-overlay h3 {
+    transform:
+        translateX(10px);
+
+    letter-spacing:
+        .5px;
+}
+
+
+/* =========================================================
+   GALLERY BOTTOM ICON
+   ========================================================= */
+
+.gallery-item .gallery-bottom i {
+    transition:
+        transform .7s cubic-bezier(.16,1,.3,1),
+        background .5s ease,
+        color .5s ease,
+        box-shadow .5s ease;
+}
+
+
+.gallery-item:hover .gallery-bottom i {
+    transform:
+        rotate(45deg)
+        scale(1.12);
+
+    background:
+        var(--gold);
+
+    color:
+        #000;
+
+    box-shadow:
+        0 0 25px rgba(212,175,55,.35);
+}
+
+
+/* =========================================================
+   IMAGE SHINE LOOP
+   ========================================================= */
+
+.gallery-image-shine {
+    position: absolute;
+
+    top: 0;
+    left: -150%;
+
+    width: 60%;
+    height: 100%;
+
+    z-index: 7;
+
+    pointer-events: none;
+
+    transform:
+        skewX(-20deg);
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.16),
+            rgba(212,175,55,.12),
+            transparent
+        );
+
+    animation:
+        galleryShine
+        7s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes galleryShine {
+
+    0% {
+        left: -150%;
+    }
+
+    35% {
+        left: 160%;
+    }
+
+    100% {
+        left: 160%;
+    }
+
+}
+
+
+/* =========================================================
+   GOLD GLOW PULSE
+   ========================================================= */
+
+.gallery-item:nth-child(1),
+.gallery-item:nth-child(4),
+.gallery-item:nth-child(7) {
+    box-shadow:
+        0 20px 70px rgba(0,0,0,.35);
+}
+
+
+.gallery-item:nth-child(1)::before,
+.gallery-item:nth-child(4)::before,
+.gallery-item:nth-child(7)::before {
+    animation:
+        galleryGlowPulse
+        5s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes galleryGlowPulse {
+
+    0%,
+    100% {
+        opacity: .25;
+    }
+
+    50% {
+        opacity: .65;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE GALLERY
+   KEEP DIFFERENT SIZES
+   ADD STRONG TOUCH ANIMATION
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .gallery-item {
+        transition:
+            transform .7s cubic-bezier(.16,1,.3,1),
+            box-shadow .7s ease;
+    }
+
+
+    .gallery-item:hover {
+        transform:
+            translateY(-8px)
+            scale(1.015);
+
+        z-index: 20;
+    }
+
+
+    .gallery-item:hover img {
+        transform:
+            scale(1.13);
+
+        filter:
+            brightness(.88)
+            saturate(1.12)
+            contrast(1.05);
+    }
+
+
+    .gallery-item:active {
+        transform:
+            scale(.96)
+            translateY(-3px) !important;
+
+        box-shadow:
+            0 20px 60px rgba(212,175,55,.18);
+    }
+
+
+    .gallery-item:active img {
+        transform:
+            scale(1.17) !important;
+    }
+
+
+    .gallery-item:active::before {
+        opacity: 1;
+    }
+
+
+    .gallery-item .gallery-overlay h3 {
+        transform:
+            translateX(0);
+    }
+
+
+    .gallery-item:hover .gallery-overlay h3 {
+        transform:
+            translateX(5px);
+    }
+
+
+    /* MOBILE FLOATING EFFECT */
+
+    .gallery-item:nth-child(1) {
+        animation:
+            mobileGalleryFloat1
+            8s
+            ease-in-out
+            infinite;
+    }
+
+    .gallery-item:nth-child(2) {
+        animation:
+            mobileGalleryFloat2
+            10s
+            ease-in-out
+            infinite;
+    }
+
+    .gallery-item:nth-child(3) {
+        animation:
+            mobileGalleryFloat3
+            9s
+            ease-in-out
+            infinite;
+    }
+
+    .gallery-item:nth-child(4) {
+        animation:
+            mobileGalleryFloat4
+            11s
+            ease-in-out
+            infinite;
+    }
+
+}
+
+
+@keyframes mobileGalleryFloat1 {
+
+    0%,
+    100% {
+        transform:
+            translateX(0);
+    }
+
+    50% {
+        transform:
+            translateX(5px)
+            translateY(-5px);
+    }
+
+}
+
+
+@keyframes mobileGalleryFloat2 {
+
+    0%,
+    100% {
+        transform:
+            translateX(0);
+    }
+
+    50% {
+        transform:
+            translateX(-6px)
+            translateY(-7px);
+    }
+
+}
+
+
+@keyframes mobileGalleryFloat3 {
+
+    0%,
+    100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-6px)
+            scale(1.01);
+    }
+
+}
+
+
+@keyframes mobileGalleryFloat4 {
+
+    0%,
+    100% {
+        transform:
+            translateX(0);
+    }
+
+    50% {
+        transform:
+            translateX(6px)
+            translateY(-5px);
+    }
+
+}
+
+
+/* =========================================================
+   SMALL PHONE
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .gallery-item:hover {
+        transform:
+            translateY(-5px)
+            scale(1.01);
+    }
+
+
+    .gallery-item:hover img {
+        transform:
+            scale(1.10);
+    }
+
+
+    .gallery-item:active {
+        transform:
+            scale(.95) !important;
+    }
+
+
+    .gallery-item:active img {
+        transform:
+            scale(1.14) !important;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION SAFETY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .gallery-item,
+    .gallery-item img,
+    .gallery-item::before,
+    .gallery-item::after,
+    .gallery-image-shine {
+
+        animation:
+            none !important;
+
+        transition:
+            none !important;
+    }
+
+}/* =========================================================
+   🔥 ULTRA CINEMATIC SCROLL GALLERY
+   ADD ONLY — DO NOT REMOVE EXISTING CSS
+   ========================================================= */
+
+.premium-gallery-section,
+.gallery {
+    perspective: 1400px;
+}
+
+
+/* =========================================================
+   GALLERY 3D SCROLL BASE
+   ========================================================= */
+
+.gallery-item {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    will-change: transform;
+}
+
+
+/* =========================================================
+   3D IMAGE LAYER
+   ========================================================= */
+
+.gallery-image-wrap {
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+
+/* =========================================================
+   SCROLL ROTATION
+   ========================================================= */
+
+.gallery-item.scroll-rotate {
+    transform:
+        perspective(1200px)
+        rotateX(var(--scroll-x, 0deg))
+        rotateY(var(--scroll-y, 0deg))
+        rotateZ(var(--scroll-z, 0deg))
+        translate3d(
+            var(--scroll-move-x, 0px),
+            var(--scroll-move-y, 0px),
+            var(--scroll-depth, 0px)
+        )
+        scale(var(--scroll-scale, 1));
+}
+
+
+/* =========================================================
+   3D DEPTH SHADOW
+   ========================================================= */
+
+.gallery-item.scroll-rotate::before {
+    opacity: .9;
+
+    box-shadow:
+        inset 0 0 80px rgba(212,175,55,.12);
+}
+
+
+/* =========================================================
+   GOLD SCROLL GLOW
+   ========================================================= */
+
+.gallery-item.scroll-active {
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.75),
+        0 0 55px rgba(212,175,55,.18);
+}
+
+
+/* =========================================================
+   IMAGE SCROLL ZOOM
+   ========================================================= */
+
+.gallery-item.scroll-active img {
+    transform:
+        scale(1.15);
+
+    filter:
+        brightness(.88)
+        saturate(1.18)
+        contrast(1.08);
+}
+
+
+/* =========================================================
+   DIFFERENT CARD ROTATION DIRECTIONS
+   ========================================================= */
+
+.gallery-item:nth-child(1) {
+    --rotation-direction: 1;
+}
+
+.gallery-item:nth-child(2) {
+    --rotation-direction: -1;
+}
+
+.gallery-item:nth-child(3) {
+    --rotation-direction: 1;
+}
+
+.gallery-item:nth-child(4) {
+    --rotation-direction: -1;
+}
+
+.gallery-item:nth-child(5) {
+    --rotation-direction: 1;
+}
+
+.gallery-item:nth-child(6) {
+    --rotation-direction: -1;
+}
+
+.gallery-item:nth-child(7) {
+    --rotation-direction: 1;
+}
+
+.gallery-item:nth-child(8) {
+    --rotation-direction: -1;
+}
+
+
+/* =========================================================
+   SCROLL ENTER EFFECT
+   ========================================================= */
+
+.gallery-item.scroll-enter {
+    animation:
+        galleryScrollEnter
+        1.2s
+        cubic-bezier(.16,1,.3,1)
+        both;
+}
+
+
+@keyframes galleryScrollEnter {
+
+    0% {
+        opacity: .25;
+
+        transform:
+            perspective(1200px)
+            rotateX(18deg)
+            rotateY(-12deg)
+            scale(.88)
+            translateY(100px);
+    }
+
+    60% {
+        opacity: 1;
+
+        transform:
+            perspective(1200px)
+            rotateX(-4deg)
+            rotateY(3deg)
+            scale(1.04)
+            translateY(-8px);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            perspective(1200px)
+            rotateX(0)
+            rotateY(0)
+            scale(1)
+            translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .premium-gallery-section,
+    .gallery {
+        perspective: 900px;
+    }
+
+    .gallery-item.scroll-rotate {
+        transform:
+            perspective(900px)
+            rotateX(var(--scroll-x, 0deg))
+            rotateY(var(--scroll-y, 0deg))
+            rotateZ(var(--scroll-z, 0deg))
+            translateY(var(--scroll-move-y, 0px))
+            scale(var(--scroll-scale, 1));
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .gallery-item.scroll-rotate {
+        transform:
+            perspective(700px)
+            rotateX(var(--scroll-x, 0deg))
+            rotateY(var(--scroll-y, 0deg))
+            rotateZ(var(--scroll-z, 0deg))
+            translateY(var(--scroll-move-y, 0px))
+            scale(var(--scroll-scale, 1));
+    }
+
 }

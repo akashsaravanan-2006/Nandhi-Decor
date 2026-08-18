@@ -46,7 +46,10 @@ const firebaseConfig = {
         "1:956796053723:web:9c72fa0d956658d53184fe",
 
     measurementId:
-        "G-56EM207FYY"
+        "G-56EM207FYY",
+
+    databaseURL:
+        "https://nandhidecor-c719e-default-rtdb.firebaseio.com/"
 };
 
 

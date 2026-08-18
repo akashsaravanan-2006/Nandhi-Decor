@@ -130,7 +130,7 @@ document.addEventListener(
 
 function initializePage() {
 
-    pageLoader();
+    initLoader();
 
     headerScroll();
 
@@ -181,8 +181,6 @@ function initializePage() {
     heroMouseLight();
 
 }
-
-
 /* =========================================================
    PAGE LOADER
 ========================================================= */

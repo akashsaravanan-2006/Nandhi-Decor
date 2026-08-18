@@ -8019,3 +8019,207 @@ img {
     }
 
 }
+/* =========================================================
+   📱 MOBILE GALLERY - STRONG 3D SCROLL ROTATION
+   ADD THIS AT THE VERY BOTTOM OF CSS
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .premium-gallery-section,
+    .gallery {
+        perspective: 1200px;
+        perspective-origin: center center;
+    }
+
+    .gallery-item {
+        transform-style: preserve-3d;
+        transform-origin: center center;
+        will-change: transform;
+        transition:
+            transform 0.15s linear,
+            filter 0.2s ease,
+            box-shadow 0.3s ease;
+    }
+
+    .gallery-item.scroll-rotate {
+        transform:
+            perspective(1100px)
+            rotateX(var(--scroll-x, 0deg))
+            rotateY(var(--scroll-y, 0deg))
+            rotateZ(var(--scroll-z, 0deg))
+            translate3d(
+                var(--scroll-move-x, 0px),
+                var(--scroll-move-y, 0px),
+                var(--scroll-depth, 0px)
+            )
+            scale(var(--scroll-scale, 1));
+    }
+
+    /* Stronger image movement */
+    .gallery-item img {
+        transform-style: preserve-3d;
+        will-change: transform;
+        transition:
+            transform 0.25s ease,
+            filter 0.25s ease;
+    }
+
+    /* Active image gets a stronger 3D effect */
+    .gallery-item.scroll-active {
+        z-index: 10;
+
+        box-shadow:
+            0 25px 70px rgba(0,0,0,.55),
+            0 0 35px rgba(212,175,55,.22);
+
+        filter:
+            brightness(1.05)
+            saturate(1.15);
+    }
+
+    .gallery-item.scroll-active img {
+        transform:
+            scale(1.12)
+            translateZ(35px);
+
+        filter:
+            brightness(1.05)
+            saturate(1.2)
+            contrast(1.08);
+    }
+
+    /* -----------------------------------------------------
+       DIFFERENT ROTATION STYLE FOR EACH IMAGE
+       ----------------------------------------------------- */
+
+    .gallery-item:nth-child(1) {
+        --mobile-rotate-direction: 1;
+    }
+
+    .gallery-item:nth-child(2) {
+        --mobile-rotate-direction: -1;
+    }
+
+    .gallery-item:nth-child(3) {
+        --mobile-rotate-direction: 1;
+    }
+
+    .gallery-item:nth-child(4) {
+        --mobile-rotate-direction: -1;
+    }
+
+    .gallery-item:nth-child(5) {
+        --mobile-rotate-direction: 1;
+    }
+
+    .gallery-item:nth-child(6) {
+        --mobile-rotate-direction: -1;
+    }
+
+    .gallery-item:nth-child(7) {
+        --mobile-rotate-direction: 1;
+    }
+
+    .gallery-item:nth-child(8) {
+        --mobile-rotate-direction: -1;
+    }
+
+}
+
+
+/* =========================================================
+   📱 SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .premium-gallery-section,
+    .gallery {
+        perspective: 1000px;
+        perspective-origin: center center;
+    }
+
+    .gallery-item {
+        transform-style: preserve-3d;
+    }
+
+    .gallery-item.scroll-rotate {
+        transform:
+            perspective(900px)
+            rotateX(var(--scroll-x, 0deg))
+            rotateY(var(--scroll-y, 0deg))
+            rotateZ(var(--scroll-z, 0deg))
+            translate3d(
+                var(--scroll-move-x, 0px),
+                var(--scroll-move-y, 0px),
+                var(--scroll-depth, 0px)
+            )
+            scale(var(--scroll-scale, 1));
+    }
+
+    .gallery-item.scroll-active {
+        box-shadow:
+            0 20px 60px rgba(0,0,0,.6),
+            0 0 30px rgba(212,175,55,.25);
+    }
+
+    .gallery-item.scroll-active img {
+        transform:
+            scale(1.14)
+            translateZ(40px);
+    }
+
+}
+
+
+/* =========================================================
+   ✨ EXTRA ROTATING IMAGE FRAME
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .gallery-image-wrap {
+        transform-style: preserve-3d;
+        position: relative;
+    }
+
+    .gallery-image-wrap::after {
+        content: "";
+        position: absolute;
+        inset: 8px;
+
+        border: 1px solid rgba(212,175,55,.35);
+
+        pointer-events: none;
+
+        transform:
+            translateZ(20px);
+
+        opacity: 0;
+
+        transition:
+            opacity .3s ease;
+    }
+
+    .gallery-item.scroll-active
+    .gallery-image-wrap::after {
+        opacity: 1;
+    }
+
+}
+
+
+/* =========================================================
+   🔥 REDUCE MOTION ONLY WHEN USER REQUESTS IT
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .gallery-item.scroll-rotate {
+        transform:
+            translateY(var(--scroll-move-y, 0px))
+            scale(var(--scroll-scale, 1));
+    }
+
+}

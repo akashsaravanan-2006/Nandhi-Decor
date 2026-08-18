@@ -258,11 +258,340 @@
 }
 </style>
 
-</head>
+
+<style id="hero-zoom-loop-fix">
+
+/* =====================================================
+   HERO IMAGE
+   SMOOTH ZOOM IN → ZOOM OUT → INFINITE LOOP
+   NO BLACK SCREEN
+===================================================== */
+
+.hero {
+    position: relative;
+
+    min-height: 100vh;
+
+    overflow: hidden;
+
+    background: #050505;
+}
 
 
-<body>
+/* =====================================================
+   HERO BACKGROUND
+===================================================== */
 
+.hero-background {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    background: #050505;
+
+    z-index: 0;
+}
+
+
+/* =====================================================
+   HERO IMAGE
+===================================================== */
+
+.hero-background img {
+
+    /*
+       IMPORTANT:
+       Make the image slightly larger than
+       the screen so the edges never become black.
+    */
+
+    position: absolute;
+
+    top: -6%;
+    left: -6%;
+
+    width: 112%;
+    height: 112%;
+
+    max-width: none;
+
+    display: block;
+
+    object-fit: cover;
+
+    object-position: center center;
+
+
+    /* IMAGE ALWAYS VISIBLE */
+
+    opacity: 1 !important;
+
+    visibility: visible !important;
+
+
+    /* VERY MILD DARK SHADE */
+
+    filter: brightness(0.90);
+
+
+    /*
+       ZOOM
+       NORMAL
+       ↓
+       ZOOM IN
+       ↓
+       ZOOM OUT
+       ↓
+       REPEAT
+    */
+
+    transform: scale(1);
+
+    transform-origin: center center;
+
+    animation:
+        heroSmoothZoom
+        14s
+        ease-in-out
+        infinite;
+
+
+    /*
+       Prevent flashing
+    */
+
+    will-change: transform;
+
+    backface-visibility: hidden;
+
+    -webkit-backface-visibility: hidden;
+}
+
+
+/* =====================================================
+   SMOOTH INFINITE ZOOM
+===================================================== */
+
+@keyframes heroSmoothZoom {
+
+    /* START */
+
+    0% {
+        transform: scale(1);
+    }
+
+
+    /* START ZOOM IN */
+
+    25% {
+        transform: scale(1.04);
+    }
+
+
+    /* MAXIMUM ZOOM */
+
+    50% {
+        transform: scale(1.08);
+    }
+
+
+    /* START ZOOM OUT */
+
+    75% {
+        transform: scale(1.04);
+    }
+
+
+    /* BACK TO ORIGINAL */
+
+    100% {
+        transform: scale(1);
+    }
+
+}
+
+
+/* =====================================================
+   MILD BLACK SHADE
+===================================================== */
+
+.hero-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    pointer-events: none;
+
+    /*
+       ONLY A MILD BLACK SHADE
+    */
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.22) 0%,
+            rgba(0, 0, 0, 0.10) 50%,
+            rgba(0, 0, 0, 0.18) 100%
+        );
+
+    opacity: 1;
+}
+
+
+/* =====================================================
+   REMOVE GOLD GLOW
+===================================================== */
+
+.hero-glow {
+
+    display: none !important;
+
+    opacity: 0 !important;
+
+    visibility: hidden !important;
+
+}
+
+
+/* =====================================================
+   HERO CONTENT
+===================================================== */
+
+.hero-content {
+
+    position: relative;
+
+    z-index: 4;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .hero {
+
+        min-height: 92vh;
+
+        overflow: hidden;
+
+    }
+
+
+    .hero-background {
+
+        inset: 0;
+
+        width: 100%;
+
+        height: 100%;
+
+        overflow: hidden;
+
+    }
+
+
+    .hero-background img {
+
+        /*
+           Keep image larger than screen
+           to prevent black edges.
+        */
+
+        top: -6%;
+
+        left: -6%;
+
+        width: 112%;
+
+        height: 112%;
+
+
+        object-fit: cover;
+
+        object-position: center center;
+
+
+        filter: brightness(0.90);
+
+
+        animation:
+
+            heroSmoothZoom
+
+            12s
+
+            ease-in-out
+
+            infinite;
+
+    }
+
+
+    .hero-overlay {
+
+        background:
+
+            rgba(
+                0,
+                0,
+                0,
+                0.14
+            );
+
+    }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+    .hero-background img {
+
+        top: -7%;
+
+        left: -7%;
+
+        width: 114%;
+
+        height: 114%;
+
+        object-fit: cover;
+
+        object-position: center center;
+
+        filter: brightness(0.90);
+
+        animation:
+
+            heroSmoothZoom
+
+            11s
+
+            ease-in-out
+
+            infinite;
+
+    }
+
+}
+
+</style>
 
 <!-- =====================================================
      PAGE LOADER
@@ -621,7 +950,7 @@
             <div class="experience-badge">
 
                 <strong>
-                    8+
+                    5+
                 </strong>
 
                 <span>
@@ -2142,28 +2471,6 @@
 
 
 
-                <!-- EMAIL -->
-
-                <a
-                    href="mailto:hello@example.com"
-                    class="contact-button"
-                >
-
-                    <i class="fa-solid fa-envelope"></i>
-
-                    <span>
-
-                        <small>
-                            EMAIL
-                        </small>
-
-                        hello@example.com
-
-                    </span>
-
-                </a>
-
-
             </div>
 
         </div>
@@ -2216,31 +2523,21 @@
             <div class="social-links">
 
                 <a
-                    href="#"
+                    href="https://www.instagram.com/nandhi_decor?igsh=MWNudHNvemF5dGttcQ==&igsi=MWNudHNvemF5dGttcQ=="
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label="Instagram"
                 >
                     <i class="fa-brands fa-instagram"></i>
                 </a>
 
                 <a
-                    href="#"
+                    href="https://www.facebook.com/share/1GWyga4Ncm/"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label="Facebook"
                 >
                     <i class="fa-brands fa-facebook-f"></i>
-                </a>
-
-                <a
-                    href="#"
-                    aria-label="Youtube"
-                >
-                    <i class="fa-brands fa-youtube"></i>
-                </a>
-
-                <a
-                    href="#"
-                    aria-label="Pinterest"
-                >
-                    <i class="fa-brands fa-pinterest-p"></i>
                 </a>
 
             </div>
@@ -2322,15 +2619,11 @@
             </h4>
 
             <p>
-                Chennai, Tamil Nadu
+               Thanjavur , Tamil Nadu
             </p>
 
             <p>
                 +91 91590 34572
-            </p>
-
-            <p>
-                hello@example.com
             </p>
 
         </div>
@@ -2346,7 +2639,7 @@
         </p>
 
         <p>
-            Made with ❤️ for beautiful celebrations.
+            Made with @ Akash Saravanan❤️ for beautiful celebrations.
         </p>
 
     </div>

@@ -49,7 +49,8 @@ const firebaseConfig = {
         "G-56EM207FYY",
 
     databaseURL:
-        "https://nandhidecor-c719e-default-rtdb.firebaseio.com/"
+        databaseURL:
+    "https://nandhidecor-c719e-default-rtdb.asia-southeast1.firebasedatabase.app/"
 };
 
 

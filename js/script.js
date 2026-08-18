@@ -1,12 +1,13 @@
 /* =========================================================
-   NANDHI DECOR - PREMIUM CINEMATIC UI
-   SCRIPT.JS
-========================================================= */
+   NANDHI DECOR
+   COMPLETE SCRIPT.JS
+   Firebase + Reviews + Gallery + Animations
+   ========================================================= */
 
 
 /* =========================================================
-   FIREBASE
-========================================================= */
+   FIREBASE IMPORTS
+   ========================================================= */
 
 import {
     initializeApp
@@ -22,34 +23,23 @@ import {
 
 /* =========================================================
    FIREBASE CONFIGURATION
-========================================================= */
+   ========================================================= */
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAdCk7iH6dzAfheRTJxgjBdeSJzIwruh48",
-  authDomain: "nandhidecor-c719e.firebaseapp.com",
-  databaseURL: "https://nandhidecor-c719e-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "nandhidecor-c719e",
-  storageBucket: "nandhidecor-c719e.firebasestorage.app",
-  messagingSenderId: "956796053723",
-  appId: "1:956796053723:web:9c72fa0d956658d53184fe",
-  measurementId: "G-56EM207FYY"
+    apiKey: "AIzaSyAdCk7iH6dzAfheRTJxgjBdeSJzIwruh48",
+    authDomain: "nandhidecor-c719e.firebaseapp.com",
+    databaseURL: "https://nandhidecor-c719e-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "nandhidecor-c719e",
+    storageBucket: "nandhidecor-c719e.firebasestorage.app",
+    messagingSenderId: "956796053723",
+    appId: "1:956796053723:web:9c72fa0d956658d53184fe",
+    measurementId: "G-56EM207FYY"
 };
 
 
+let firebaseApp = null;
+let database = null;
 
-/*
-    IMPORTANT:
-
-    If your existing Firebase configuration is already working,
-    KEEP YOUR OLD firebaseConfig VALUES.
-
-    Replace only the values above if necessary.
-*/
-
-
-let firebaseApp;
-
-let database;
 
 try {
 
@@ -58,6 +48,10 @@ try {
 
     database =
         getDatabase(firebaseApp);
+
+    console.log(
+        "Firebase initialized successfully"
+    );
 
 } catch (error) {
 
@@ -71,7 +65,7 @@ try {
 
 /* =========================================================
    DOM READY
-========================================================= */
+   ========================================================= */
 
 document.addEventListener(
     "DOMContentLoaded",
@@ -84,8 +78,8 @@ document.addEventListener(
 
 
 /* =========================================================
-   INITIALIZE EVERYTHING
-========================================================= */
+   MAIN INITIALIZATION
+   ========================================================= */
 
 function initializePage() {
 
@@ -97,36 +91,54 @@ function initializePage() {
 
     scrollProgress();
 
-    customCursor();
+    smoothNavigation();
 
     revealAnimations();
 
     counters();
 
-    rippleEffect();
+    ratingSystem();
+
+    reviews();
 
     gallery();
+
+    galleryScrollRotation();
 
     faq();
 
     backToTop();
 
-    smoothNavigation();
-
-    ratingSystem();
-
-    reviews();
+    rippleEffect();
 
     magneticButtons();
 
+    tiltCards();
+
     parallaxEffects();
+
+    imageHoverEffect();
+
+    clickParticles();
+
+    heroEntrance();
+
+    staggerElements();
+
+    preventImageDragging();
+
+    imageErrorHandlers();
+
+    activeNavigation();
+
+    heroMouseLight();
 
 }
 
 
 /* =========================================================
    PAGE LOADER
-========================================================= */
+   ========================================================= */
 
 function pageLoader() {
 
@@ -146,11 +158,11 @@ function pageLoader() {
                 () => {
 
                     loader.classList.add(
-                        "hide"
+                        "hidden"
                     );
 
                 },
-                700
+                500
             );
 
         }
@@ -160,8 +172,97 @@ function pageLoader() {
 
 
 /* =========================================================
-   HEADER SCROLL EFFECT
-========================================================= */
+   MOBILE MENU
+   ========================================================= */
+
+function mobileMenu() {
+
+    const button =
+        document.getElementById(
+            "menuButton"
+        );
+
+    const menu =
+        document.querySelector(
+            ".nav-menu"
+        );
+
+
+    if (!button || !menu) return;
+
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            button.classList.toggle(
+                "active"
+            );
+
+            menu.classList.toggle(
+                "open"
+            );
+
+        }
+    );
+
+
+    menu.querySelectorAll(
+        "a"
+    ).forEach(
+        link => {
+
+            link.addEventListener(
+                "click",
+                () => {
+
+                    button.classList.remove(
+                        "active"
+                    );
+
+                    menu.classList.remove(
+                        "open"
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+    document.addEventListener(
+        "click",
+        event => {
+
+            if (
+                !menu.contains(
+                    event.target
+                ) &&
+                !button.contains(
+                    event.target
+                )
+            ) {
+
+                button.classList.remove(
+                    "active"
+                );
+
+                menu.classList.remove(
+                    "open"
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   HEADER SCROLL
+   ========================================================= */
 
 function headerScroll() {
 
@@ -170,12 +271,15 @@ function headerScroll() {
             "header"
         );
 
+
     if (!header) return;
 
 
-    function updateHeader() {
+    function update() {
 
-        if (window.scrollY > 60) {
+        if (
+            window.scrollY > 40
+        ) {
 
             header.classList.add(
                 "scrolled"
@@ -194,94 +298,21 @@ function headerScroll() {
 
     window.addEventListener(
         "scroll",
-        updateHeader,
+        update,
         {
             passive: true
         }
     );
 
 
-    updateHeader();
-
-}
-
-
-/* =========================================================
-   MOBILE MENU
-========================================================= */
-
-function mobileMenu() {
-
-    const button =
-        document.getElementById(
-            "menuButton"
-        );
-
-    const menu =
-        document.getElementById(
-            "navMenu"
-        );
-
-    if (!button || !menu) return;
-
-
-    button.addEventListener(
-        "click",
-        () => {
-
-            button.classList.toggle(
-                "active"
-            );
-
-            menu.classList.toggle(
-                "open"
-            );
-
-            document.body.classList.toggle(
-                "lock"
-            );
-
-        }
-    );
-
-
-    const links =
-        menu.querySelectorAll(
-            ".nav-link"
-        );
-
-
-    links.forEach(
-        link => {
-
-            link.addEventListener(
-                "click",
-                () => {
-
-                    button.classList.remove(
-                        "active"
-                    );
-
-                    menu.classList.remove(
-                        "open"
-                    );
-
-                    document.body.classList.remove(
-                        "lock"
-                    );
-
-                }
-            );
-
-        }
-    );
+    update();
 
 }
 
 
 /* =========================================================
    SCROLL PROGRESS
-========================================================= */
+   ========================================================= */
 
 function scrollProgress() {
 
@@ -290,21 +321,19 @@ function scrollProgress() {
             "scrollProgress"
         );
 
+
     if (!progress) return;
 
 
-    function updateProgress() {
+    function update() {
 
-        const scrollTop =
-            window.scrollY;
-
-        const documentHeight =
+        const total =
             document.documentElement
                 .scrollHeight -
             window.innerHeight;
 
 
-        if (documentHeight <= 0) {
+        if (total <= 0) {
 
             progress.style.width =
                 "0%";
@@ -316,141 +345,101 @@ function scrollProgress() {
 
         const percentage =
             (
-                scrollTop /
-                documentHeight
+                window.scrollY /
+                total
             ) * 100;
 
 
         progress.style.width =
-            `${percentage}%`;
+            Math.min(
+                100,
+                percentage
+            ) + "%";
 
     }
 
 
     window.addEventListener(
         "scroll",
-        updateProgress,
+        update,
         {
             passive: true
         }
     );
 
 
-    updateProgress();
+    update();
 
 }
 
 
 /* =========================================================
-   CUSTOM CURSOR
-========================================================= */
+   SMOOTH NAVIGATION
+   ========================================================= */
 
-function customCursor() {
+function smoothNavigation() {
 
-    const dot =
-        document.querySelector(
-            ".cursor-dot"
-        );
+    document.querySelectorAll(
+        'a[href^="#"]'
+    ).forEach(
+        link => {
 
-    const ring =
-        document.querySelector(
-            ".cursor-ring"
-        );
+            link.addEventListener(
+                "click",
+                event => {
 
-
-    if (!dot || !ring) return;
-
-
-    let mouseX = 0;
-
-    let mouseY = 0;
-
-    let ringX = 0;
-
-    let ringY = 0;
+                    const href =
+                        link.getAttribute(
+                            "href"
+                        );
 
 
-    document.addEventListener(
-        "mousemove",
-        event => {
-
-            mouseX =
-                event.clientX;
-
-            mouseY =
-                event.clientY;
+                    if (
+                        !href ||
+                        href === "#"
+                    ) return;
 
 
-            dot.style.left =
-                `${mouseX}px`;
-
-            dot.style.top =
-                `${mouseY}px`;
-
-        }
-    );
+                    const target =
+                        document.querySelector(
+                            href
+                        );
 
 
-    function animateCursor() {
-
-        ringX +=
-            (
-                mouseX -
-                ringX
-            ) * .15;
-
-        ringY +=
-            (
-                mouseY -
-                ringY
-            ) * .15;
+                    if (!target) return;
 
 
-        ring.style.left =
-            `${ringX}px`;
-
-        ring.style.top =
-            `${ringY}px`;
+                    event.preventDefault();
 
 
-        requestAnimationFrame(
-            animateCursor
-        );
-
-    }
-
-
-    animateCursor();
+                    const header =
+                        document.querySelector(
+                            ".header"
+                        );
 
 
-    const interactive =
-        document.querySelectorAll(
-            "a, button, input, textarea, select"
-        );
+                    const offset =
+                        header
+                            ? header.offsetHeight
+                            : 0;
 
 
-    interactive.forEach(
-        element => {
-
-            element.addEventListener(
-                "mouseenter",
-                () => {
-
-                    ring.classList.add(
-                        "hover"
-                    );
-
-                }
-            );
+                    const position =
+                        target.getBoundingClientRect()
+                            .top +
+                        window.scrollY -
+                        offset;
 
 
-            element.addEventListener(
-                "mouseleave",
-                () => {
+                    window.scrollTo({
 
-                    ring.classList.remove(
-                        "hover"
-                    );
+                        top:
+                            position,
+
+                        behavior:
+                            "smooth"
+
+                    });
 
                 }
             );
@@ -462,8 +451,8 @@ function customCursor() {
 
 
 /* =========================================================
-   SCROLL REVEAL
-========================================================= */
+   REVEAL ANIMATIONS
+   ========================================================= */
 
 function revealAnimations() {
 
@@ -502,7 +491,9 @@ function revealAnimations() {
 
             },
             {
-                threshold: .12
+                threshold: .12,
+                rootMargin:
+                    "0px 0px -50px 0px"
             }
         );
 
@@ -522,17 +513,17 @@ function revealAnimations() {
 
 /* =========================================================
    COUNTERS
-========================================================= */
+   ========================================================= */
 
 function counters() {
 
-    const counters =
+    const elements =
         document.querySelectorAll(
             "[data-counter]"
         );
 
 
-    if (!counters.length) return;
+    if (!elements.length) return;
 
 
     const observer =
@@ -547,33 +538,13 @@ function counters() {
                         ) return;
 
 
-                        const element =
-                            entry.target;
-
-
-                        const target =
-                            parseFloat(
-                                element.dataset.counter
-                            );
-
-
-                        const decimal =
-                            element.dataset.decimal
-                                ? parseInt(
-                                    element.dataset.decimal
-                                )
-                                : 0;
-
-
                         animateCounter(
-                            element,
-                            target,
-                            decimal
+                            entry.target
                         );
 
 
                         observer.unobserve(
-                            element
+                            entry.target
                         );
 
                     }
@@ -581,16 +552,16 @@ function counters() {
 
             },
             {
-                threshold: .7
+                threshold: .5
             }
         );
 
 
-    counters.forEach(
-        counter => {
+    elements.forEach(
+        element => {
 
             observer.observe(
-                counter
+                element
             );
 
         }
@@ -599,35 +570,46 @@ function counters() {
 }
 
 
-/* =========================================================
-   COUNTER ANIMATION
-========================================================= */
-
 function animateCounter(
-    element,
-    target,
-    decimal
+    element
 ) {
+
+    const target =
+        parseFloat(
+            element.dataset.counter
+        );
+
+
+    if (
+        Number.isNaN(target)
+    ) return;
+
+
+    const suffix =
+        element.dataset.suffix ||
+        "";
+
+
+    const decimal =
+        target % 1 !== 0;
+
 
     const duration =
         1800;
+
 
     const start =
         performance.now();
 
 
     function update(
-        currentTime
+        time
     ) {
-
-        const elapsed =
-            currentTime -
-            start;
-
 
         const progress =
             Math.min(
-                elapsed / duration,
+                (time - start) /
+                duration,
                 1
             );
 
@@ -636,7 +618,7 @@ function animateCounter(
             1 -
             Math.pow(
                 1 - progress,
-                4
+                3
             );
 
 
@@ -646,9 +628,12 @@ function animateCounter(
 
 
         element.textContent =
-            value.toFixed(
+            (
                 decimal
-            );
+                    ? value.toFixed(1)
+                    : Math.floor(value)
+            ) +
+            suffix;
 
 
         if (
@@ -662,9 +647,12 @@ function animateCounter(
         } else {
 
             element.textContent =
-                target.toFixed(
+                (
                     decimal
-                );
+                        ? target.toFixed(1)
+                        : target
+                ) +
+                suffix;
 
         }
 
@@ -679,76 +667,445 @@ function animateCounter(
 
 
 /* =========================================================
-   RIPPLE CLICK EFFECT
-========================================================= */
+   STAR RATING
+   ========================================================= */
 
-function rippleEffect() {
+function ratingSystem() {
 
-    const buttons =
-        document.querySelectorAll(
-            ".ripple"
+    const container =
+        document.getElementById(
+            "ratingInput"
         );
 
 
-    buttons.forEach(
-        button => {
-
-            button.addEventListener(
-                "click",
-                event => {
-
-                    const rect =
-                        button.getBoundingClientRect();
+    if (!container) return;
 
 
-                    const ripple =
-                        document.createElement(
-                            "span"
+    const stars =
+        container.querySelectorAll(
+            "button"
+        );
+
+
+    let selectedRating =
+        0;
+
+
+    stars.forEach(
+        star => {
+
+            star.addEventListener(
+                "mouseenter",
+                () => {
+
+                    const rating =
+                        Number(
+                            star.dataset.rating
                         );
 
 
-                    ripple.className =
-                        "ripple-wave";
-
-
-                    const size =
-                        Math.max(
-                            rect.width,
-                            rect.height
-                        );
-
-
-                    ripple.style.width =
-                        `${size}px`;
-
-                    ripple.style.height =
-                        `${size}px`;
-
-
-                    ripple.style.left =
-                        `${event.clientX - rect.left - size / 2}px`;
-
-
-                    ripple.style.top =
-                        `${event.clientY - rect.top - size / 2}px`;
-
-
-                    button.appendChild(
-                        ripple
-                    );
-
-
-                    setTimeout(
-                        () => {
-
-                            ripple.remove();
-
-                        },
-                        700
+                    updateStars(
+                        rating
                     );
 
                 }
             );
+
+
+            star.addEventListener(
+                "mouseleave",
+                () => {
+
+                    updateStars(
+                        selectedRating
+                    );
+
+                }
+            );
+
+
+            star.addEventListener(
+                "click",
+                () => {
+
+                    selectedRating =
+                        Number(
+                            star.dataset.rating
+                        );
+
+
+                    container.dataset.rating =
+                        selectedRating;
+
+
+                    updateStars(
+                        selectedRating
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+    function updateStars(
+        rating
+    ) {
+
+        stars.forEach(
+            star => {
+
+                const value =
+                    Number(
+                        star.dataset.rating
+                    );
+
+
+                star.classList.toggle(
+                    "active",
+                    value <= rating
+                );
+
+            }
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   REVIEWS - FIREBASE
+   ========================================================= */
+
+function reviews() {
+
+    const form =
+        document.getElementById(
+            "feedbackForm"
+        );
+
+
+    const container =
+        document.getElementById(
+            "reviewsContainer"
+        );
+
+
+    if (!form) {
+
+        console.warn(
+            "feedbackForm not found"
+        );
+
+        return;
+
+    }
+
+
+    if (!container) {
+
+        console.warn(
+            "reviewsContainer not found"
+        );
+
+        return;
+
+    }
+
+
+    /* -----------------------------------------------------
+       LOAD REVIEWS
+       ----------------------------------------------------- */
+
+    if (database) {
+
+        const reviewsReference =
+            ref(
+                database,
+                "reviews"
+            );
+
+
+        onValue(
+            reviewsReference,
+            snapshot => {
+
+                container.innerHTML =
+                    "";
+
+
+                const data =
+                    snapshot.val();
+
+
+                if (!data) {
+
+                    container.innerHTML = `
+                        <div class="no-reviews">
+                            <p>
+                                No reviews yet.
+                            </p>
+                        </div>
+                    `;
+
+                    return;
+
+                }
+
+
+                const reviewList =
+                    Object.entries(
+                        data
+                    ).reverse();
+
+
+                reviewList.forEach(
+                    (
+                        [
+                            id,
+                            review
+                        ]
+                    ) => {
+
+                        renderReview(
+                            review,
+                            container
+                        );
+
+                    }
+                );
+
+            },
+            error => {
+
+                console.error(
+                    "Firebase review read error:",
+                    error
+                );
+
+            }
+        );
+
+    } else {
+
+        console.error(
+            "Firebase database is not available."
+        );
+
+    }
+
+
+    /* -----------------------------------------------------
+       SUBMIT REVIEW
+       ----------------------------------------------------- */
+
+    form.addEventListener(
+        "submit",
+        async event => {
+
+            event.preventDefault();
+
+
+            const name =
+                document.getElementById(
+                    "feedbackName"
+                )?.value.trim();
+
+
+            const eventType =
+                document.getElementById(
+                    "feedbackEvent"
+                )?.value;
+
+
+            const message =
+                document.getElementById(
+                    "feedbackMessage"
+                )?.value.trim();
+
+
+            const ratingContainer =
+                document.getElementById(
+                    "ratingInput"
+                );
+
+
+            const selectedRating =
+                Number(
+                    ratingContainer?.dataset.rating ||
+                    0
+                );
+
+
+            if (!name) {
+
+                showToast(
+                    "Please enter your name."
+                );
+
+                return;
+
+            }
+
+
+            if (!eventType) {
+
+                showToast(
+                    "Please select your event."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                selectedRating < 1
+            ) {
+
+                showToast(
+                    "Please select a rating."
+                );
+
+                return;
+
+            }
+
+
+            if (!message) {
+
+                showToast(
+                    "Please write your review."
+                );
+
+                return;
+
+            }
+
+
+            if (!database) {
+
+                showToast(
+                    "Review service is not connected."
+                );
+
+                console.error(
+                    "Firebase database is undefined."
+                );
+
+                return;
+
+            }
+
+
+            const submitButton =
+                form.querySelector(
+                    'button[type="submit"]'
+                );
+
+
+            if (submitButton) {
+
+                submitButton.disabled =
+                    true;
+
+                submitButton.dataset.originalText =
+                    submitButton.innerHTML;
+
+                submitButton.innerHTML =
+                    "Publishing...";
+
+            }
+
+
+            try {
+
+                await push(
+                    ref(
+                        database,
+                        "reviews"
+                    ),
+                    {
+
+                        name:
+                            name,
+
+                        event:
+                            eventType,
+
+                        rating:
+                            selectedRating,
+
+                        message:
+                            message,
+
+                        createdAt:
+                            Date.now()
+
+                    }
+                );
+
+
+                showToast(
+                    "Thank you! Your review has been published."
+                );
+
+
+                form.reset();
+
+
+                if (
+                    ratingContainer
+                ) {
+
+                    ratingContainer.dataset.rating =
+                        "0";
+
+
+                    ratingContainer
+                        .querySelectorAll(
+                            "button"
+                        )
+                        .forEach(
+                            star => {
+
+                                star.classList.remove(
+                                    "active"
+                                );
+
+                            }
+                        );
+
+                }
+
+            } catch (error) {
+
+                console.error(
+                    "Review submission error:",
+                    error
+                );
+
+
+                showToast(
+                    "Unable to submit review. Please try again."
+                );
+
+            } finally {
+
+                if (submitButton) {
+
+                    submitButton.disabled =
+                        false;
+
+                    submitButton.innerHTML =
+                        submitButton.dataset.originalText ||
+                        "Publish Review";
+
+                }
+
+            }
 
         }
     );
@@ -757,87 +1114,258 @@ function rippleEffect() {
 
 
 /* =========================================================
-   GALLERY SYSTEM
-========================================================= */
+   RENDER REVIEW
+   ========================================================= */
+
+function renderReview(
+    review,
+    container
+) {
+
+    const card =
+        document.createElement(
+            "article"
+        );
+
+
+    card.className =
+        "review-card";
+
+
+    const rating =
+        Number(
+            review.rating || 0
+        );
+
+
+    let stars =
+        "";
+
+
+    for (
+        let i = 1;
+        i <= 5;
+        i++
+    ) {
+
+        stars +=
+            i <= rating
+                ? "★"
+                : "☆";
+
+    }
+
+
+    const name =
+        escapeHTML(
+            review.name ||
+            "Guest"
+        );
+
+
+    const eventName =
+        escapeHTML(
+            review.event ||
+            "Event"
+        );
+
+
+    const message =
+        escapeHTML(
+            review.message ||
+            ""
+        );
+
+
+    const date =
+        review.createdAt
+            ? new Date(
+                review.createdAt
+            ).toLocaleDateString(
+                "en-IN",
+                {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric"
+                }
+            )
+            : "";
+
+
+    card.innerHTML = `
+
+        <div class="review-header">
+
+            <div class="reviewer">
+
+                <div class="reviewer-avatar">
+                    ${getInitials(name)}
+                </div>
+
+                <div>
+
+                    <div class="reviewer-name">
+                        ${name}
+                    </div>
+
+                    <div class="reviewer-event">
+                        ${eventName}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="review-stars">
+                ${stars}
+            </div>
+
+        </div>
+
+        <p class="review-message">
+            "${message}"
+        </p>
+
+        <div class="review-date">
+            ${date}
+        </div>
+
+    `;
+
+
+    container.appendChild(
+        card
+    );
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+   ========================================================= */
+
+function escapeHTML(
+    value
+) {
+
+    return String(
+        value
+    )
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =========================================================
+   INITIALS
+   ========================================================= */
+
+function getInitials(
+    name
+) {
+
+    const words =
+        String(name)
+            .trim()
+            .split(/\s+/);
+
+
+    if (
+        words.length === 1
+    ) {
+
+        return words[0]
+            .substring(
+                0,
+                2
+            )
+            .toUpperCase();
+
+    }
+
+
+    return (
+        words[0][0] +
+        words[
+            words.length - 1
+        ][0]
+    ).toUpperCase();
+
+}
+
+
+/* =========================================================
+   GALLERY
+   ========================================================= */
 
 function gallery() {
 
-    const galleryItems =
+    const grid =
+        document.getElementById(
+            "galleryGrid"
+        );
+
+
+    if (!grid) return;
+
+
+    const items =
         Array.from(
-            document.querySelectorAll(
+            grid.querySelectorAll(
                 ".gallery-item"
             )
         );
 
 
-    const filterButtons =
+    const filters =
         document.querySelectorAll(
             ".filter-button"
         );
 
 
-    const lightbox =
-        document.getElementById(
-            "lightbox"
-        );
-
-
-    const lightboxImage =
-        document.getElementById(
-            "lightboxImage"
-        );
-
-
-    const lightboxCaption =
-        document.getElementById(
-            "lightboxCaption"
-        );
-
-
-    const closeButton =
-        document.getElementById(
-            "lightboxClose"
-        );
-
-
-    const previousButton =
-        document.getElementById(
-            "lightboxPrev"
-        );
-
-
-    const nextButton =
-        document.getElementById(
-            "lightboxNext"
-        );
-
-
-    if (!galleryItems.length) return;
-
-
     let visibleItems =
-        galleryItems.slice();
-
-
-    let currentIndex =
-        0;
+        items.slice();
 
 
     /* -----------------------------------------------------
-       FILTER
-    ----------------------------------------------------- */
+       FILTERS
+       ----------------------------------------------------- */
 
-    filterButtons.forEach(
-        button => {
+    filters.forEach(
+        filter => {
 
-            button.addEventListener(
+            filter.addEventListener(
                 "click",
                 () => {
 
-                    filterButtons.forEach(
-                        item => {
+                    filters.forEach(
+                        button => {
 
-                            item.classList.remove(
+                            button.classList.remove(
                                 "active"
                             );
 
@@ -845,52 +1373,78 @@ function gallery() {
                     );
 
 
-                    button.classList.add(
+                    filter.classList.add(
                         "active"
                     );
 
 
-                    const filter =
-                        button.dataset.filter;
+                    const category =
+                        (
+                            filter.dataset.filter ||
+                            "all"
+                        ).toLowerCase();
 
 
-                    galleryItems.forEach(
+                    visibleItems =
+                        items.filter(
+                            item => {
+
+                                const itemCategory =
+                                    (
+                                        item.dataset.category ||
+                                        ""
+                                    ).toLowerCase();
+
+
+                                return (
+                                    category === "all" ||
+                                    itemCategory ===
+                                        category
+                                );
+
+                            }
+                        );
+
+
+                    items.forEach(
                         item => {
 
-                            const category =
-                                item.dataset.category
-                                    ?.toLowerCase();
-
-
-                            const itemClasses =
-                                item.classList;
-
-
-                            const shouldShow =
-                                filter === "all" ||
-                                itemClasses.contains(
-                                    filter
-                                ) ||
-                                category === filter;
-
-
-                            if (
-                                shouldShow
-                            ) {
-
-                                item.classList.remove(
-                                    "hidden"
+                            const show =
+                                visibleItems.includes(
+                                    item
                                 );
 
 
-                                item.style.animation =
-                                    "galleryReveal .5s ease";
+                            if (show) {
 
+                                item.style.display =
+                                    "";
+
+                                requestAnimationFrame(
+                                    () => {
+
+                                        item.style.opacity =
+                                            "1";
+
+                                        item.style.transform =
+                                            "";
+
+                                    }
+                                );
 
                             } else {
 
-                                item.classList.add(
-                                    "hidden"
+                                item.style.opacity =
+                                    "0";
+
+                                setTimeout(
+                                    () => {
+
+                                        item.style.display =
+                                            "none";
+
+                                    },
+                                    350
                                 );
 
                             }
@@ -898,15 +1452,6 @@ function gallery() {
                         }
                     );
 
-
-                    visibleItems =
-                        galleryItems.filter(
-                            item =>
-                                !item.classList.contains(
-                                    "hidden"
-                                )
-                        );
-
                 }
             );
 
@@ -914,55 +1459,131 @@ function gallery() {
     );
 
 
-    /* -----------------------------------------------------
-       OPEN LIGHTBOX
-    ----------------------------------------------------- */
-
-    galleryItems.forEach(
-        (item, index) => {
-
-            item.addEventListener(
-                "click",
-                () => {
-
-                    visibleItems =
-                        galleryItems.filter(
-                            element =>
-                                !element.classList.contains(
-                                    "hidden"
-                                )
-                        );
-
-
-                    currentIndex =
-                        visibleItems.indexOf(
-                            item
-                        );
-
-
-                    if (
-                        currentIndex < 0
-                    ) {
-
-                        currentIndex =
-                            index;
-
-                    }
-
-
-                    openLightbox();
-
-                }
-            );
-
-        }
+    galleryLightbox(
+        items,
+        () => visibleItems
     );
 
+}
 
-    function openLightbox() {
+
+/* =========================================================
+   GALLERY LIGHTBOX
+   ========================================================= */
+
+function galleryLightbox(
+    items,
+    getVisibleItems
+) {
+
+    const lightbox =
+        document.getElementById(
+            "lightbox"
+        );
+
+
+    const image =
+        document.getElementById(
+            "lightboxImage"
+        );
+
+
+    const caption =
+        document.getElementById(
+            "lightboxCaption"
+        );
+
+
+    const close =
+        document.getElementById(
+            "lightboxClose"
+        );
+
+
+    const next =
+        document.getElementById(
+            "lightboxNext"
+        );
+
+
+    const previous =
+        document.getElementById(
+            "lightboxPrev"
+        );
+
+
+    if (
+        !lightbox ||
+        !image
+    ) return;
+
+
+    let currentIndex =
+        0;
+
+
+    function open(
+        item
+    ) {
+
+        const visible =
+            getVisibleItems();
+
+
+        currentIndex =
+            visible.indexOf(
+                item
+            );
+
+
+        if (
+            currentIndex < 0
+        ) {
+
+            currentIndex =
+                0;
+
+        }
+
+
+        update();
+
+
+        lightbox.classList.add(
+            "active"
+        );
+
+
+        document.body.style.overflow =
+            "hidden";
+
+    }
+
+
+    function closeBox() {
+
+        lightbox.classList.remove(
+            "active"
+        );
+
+
+        document.body.style.overflow =
+            "";
+
+    }
+
+
+    function update() {
+
+        const visible =
+            getVisibleItems();
+
+
+        if (!visible.length) return;
+
 
         const item =
-            visibleItems[
+            visible[
                 currentIndex
             ];
 
@@ -970,88 +1591,60 @@ function gallery() {
         if (!item) return;
 
 
-        const image =
+        const img =
             item.querySelector(
                 "img"
             );
 
 
-        if (!image) return;
+        if (!img) return;
 
 
-        lightboxImage.src =
-            image.src;
-
-
-        lightboxImage.alt =
-            image.alt;
-
-
-        lightboxCaption.textContent =
-            item.dataset.title ||
-            image.alt ||
-            "Nandhi Decor";
-
-
-        lightbox.classList.add(
-            "open"
-        );
-
-
-        document.body.classList.add(
-            "lock"
-        );
-
-    }
-
-
-    /* -----------------------------------------------------
-       CLOSE
-    ----------------------------------------------------- */
-
-    function closeLightbox() {
-
-        lightbox.classList.remove(
-            "open"
-        );
-
-
-        document.body.classList.remove(
-            "lock"
-        );
+        image.style.opacity =
+            "0";
 
 
         setTimeout(
             () => {
 
-                lightboxImage.src =
-                    "";
+                image.src =
+                    img.currentSrc ||
+                    img.src;
+
+
+                image.alt =
+                    img.alt ||
+                    "Nandhi Decor";
+
+
+                if (caption) {
+
+                    caption.textContent =
+                        item.dataset.title ||
+                        img.alt ||
+                        "";
+
+                }
+
+
+                image.style.opacity =
+                    "1";
 
             },
-            300
+            100
         );
 
     }
 
-
-    if (closeButton) {
-
-        closeButton.addEventListener(
-            "click",
-            closeLightbox
-        );
-
-    }
-
-
-    /* -----------------------------------------------------
-       NEXT
-    ----------------------------------------------------- */
 
     function nextImage() {
 
+        const visible =
+            getVisibleItems();
+
+
         if (
-            visibleItems.length <= 1
+            visible.length <= 1
         ) return;
 
 
@@ -1059,87 +1652,68 @@ function gallery() {
             (
                 currentIndex + 1
             ) %
-            visibleItems.length;
+            visible.length;
 
 
-        updateLightbox();
+        update();
 
     }
 
 
-    /* -----------------------------------------------------
-       PREVIOUS
-    ----------------------------------------------------- */
-
     function previousImage() {
 
+        const visible =
+            getVisibleItems();
+
+
         if (
-            visibleItems.length <= 1
+            visible.length <= 1
         ) return;
 
 
         currentIndex =
             (
-                currentIndex - 1 +
-                visibleItems.length
+                currentIndex -
+                1 +
+                visible.length
             ) %
-            visibleItems.length;
+            visible.length;
 
 
-        updateLightbox();
+        update();
 
     }
 
 
-    function updateLightbox() {
+    items.forEach(
+        item => {
 
-        const item =
-            visibleItems[
-                currentIndex
-            ];
+            item.addEventListener(
+                "click",
+                () => {
 
+                    open(item);
 
-        const image =
-            item.querySelector(
-                "img"
+                }
             );
 
-
-        if (!image) return;
-
-
-        lightboxImage.style.opacity =
-            "0";
+        }
+    );
 
 
-        setTimeout(
-            () => {
+    if (close) {
 
-                lightboxImage.src =
-                    image.src;
-
-                lightboxImage.alt =
-                    image.alt;
-
-                lightboxCaption.textContent =
-                    item.dataset.title ||
-                    image.alt ||
-                    "Nandhi Decor";
-
-
-                lightboxImage.style.opacity =
-                    "1";
-
-            },
-            150
+        close.addEventListener(
+            "click",
+            closeBox
         );
 
     }
 
 
-    if (nextButton) {
+    if (next) {
 
-        nextButton.addEventListener(
+        next.addEventListener(
             "click",
             nextImage
         );
@@ -1147,9 +1721,9 @@ function gallery() {
     }
 
 
-    if (previousButton) {
+    if (previous) {
 
-        previousButton.addEventListener(
+        previous.addEventListener(
             "click",
             previousImage
         );
@@ -1157,34 +1731,22 @@ function gallery() {
     }
 
 
-    /* -----------------------------------------------------
-       CLICK BACKDROP TO CLOSE
-    ----------------------------------------------------- */
+    lightbox.addEventListener(
+        "click",
+        event => {
 
-    if (lightbox) {
+            if (
+                event.target ===
+                lightbox
+            ) {
 
-        lightbox.addEventListener(
-            "click",
-            event => {
-
-                if (
-                    event.target ===
-                    lightbox
-                ) {
-
-                    closeLightbox();
-
-                }
+                closeBox();
 
             }
-        );
 
-    }
+        }
+    );
 
-
-    /* -----------------------------------------------------
-       KEYBOARD
-    ----------------------------------------------------- */
 
     document.addEventListener(
         "keydown",
@@ -1192,7 +1754,7 @@ function gallery() {
 
             if (
                 !lightbox.classList.contains(
-                    "open"
+                    "active"
                 )
             ) return;
 
@@ -1202,7 +1764,7 @@ function gallery() {
                 "Escape"
             ) {
 
-                closeLightbox();
+                closeBox();
 
             }
 
@@ -1229,10 +1791,6 @@ function gallery() {
         }
     );
 
-
-    /* -----------------------------------------------------
-       SWIPE
-    ----------------------------------------------------- */
 
     let touchStartX =
         0;
@@ -1298,18 +1856,279 @@ function gallery() {
 
 
 /* =========================================================
-   FAQ ACCORDION
-========================================================= */
+   GALLERY SCROLL ROTATION
+   ========================================================= */
+
+function galleryScrollRotation() {
+
+    const items =
+        document.querySelectorAll(
+            ".gallery-item"
+        );
+
+
+    if (!items.length) return;
+
+
+    items.forEach(
+        item => {
+
+            item.classList.add(
+                "scroll-rotate"
+            );
+
+        }
+    );
+
+
+    let ticking =
+        false;
+
+
+    function update() {
+
+        const height =
+            window.innerHeight;
+
+
+        items.forEach(
+            (
+                item,
+                index
+            ) => {
+
+                const rect =
+                    item.getBoundingClientRect();
+
+
+                const center =
+                    rect.top +
+                    rect.height / 2;
+
+
+                const screenCenter =
+                    height / 2;
+
+
+                const distance =
+                    center -
+                    screenCenter;
+
+
+                let progress =
+                    distance /
+                    (
+                        height *
+                        .65
+                    );
+
+
+                progress =
+                    Math.max(
+                        -1,
+                        Math.min(
+                            1,
+                            progress
+                        )
+                    );
+
+
+                const direction =
+                    index % 2 === 0
+                        ? 1
+                        : -1;
+
+
+                /* Strong mobile + desktop rotation */
+
+                const rotateX =
+                    progress *
+                    -20;
+
+
+                const rotateY =
+                    progress *
+                    16 *
+                    direction;
+
+
+                const rotateZ =
+                    progress *
+                    5 *
+                    direction;
+
+
+                const moveX =
+                    progress *
+                    12 *
+                    direction;
+
+
+                const moveY =
+                    progress *
+                    -25;
+
+
+                const scale =
+                    1 -
+                    Math.abs(
+                        progress
+                    ) *
+                    .045;
+
+
+                item.style.setProperty(
+                    "--scroll-x",
+                    `${rotateX}deg`
+                );
+
+
+                item.style.setProperty(
+                    "--scroll-y",
+                    `${rotateY}deg`
+                );
+
+
+                item.style.setProperty(
+                    "--scroll-z",
+                    `${rotateZ}deg`
+                );
+
+
+                item.style.setProperty(
+                    "--scroll-move-x",
+                    `${moveX}px`
+                );
+
+
+                item.style.setProperty(
+                    "--scroll-move-y",
+                    `${moveY}px`
+                );
+
+
+                item.style.setProperty(
+                    "--scroll-scale",
+                    scale
+                );
+
+
+                if (
+                    Math.abs(distance) <
+                    height *
+                    .38
+                ) {
+
+                    item.classList.add(
+                        "scroll-active"
+                    );
+
+                } else {
+
+                    item.classList.remove(
+                        "scroll-active"
+                    );
+
+                }
+
+            }
+        );
+
+
+        ticking =
+            false;
+
+    }
+
+
+    window.addEventListener(
+        "scroll",
+        () => {
+
+            if (!ticking) {
+
+                requestAnimationFrame(
+                    update
+                );
+
+                ticking =
+                    true;
+
+            }
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    window.addEventListener(
+        "resize",
+        update
+    );
+
+
+    update();
+
+
+    /* -----------------------------------------------------
+       ENTER VIEW ANIMATION
+       ----------------------------------------------------- */
+
+    const observer =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(
+                    entry => {
+
+                        if (
+                            entry.isIntersecting
+                        ) {
+
+                            entry.target.classList.add(
+                                "scroll-enter"
+                            );
+
+                        }
+
+                    }
+                );
+
+            },
+            {
+                threshold: .15
+            }
+        );
+
+
+    items.forEach(
+        item => {
+
+            observer.observe(
+                item
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   FAQ
+   ========================================================= */
 
 function faq() {
 
-    const faqItems =
+    const items =
         document.querySelectorAll(
             ".faq-item"
         );
 
 
-    faqItems.forEach(
+    items.forEach(
         item => {
 
             const question =
@@ -1325,16 +2144,16 @@ function faq() {
                 "click",
                 () => {
 
-                    const wasActive =
+                    const wasOpen =
                         item.classList.contains(
                             "active"
                         );
 
 
-                    faqItems.forEach(
-                        faq => {
+                    items.forEach(
+                        other => {
 
-                            faq.classList.remove(
+                            other.classList.remove(
                                 "active"
                             );
 
@@ -1342,7 +2161,7 @@ function faq() {
                     );
 
 
-                    if (!wasActive) {
+                    if (!wasOpen) {
 
                         item.classList.add(
                             "active"
@@ -1361,7 +2180,7 @@ function faq() {
 
 /* =========================================================
    BACK TO TOP
-========================================================= */
+   ========================================================= */
 
 function backToTop() {
 
@@ -1374,31 +2193,16 @@ function backToTop() {
     if (!button) return;
 
 
-    function checkScroll() {
-
-        if (
-            window.scrollY >
-            600
-        ) {
-
-            button.classList.add(
-                "show"
-            );
-
-        } else {
-
-            button.classList.remove(
-                "show"
-            );
-
-        }
-
-    }
-
-
     window.addEventListener(
         "scroll",
-        checkScroll,
+        () => {
+
+            button.classList.toggle(
+                "show",
+                window.scrollY > 500
+            );
+
+        },
         {
             passive: true
         }
@@ -1411,9 +2215,11 @@ function backToTop() {
 
             window.scrollTo({
 
-                top: 0,
+                top:
+                    0,
 
-                behavior: "smooth"
+                behavior:
+                    "smooth"
 
             });
 
@@ -1424,759 +2230,8 @@ function backToTop() {
 
 
 /* =========================================================
-   SMOOTH NAVIGATION
-========================================================= */
-
-function smoothNavigation() {
-
-    const links =
-        document.querySelectorAll(
-            'a[href^="#"]'
-        );
-
-
-    links.forEach(
-        link => {
-
-            link.addEventListener(
-                "click",
-                event => {
-
-                    const href =
-                        link.getAttribute(
-                            "href"
-                        );
-
-
-                    if (
-                        !href ||
-                        href === "#"
-                    ) return;
-
-
-                    const target =
-                        document.querySelector(
-                            href
-                        );
-
-
-                    if (!target) return;
-
-
-                    event.preventDefault();
-
-
-                    const header =
-                        document.getElementById(
-                            "header"
-                        );
-
-
-                    const headerHeight =
-                        header
-                            ? header.offsetHeight
-                            : 0;
-
-
-                    const position =
-                        target.offsetTop -
-                        headerHeight;
-
-
-                    window.scrollTo({
-
-                        top:
-                            position,
-
-                        behavior:
-                            "smooth"
-
-                    });
-
-                }
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   ACTIVE NAVIGATION
-========================================================= */
-
-function activeNavigation() {
-
-    const sections =
-        document.querySelectorAll(
-            "section[id]"
-        );
-
-
-    const links =
-        document.querySelectorAll(
-            ".nav-link"
-        );
-
-
-    if (
-        !sections.length ||
-        !links.length
-    ) return;
-
-
-    function updateActive() {
-
-        const scrollPosition =
-            window.scrollY + 150;
-
-
-        let current =
-            "";
-
-
-        sections.forEach(
-            section => {
-
-                if (
-                    scrollPosition >=
-                    section.offsetTop
-                ) {
-
-                    current =
-                        section.id;
-
-                }
-
-            }
-        );
-
-
-        links.forEach(
-            link => {
-
-                link.classList.remove(
-                    "active"
-                );
-
-
-                if (
-                    link.getAttribute(
-                        "href"
-                    ) ===
-                    `#${current}`
-                ) {
-
-                    link.classList.add(
-                        "active"
-                    );
-
-                }
-
-            }
-        );
-
-    }
-
-
-    window.addEventListener(
-        "scroll",
-        updateActive,
-        {
-            passive: true
-        }
-    );
-
-
-    updateActive();
-
-}
-
-
-activeNavigation();
-
-
-/* =========================================================
-   STAR RATING SYSTEM
-========================================================= */
-
-let selectedRating =
-    0;
-
-
-function ratingSystem() {
-
-    const ratingContainer =
-        document.getElementById(
-            "ratingInput"
-        );
-
-
-    if (!ratingContainer) return;
-
-
-    const stars =
-        ratingContainer.querySelectorAll(
-            "button"
-        );
-
-
-    stars.forEach(
-        star => {
-
-            star.addEventListener(
-                "mouseenter",
-                () => {
-
-                    const rating =
-                        Number(
-                            star.dataset.rating
-                        );
-
-
-                    highlightStars(
-                        rating
-                    );
-
-                }
-            );
-
-
-            star.addEventListener(
-                "mouseleave",
-                () => {
-
-                    highlightStars(
-                        selectedRating
-                    );
-
-                }
-            );
-
-
-            star.addEventListener(
-                "click",
-                () => {
-
-                    selectedRating =
-                        Number(
-                            star.dataset.rating
-                        );
-
-
-                    highlightStars(
-                        selectedRating
-                    );
-
-                }
-            );
-
-        }
-    );
-
-}
-
-
-function highlightStars(
-    rating
-) {
-
-    const stars =
-        document.querySelectorAll(
-            "#ratingInput button"
-        );
-
-
-    stars.forEach(
-        star => {
-
-            const value =
-                Number(
-                    star.dataset.rating
-                );
-
-
-            if (
-                value <= rating
-            ) {
-
-                star.classList.add(
-                    "active"
-                );
-
-            } else {
-
-                star.classList.remove(
-                    "active"
-                );
-
-            }
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   FIREBASE REVIEWS
-========================================================= */
-
-function reviews() {
-
-    const form =
-        document.getElementById(
-            "feedbackForm"
-        );
-
-
-    const container =
-        document.getElementById(
-            "reviewsContainer"
-        );
-
-
-    if (!form || !container) return;
-
-
-    /* -----------------------------------------------------
-       SUBMIT REVIEW
-    ----------------------------------------------------- */
-
-    form.addEventListener(
-        "submit",
-        async event => {
-
-            event.preventDefault();
-
-
-            const name =
-                document
-                    .getElementById(
-                        "feedbackName"
-                    )
-                    ?.value
-                    .trim();
-
-
-            const eventType =
-                document
-                    .getElementById(
-                        "feedbackEvent"
-                    )
-                    ?.value
-                    .trim();
-
-
-            const message =
-                document
-                    .getElementById(
-                        "feedbackMessage"
-                    )
-                    ?.value
-                    .trim();
-
-
-            if (!name) {
-
-                showToast(
-                    "Please enter your name."
-                );
-
-                return;
-
-            }
-
-
-            if (!eventType) {
-
-                showToast(
-                    "Please select your event."
-                );
-
-                return;
-
-            }
-
-
-            if (
-                !selectedRating ||
-                selectedRating < 1
-            ) {
-
-                showToast(
-                    "Please select a rating."
-                );
-
-                return;
-
-            }
-
-
-            if (!message) {
-
-                showToast(
-                    "Please write your review."
-                );
-
-                return;
-
-            }
-
-
-            if (!database) {
-
-                showToast(
-                    "Review service is not connected."
-                );
-
-                return;
-
-            }
-
-
-            const submitButton =
-                form.querySelector(
-                    'button[type="submit"]'
-                );
-
-
-            const originalText =
-                submitButton.innerHTML;
-
-
-            submitButton.disabled =
-                true;
-
-
-            submitButton.innerHTML =
-                `
-                    <i class="fa-solid fa-spinner fa-spin"></i>
-                    Publishing...
-                `;
-
-
-            try {
-
-                await push(
-                    ref(
-                        database,
-                        "reviews"
-                    ),
-                    {
-
-                        name:
-
-                            name,
-
-                        event:
-
-                            eventType,
-
-                        rating:
-
-                            selectedRating,
-
-                        message:
-
-                            message,
-
-                        createdAt:
-
-                            Date.now()
-
-                    }
-                );
-
-
-                form.reset();
-
-
-                selectedRating =
-                    0;
-
-
-                highlightStars(
-                    0
-                );
-
-
-                showToast(
-                    "Thank you! Your review has been submitted."
-                );
-
-
-            } catch (error) {
-
-                console.error(
-                    "Review submission error:",
-                    error
-                );
-
-
-                showToast(
-                    "Unable to submit review. Please try again."
-                );
-
-            } finally {
-
-                submitButton.disabled =
-                    false;
-
-
-                submitButton.innerHTML =
-                    originalText;
-
-            }
-
-        }
-    );
-
-
-    /* -----------------------------------------------------
-       LOAD REVIEWS
-    ----------------------------------------------------- */
-
-    if (database) {
-
-        const reviewsReference =
-            ref(
-                database,
-                "reviews"
-            );
-
-
-        onValue(
-            reviewsReference,
-            snapshot => {
-
-                const data =
-                    snapshot.val();
-
-
-                container.innerHTML =
-                    "";
-
-
-                if (!data) {
-
-                    container.innerHTML =
-                        `
-                            <div class="review-card">
-                                <div class="review-stars">
-                                    ★★★★★
-                                </div>
-
-                                <h4>
-                                    Be the first to review us
-                                </h4>
-
-                                <p>
-                                    Your experience could be
-                                    featured here.
-                                </p>
-                            </div>
-                        `;
-
-                    return;
-
-                }
-
-
-                const reviewsArray =
-                    Object.entries(
-                        data
-                    )
-                    .map(
-                        ([id, review]) => ({
-
-                            id,
-
-                            ...review
-
-                        })
-                    )
-                    .sort(
-                        (
-                            a,
-                            b
-                        ) =>
-                            (
-                                b.createdAt || 0
-                            ) -
-                            (
-                                a.createdAt || 0
-                            )
-                    );
-
-
-                reviewsArray
-                    .slice(0, 6)
-                    .forEach(
-                        review => {
-
-                            container.appendChild(
-                                createReviewCard(
-                                    review
-                                )
-                            );
-
-                        }
-                    );
-
-            },
-            error => {
-
-                console.error(
-                    "Firebase read error:",
-                    error
-                );
-
-            }
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   CREATE REVIEW CARD
-========================================================= */
-
-function createReviewCard(
-    review
-) {
-
-    const card =
-        document.createElement(
-            "article"
-        );
-
-
-    card.className =
-        "review-card reveal";
-
-
-    const rating =
-        Math.max(
-            1,
-            Math.min(
-                5,
-                Number(
-                    review.rating
-                ) || 5
-            )
-        );
-
-
-    const stars =
-        "★".repeat(
-            rating
-        ) +
-        "☆".repeat(
-            5 - rating
-        );
-
-
-    const name =
-        escapeHTML(
-            review.name ||
-            "Guest"
-        );
-
-
-    const event =
-        escapeHTML(
-            review.event ||
-            "Event"
-        );
-
-
-    const message =
-        escapeHTML(
-            review.message ||
-            ""
-        );
-
-
-    card.innerHTML =
-        `
-
-            <div class="review-stars">
-
-                ${stars}
-
-            </div>
-
-
-            <h4>
-
-                ${name}
-
-            </h4>
-
-
-            <small>
-
-                ${event}
-
-            </small>
-
-
-            <p>
-
-                ${message}
-
-            </p>
-
-        `;
-
-
-    return card;
-
-}
-
-
-/* =========================================================
-   ESCAPE HTML
-========================================================= */
-
-function escapeHTML(
-    value
-) {
-
-    return String(
-        value
-    )
-    .replace(
-        /&/g,
-        "&amp;"
-    )
-    .replace(
-        /</g,
-        "&lt;"
-    )
-    .replace(
-        />/g,
-        "&gt;"
-    )
-    .replace(
-        /"/g,
-        "&quot;"
-    )
-    .replace(
-        /'/g,
-        "&#039;"
-    );
-
-}
-
-
-/* =========================================================
-   TOAST MESSAGE
-========================================================= */
+   TOAST
+   ========================================================= */
 
 function showToast(
     message
@@ -2188,7 +2243,13 @@ function showToast(
         );
 
 
-    if (!toast) return;
+    if (!toast) {
+
+        alert(message);
+
+        return;
+
+    }
 
 
     toast.textContent =
@@ -2221,16 +2282,92 @@ function showToast(
 
 
 /* =========================================================
-   MAGNETIC BUTTON EFFECT
-========================================================= */
+   RIPPLE EFFECT
+   ========================================================= */
+
+function rippleEffect() {
+
+    document.querySelectorAll(
+        ".ripple"
+    ).forEach(
+        element => {
+
+            element.addEventListener(
+                "click",
+                event => {
+
+                    const rect =
+                        element.getBoundingClientRect();
+
+
+                    const ripple =
+                        document.createElement(
+                            "span"
+                        );
+
+
+                    ripple.className =
+                        "ripple-effect";
+
+
+                    const size =
+                        Math.max(
+                            rect.width,
+                            rect.height
+                        );
+
+
+                    ripple.style.width =
+                        size + "px";
+
+                    ripple.style.height =
+                        size + "px";
+
+
+                    ripple.style.left =
+                        (
+                            event.clientX -
+                            rect.left -
+                            size / 2
+                        ) + "px";
+
+
+                    ripple.style.top =
+                        (
+                            event.clientY -
+                            rect.top -
+                            size / 2
+                        ) + "px";
+
+
+                    element.appendChild(
+                        ripple
+                    );
+
+
+                    ripple.addEventListener(
+                        "animationend",
+                        () => {
+
+                            ripple.remove();
+
+                        }
+                    );
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   MAGNETIC BUTTONS
+   ========================================================= */
 
 function magneticButtons() {
-
-    const elements =
-        document.querySelectorAll(
-            ".btn, .nav-book"
-        );
-
 
     if (
         window.matchMedia(
@@ -2239,7 +2376,9 @@ function magneticButtons() {
     ) return;
 
 
-    elements.forEach(
+    document.querySelectorAll(
+        ".btn, .nav-book"
+    ).forEach(
         element => {
 
             element.addEventListener(
@@ -2264,10 +2403,10 @@ function magneticButtons() {
 
                     element.style.transform =
                         `
-                            translate(
-                                ${x * .08}px,
-                                ${y * .08}px
-                            )
+                        translate(
+                            ${x * .08}px,
+                            ${y * .08}px
+                        )
                         `;
 
                 }
@@ -2291,16 +2430,10 @@ function magneticButtons() {
 
 
 /* =========================================================
-   SERVICE CARD 3D TILT
-========================================================= */
+   TILT CARDS
+   ========================================================= */
 
 function tiltCards() {
-
-    const cards =
-        document.querySelectorAll(
-            ".tilt-card"
-        );
-
 
     if (
         window.matchMedia(
@@ -2309,7 +2442,9 @@ function tiltCards() {
     ) return;
 
 
-    cards.forEach(
+    document.querySelectorAll(
+        ".tilt-card"
+    ).forEach(
         card => {
 
             card.addEventListener(
@@ -2330,36 +2465,26 @@ function tiltCards() {
                         rect.top;
 
 
-                    const centerX =
-                        rect.width / 2;
-
-
-                    const centerY =
-                        rect.height / 2;
-
-
                     const rotateX =
                         (
                             y -
-                            centerY
-                        ) /
-                        18;
+                            rect.height / 2
+                        ) / 18;
 
 
                     const rotateY =
                         (
-                            centerX -
+                            rect.width / 2 -
                             x
-                        ) /
-                        18;
+                        ) / 18;
 
 
                     card.style.transform =
                         `
-                            perspective(1000px)
-                            rotateX(${rotateX}deg)
-                            rotateY(${rotateY}deg)
-                            translateY(-5px)
+                        perspective(1000px)
+                        rotateX(${rotateX}deg)
+                        rotateY(${rotateY}deg)
+                        translateY(-5px)
                         `;
 
                 }
@@ -2382,42 +2507,37 @@ function tiltCards() {
 }
 
 
-tiltCards();
-
-
 /* =========================================================
-   PARALLAX EFFECTS
-========================================================= */
+   PARALLAX
+   ========================================================= */
 
 function parallaxEffects() {
 
-    const hero =
+    const heroImage =
         document.querySelector(
             ".hero-background img"
         );
 
 
-    if (!hero) return;
+    if (!heroImage) return;
 
 
     let ticking =
         false;
 
 
-    function updateParallax() {
+    function update() {
 
         if (
             window.scrollY <
             window.innerHeight
         ) {
 
-            const offset =
-                window.scrollY *
-                .12;
-
-
-            hero.style.marginTop =
-                `${offset}px`;
+            heroImage.style.marginTop =
+                (
+                    window.scrollY *
+                    .12
+                ) + "px";
 
         }
 
@@ -2435,7 +2555,7 @@ function parallaxEffects() {
             if (!ticking) {
 
                 requestAnimationFrame(
-                    updateParallax
+                    update
                 );
 
                 ticking =
@@ -2453,26 +2573,31 @@ function parallaxEffects() {
 
 
 /* =========================================================
-   IMAGE HOVER EFFECT
-========================================================= */
+   ABOUT IMAGE HOVER
+   ========================================================= */
 
 function imageHoverEffect() {
 
-    const images =
-        document.querySelectorAll(
-            ".about-main-image, .about-small-image"
-        );
+    document.querySelectorAll(
+        ".about-main-image, .about-small-image"
+    ).forEach(
+        wrapper => {
+
+            const image =
+                wrapper.querySelector(
+                    "img"
+                );
 
 
-    images.forEach(
-        image => {
+            if (!image) return;
 
-            image.addEventListener(
+
+            wrapper.addEventListener(
                 "mousemove",
                 event => {
 
                     const rect =
-                        image.getBoundingClientRect();
+                        wrapper.getBoundingClientRect();
 
 
                     const x =
@@ -2505,45 +2630,25 @@ function imageHoverEffect() {
                         ) * 12;
 
 
-                    const img =
-                        image.querySelector(
-                            "img"
-                        );
-
-
-                    if (img) {
-
-                        img.style.transform =
-                            `
-                                scale(1.08)
-                                translate(
-                                    ${moveX}px,
-                                    ${moveY}px
-                                )
-                            `;
-
-                    }
+                    image.style.transform =
+                        `
+                        scale(1.08)
+                        translate(
+                            ${moveX}px,
+                            ${moveY}px
+                        )
+                        `;
 
                 }
             );
 
 
-            image.addEventListener(
+            wrapper.addEventListener(
                 "mouseleave",
                 () => {
 
-                    const img =
-                        image.querySelector(
-                            "img"
-                        );
-
-
-                    if (img) {
-
-                        img.style.transform =
-                            "";
-
-                    }
+                    image.style.transform =
+                        "";
 
                 }
             );
@@ -2554,12 +2659,9 @@ function imageHoverEffect() {
 }
 
 
-imageHoverEffect();
-
-
 /* =========================================================
-   BUTTON CLICK PARTICLES
-========================================================= */
+   CLICK PARTICLES
+   ========================================================= */
 
 function clickParticles() {
 
@@ -2609,34 +2711,26 @@ function createParticle(
     particle.style.position =
         "fixed";
 
-
     particle.style.left =
-        `${x}px`;
-
+        x + "px";
 
     particle.style.top =
-        `${y}px`;
-
+        y + "px";
 
     particle.style.width =
         "4px";
 
-
     particle.style.height =
         "4px";
-
 
     particle.style.borderRadius =
         "50%";
 
-
     particle.style.background =
         "#d4af37";
 
-
     particle.style.pointerEvents =
         "none";
-
 
     particle.style.zIndex =
         "100002";
@@ -2655,57 +2749,55 @@ function createParticle(
 
 
     const targetX =
-        Math.cos(
-            angle
-        ) *
+        Math.cos(angle) *
         distance;
 
 
     const targetY =
-        Math.sin(
-            angle
-        ) *
+        Math.sin(angle) *
         distance;
 
 
-    particle.animate(
-        [
+    const animation =
+        particle.animate(
+            [
 
-            {
-                transform:
-                    "translate(-50%, -50%) scale(1)",
+                {
+                    transform:
+                        "translate(-50%,-50%) scale(1)",
 
-                opacity:
-                    1
+                    opacity:
+                        1
 
-            },
+                },
 
-            {
-                transform:
-                    `
+                {
+
+                    transform:
+                        `
                         translate(
                             calc(-50% + ${targetX}px),
                             calc(-50% + ${targetY}px)
                         )
                         scale(0)
-                    `,
+                        `,
 
-                opacity:
-                    0
+                    opacity:
+                        0
+
+                }
+
+            ],
+            {
+
+                duration:
+                    700,
+
+                easing:
+                    "cubic-bezier(.2,.8,.2,1)"
 
             }
-
-        ],
-        {
-
-            duration:
-                700,
-
-            easing:
-                "cubic-bezier(.2,.8,.2,1)"
-
-        }
-    );
+        );
 
 
     document.body.appendChild(
@@ -2713,24 +2805,24 @@ function createParticle(
     );
 
 
-    setTimeout(
-        () => {
+    animation.finished
+        .catch(
+            () => {}
+        )
+        .finally(
+            () => {
 
-            particle.remove();
+                particle.remove();
 
-        },
-        750
-    );
+            }
+        );
 
 }
 
 
-clickParticles();
-
-
 /* =========================================================
-   HERO TEXT ENTRANCE
-========================================================= */
+   HERO ENTRANCE
+   ========================================================= */
 
 function heroEntrance() {
 
@@ -2747,7 +2839,10 @@ function heroEntrance() {
         ) => {
 
             element.style.transitionDelay =
-                `${index * 150}ms`;
+                (
+                    index *
+                    150
+                ) + "ms";
 
         }
     );
@@ -2767,146 +2862,47 @@ function heroEntrance() {
             );
 
         },
-        900
+        800
     );
 
 }
 
 
-heroEntrance();
-
-
 /* =========================================================
-   SERVICE CARD STAGGER
-========================================================= */
+   STAGGER ELEMENTS
+   ========================================================= */
 
-function staggerServices() {
+function staggerElements() {
 
-    const cards =
-        document.querySelectorAll(
-            ".service-card"
-        );
+    const groups = [
 
+        ".service-card",
 
-    cards.forEach(
-        (
-            card,
-            index
-        ) => {
+        ".event-card",
 
-            card.style.transitionDelay =
-                `${index * 80}ms`;
+        ".gallery-item"
 
-        }
-    );
-
-}
+    ];
 
 
-staggerServices();
+    groups.forEach(
+        selector => {
 
+            document.querySelectorAll(
+                selector
+            ).forEach(
+                (
+                    element,
+                    index
+                ) => {
 
-/* =========================================================
-   EVENT CARD STAGGER
-========================================================= */
+                    element.style.transitionDelay =
+                        (
+                            index *
+                            70
+                        ) + "ms";
 
-function staggerEvents() {
-
-    const cards =
-        document.querySelectorAll(
-            ".event-card"
-        );
-
-
-    cards.forEach(
-        (
-            card,
-            index
-        ) => {
-
-            card.style.transitionDelay =
-                `${index * 100}ms`;
-
-        }
-    );
-
-}
-
-
-staggerEvents();
-
-
-/* =========================================================
-   GALLERY CARD STAGGER
-========================================================= */
-
-function staggerGallery() {
-
-    const cards =
-        document.querySelectorAll(
-            ".gallery-item"
-        );
-
-
-    cards.forEach(
-        (
-            card,
-            index
-        ) => {
-
-            card.style.transitionDelay =
-                `${index * 70}ms`;
-
-        }
-    );
-
-}
-
-
-staggerGallery();
-
-
-/* =========================================================
-   PREVENT IMAGE DRAGGING
-========================================================= */
-
-document.querySelectorAll(
-    "img"
-).forEach(
-    image => {
-
-        image.addEventListener(
-            "dragstart",
-            event => {
-
-                event.preventDefault();
-
-            }
-        );
-
-    }
-);
-
-
-/* =========================================================
-   HERO IMAGE ERROR HANDLER
-========================================================= */
-
-const heroImage =
-    document.getElementById(
-        "heroImage"
-    );
-
-
-if (heroImage) {
-
-    heroImage.addEventListener(
-        "error",
-        () => {
-
-            console.error(
-                "Hero image not found:",
-                heroImage.src
+                }
             );
 
         }
@@ -2916,36 +2912,297 @@ if (heroImage) {
 
 
 /* =========================================================
-   GALLERY IMAGE ERROR HANDLER
-========================================================= */
+   PREVENT IMAGE DRAG
+   ========================================================= */
 
-document.querySelectorAll(
-    ".gallery-item img"
-).forEach(
-    image => {
+function preventImageDragging() {
 
-        image.addEventListener(
+    document.querySelectorAll(
+        "img"
+    ).forEach(
+        image => {
+
+            image.addEventListener(
+                "dragstart",
+                event => {
+
+                    event.preventDefault();
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   IMAGE ERROR HANDLERS
+   ========================================================= */
+
+function imageErrorHandlers() {
+
+    const heroImage =
+        document.getElementById(
+            "heroImage"
+        );
+
+
+    if (heroImage) {
+
+        heroImage.addEventListener(
             "error",
             () => {
 
-                image.style.opacity =
-                    "0.25";
-
                 console.error(
-                    "Gallery image not found:",
-                    image.src
+                    "Hero image not found:",
+                    heroImage.src
                 );
 
             }
         );
 
     }
+
+
+    document.querySelectorAll(
+        ".gallery-item img"
+    ).forEach(
+        image => {
+
+            image.addEventListener(
+                "error",
+                () => {
+
+                    console.error(
+                        "Gallery image not found:",
+                        image.src
+                    );
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   ACTIVE NAVIGATION
+   ========================================================= */
+
+function activeNavigation() {
+
+    const sections =
+        document.querySelectorAll(
+            "section[id]"
+        );
+
+
+    const links =
+        document.querySelectorAll(
+            ".nav-link"
+        );
+
+
+    if (
+        !sections.length ||
+        !links.length
+    ) return;
+
+
+    const observer =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(
+                    entry => {
+
+                        if (
+                            !entry.isIntersecting
+                        ) return;
+
+
+                        const id =
+                            entry.target.id;
+
+
+                        links.forEach(
+                            link => {
+
+                                link.classList.toggle(
+                                    "active",
+                                    link.getAttribute(
+                                        "href"
+                                    ) ===
+                                    "#" + id
+                                );
+
+                            }
+                        );
+
+                    }
+                );
+
+            },
+            {
+                rootMargin:
+                    "-35% 0px -55% 0px"
+            }
+        );
+
+
+    sections.forEach(
+        section => {
+
+            observer.observe(
+                section
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   HERO MOUSE LIGHT
+   ========================================================= */
+
+function heroMouseLight() {
+
+    if (
+        window.matchMedia(
+            "(max-width: 768px)"
+        ).matches
+    ) return;
+
+
+    const hero =
+        document.querySelector(
+            ".hero"
+        );
+
+
+    if (!hero) return;
+
+
+    const light =
+        document.createElement(
+            "div"
+        );
+
+
+    light.style.position =
+        "absolute";
+
+    light.style.width =
+        "260px";
+
+    light.style.height =
+        "260px";
+
+    light.style.borderRadius =
+        "50%";
+
+    light.style.pointerEvents =
+        "none";
+
+    light.style.zIndex =
+        "2";
+
+    light.style.transform =
+        "translate(-50%,-50%)";
+
+    light.style.background =
+        "radial-gradient(circle,rgba(212,175,55,.12),transparent 70%)";
+
+    light.style.transition =
+        "left .2s ease,top .2s ease";
+
+
+    hero.appendChild(
+        light
+    );
+
+
+    hero.addEventListener(
+        "mousemove",
+        event => {
+
+            const rect =
+                hero.getBoundingClientRect();
+
+
+            light.style.left =
+                (
+                    event.clientX -
+                    rect.left
+                ) + "px";
+
+
+            light.style.top =
+                (
+                    event.clientY -
+                    rect.top
+                ) + "px";
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   ESC KEY
+   ========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key !==
+            "Escape"
+        ) return;
+
+
+        const button =
+            document.getElementById(
+                "menuButton"
+            );
+
+
+        const menu =
+            document.querySelector(
+                ".nav-menu"
+            );
+
+
+        if (
+            button &&
+            menu
+        ) {
+
+            button.classList.remove(
+                "active"
+            );
+
+            menu.classList.remove(
+                "open"
+            );
+
+        }
+
+    }
 );
 
 
 /* =========================================================
-   CONSOLE MESSAGE
-========================================================= */
+   FINAL MESSAGE
+   ========================================================= */
 
 console.log(
     "%c Nandhi Decor ",
@@ -2958,363 +3215,6 @@ console.log(
     `
 );
 
-
 console.log(
     "Premium cinematic UI loaded successfully."
-);/* =========================================================
-   🔥 ULTRA CINEMATIC SCROLL GALLERY ENGINE
-   ADD ONLY — DO NOT REMOVE EXISTING JS
-   ========================================================= */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    const galleryItems =
-        document.querySelectorAll(".gallery-item");
-
-    if (!galleryItems.length) return;
-
-
-    /* -----------------------------------------------------
-       INITIAL SETUP
-       ----------------------------------------------------- */
-
-    galleryItems.forEach((item, index) => {
-
-        item.classList.add("scroll-rotate");
-
-        item.style.setProperty(
-            "--scroll-x",
-            "0deg"
-        );
-
-        item.style.setProperty(
-            "--scroll-y",
-            "0deg"
-        );
-
-        item.style.setProperty(
-            "--scroll-z",
-            "0deg"
-        );
-
-        item.style.setProperty(
-            "--scroll-move-y",
-            "0px"
-        );
-
-        item.style.setProperty(
-            "--scroll-move-x",
-            "0px"
-        );
-
-        item.style.setProperty(
-            "--scroll-depth",
-            "0px"
-        );
-
-        item.style.setProperty(
-            "--scroll-scale",
-            "1"
-        );
-
-    });
-
-
-    /* -----------------------------------------------------
-       SCROLL ENGINE
-       ----------------------------------------------------- */
-
-    let ticking = false;
-
-
-    function updateGalleryScroll() {
-
-        const windowHeight =
-            window.innerHeight;
-
-
-        galleryItems.forEach((item, index) => {
-
-            const rect =
-                item.getBoundingClientRect();
-
-
-            /*
-             * CENTER POSITION
-             */
-
-            const itemCenter =
-                rect.top +
-                rect.height / 2;
-
-
-            const screenCenter =
-                windowHeight / 2;
-
-
-            /*
-             * DISTANCE FROM SCREEN CENTER
-             */
-
-            const distance =
-                itemCenter -
-                screenCenter;
-
-
-            /*
-             * NORMALIZED VALUE
-             * -1 = top
-             *  0 = center
-             * +1 = bottom
-             */
-
-            let progress =
-                distance /
-                (windowHeight * .75);
-
-
-            progress =
-                Math.max(
-                    -1,
-                    Math.min(
-                        1,
-                        progress
-                    )
-                );
-
-
-            /*
-             * ABSOLUTE POSITION
-             */
-
-            const absProgress =
-                Math.abs(progress);
-
-
-            /*
-             * DIFFERENT ROTATION
-             */
-
-            const direction =
-                index % 2 === 0
-                    ? 1
-                    : -1;
-
-
-            /*
-             * X ROTATION
-             */
-
-            const rotateX =
-                progress *
-                -16;
-
-
-            /*
-             * Y ROTATION
-             */
-
-            const rotateY =
-                progress *
-                13 *
-                direction;
-
-
-            /*
-             * Z ROTATION
-             */
-
-            const rotateZ =
-                progress *
-                4 *
-                direction;
-
-
-            /*
-             * VERTICAL MOVEMENT
-             */
-
-            const moveY =
-                progress *
-                -35;
-
-
-            /*
-             * HORIZONTAL MOVEMENT
-             */
-
-            const moveX =
-                progress *
-                15 *
-                direction;
-
-
-            /*
-             * 3D DEPTH
-             */
-
-            const depth =
-                (1 - absProgress) *
-                35;
-
-
-            /*
-             * SCALE
-             */
-
-            const scale =
-                1.02 -
-                absProgress * .08;
-
-
-            /*
-             * APPLY VALUES
-             */
-
-            item.style.setProperty(
-                "--scroll-x",
-                `${rotateX}deg`
-            );
-
-            item.style.setProperty(
-                "--scroll-y",
-                `${rotateY}deg`
-            );
-
-            item.style.setProperty(
-                "--scroll-z",
-                `${rotateZ}deg`
-            );
-
-            item.style.setProperty(
-                "--scroll-move-y",
-                `${moveY}px`
-            );
-
-            item.style.setProperty(
-                "--scroll-move-x",
-                `${moveX}px`
-            );
-
-            item.style.setProperty(
-                "--scroll-depth",
-                `${depth}px`
-            );
-
-            item.style.setProperty(
-                "--scroll-scale",
-                scale
-            );
-
-
-            /*
-             * ACTIVE CARD
-             */
-
-            if (
-                Math.abs(distance) <
-                windowHeight * .38
-            ) {
-
-                item.classList.add(
-                    "scroll-active"
-                );
-
-            } else {
-
-                item.classList.remove(
-                    "scroll-active"
-                );
-
-            }
-
-        });
-
-
-        ticking = false;
-
-    }
-
-
-    /* -----------------------------------------------------
-       SCROLL EVENT
-       ----------------------------------------------------- */
-
-    window.addEventListener(
-        "scroll",
-        () => {
-
-            if (!ticking) {
-
-                window.requestAnimationFrame(
-                    updateGalleryScroll
-                );
-
-                ticking = true;
-
-            }
-
-        },
-        {
-            passive: true
-        }
-    );
-
-
-    /* -----------------------------------------------------
-       RESIZE EVENT
-       ----------------------------------------------------- */
-
-    window.addEventListener(
-        "resize",
-        updateGalleryScroll
-    );
-
-
-    /* -----------------------------------------------------
-       FIRST RUN
-       ----------------------------------------------------- */
-
-    updateGalleryScroll();
-
-
-    /* -----------------------------------------------------
-       ENTER VIEWPORT ANIMATION
-       ----------------------------------------------------- */
-
-    const galleryObserver =
-        new IntersectionObserver(
-            (entries) => {
-
-                entries.forEach(
-                    (entry) => {
-
-                        if (
-                            entry.isIntersecting
-                        ) {
-
-                            entry.target.classList.add(
-                                "scroll-enter"
-                            );
-
-                        }
-
-                    }
-                );
-
-            },
-            {
-                threshold: .15
-            }
-        );
-
-
-    galleryItems.forEach(
-        (item) => {
-
-            galleryObserver.observe(item);
-
-        }
-    );
-
-});
+);

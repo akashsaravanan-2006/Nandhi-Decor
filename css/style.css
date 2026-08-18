@@ -8018,4 +8018,832 @@ img {
             scale(var(--scroll-scale, 1));
     }
 
+}/* =========================================================
+   PREMIUM REVIEW SECTION - ALIGNMENT FIX
+   ADD THIS AT THE VERY BOTTOM OF style.css
+========================================================= */
+
+
+/* ---------- REVIEW GRID ---------- */
+
+#reviewsContainer {
+    display: grid !important;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 22px;
+
+    width: 100%;
+
+    align-items: stretch;
+
+    margin-top: 20px;
+}
+
+
+/* ---------- REVIEW CARD ---------- */
+
+#reviewsContainer .review-card {
+    position: relative;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    justify-content: flex-start !important;
+
+    min-width: 0;
+
+    min-height: 245px;
+
+    padding: 28px 27px 24px !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.035),
+            rgba(255,255,255,0.012)
+        ) !important;
+
+    border: 1px solid
+        rgba(212,175,55,0.16) !important;
+
+    border-radius: 2px;
+
+    overflow: hidden;
+
+    box-sizing: border-box;
+
+    transition:
+        transform .45s cubic-bezier(.2,.8,.2,1),
+        border-color .45s ease,
+        box-shadow .45s ease,
+        background .45s ease;
+
+    isolation: isolate;
+}
+
+
+/* ---------- GOLD TOP LINE ---------- */
+
+#reviewsContainer .review-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 0;
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #d4af37,
+            #f1d27a,
+            transparent
+        );
+
+    transition:
+        width .55s ease;
+
+    z-index: 2;
+}
+
+
+#reviewsContainer .review-card:hover::before {
+
+    width: 100%;
+
+}
+
+
+/* ---------- GOLD GLOW ---------- */
+
+#reviewsContainer .review-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    right: -80px;
+    bottom: -90px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(212,175,55,.12),
+            transparent 70%
+        );
+
+    pointer-events: none;
+
+    opacity: .5;
+
+    transition:
+        transform .6s ease,
+        opacity .6s ease;
+
+}
+
+
+#reviewsContainer .review-card:hover::after {
+
+    transform:
+        scale(1.7);
+
+    opacity: 1;
+
+}
+
+
+/* ---------- HOVER ---------- */
+
+#reviewsContainer .review-card:hover {
+
+    transform:
+        translateY(-8px);
+
+    border-color:
+        rgba(212,175,55,.48) !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(212,175,55,.065),
+            rgba(255,255,255,.018)
+        ) !important;
+
+    box-shadow:
+        0 22px 55px
+        rgba(0,0,0,.38),
+        0 0 35px
+        rgba(212,175,55,.07);
+
+}
+
+
+/* =========================================================
+   REVIEW HEADER
+========================================================= */
+
+#reviewsContainer .review-header {
+
+    display: flex !important;
+
+    align-items: flex-start !important;
+
+    justify-content: space-between !important;
+
+    gap: 15px;
+
+    width: 100%;
+
+    margin-bottom: 22px;
+
+}
+
+
+/* ---------- REVIEWER ---------- */
+
+#reviewsContainer .reviewer {
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    gap: 13px;
+
+    min-width: 0;
+
+}
+
+
+/* ---------- AVATAR ---------- */
+
+#reviewsContainer .reviewer-avatar {
+
+    flex: 0 0 48px;
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d4af37,
+            #8f6b17
+        );
+
+    color: #050505;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(212,175,55,.06);
+
+}
+
+
+/* ---------- NAME ---------- */
+
+#reviewsContainer .reviewer-name {
+
+    color: #f4f4f4;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    line-height: 1.25;
+
+    letter-spacing: .2px;
+
+    word-break: break-word;
+
+}
+
+
+/* ---------- EVENT ---------- */
+
+#reviewsContainer .reviewer-event {
+
+    margin-top: 5px;
+
+    color: #d4af37;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+
+}
+
+
+/* =========================================================
+   STARS
+========================================================= */
+
+#reviewsContainer .review-stars {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 2px;
+
+    flex-shrink: 0;
+
+    padding-top: 3px;
+
+    font-size: 14px;
+
+    letter-spacing: 1px;
+
+}
+
+
+/* =========================================================
+   REVIEW MESSAGE
+========================================================= */
+
+#reviewsContainer .review-message {
+
+    position: relative;
+
+    flex: 1;
+
+    margin: 0 !important;
+
+    padding: 20px 0 18px 0 !important;
+
+    color:
+        rgba(255,255,255,.68);
+
+    font-size: 11px;
+
+    line-height: 1.8;
+
+    font-weight: 400;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.07);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.07);
+
+}
+
+
+/* quotation mark */
+
+#reviewsContainer .review-message::before {
+
+    content: "“";
+
+    position: absolute;
+
+    left: 0;
+
+    top: 4px;
+
+    color:
+        rgba(212,175,55,.25);
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size: 34px;
+
+    line-height: 1;
+
+}
+
+
+/* =========================================================
+   REVIEW DATE
+========================================================= */
+
+#reviewsContainer .review-date {
+
+    margin-top: 15px !important;
+
+    color:
+        rgba(255,255,255,.38) !important;
+
+    font-size: 9px !important;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+
+}
+
+
+/* =========================================================
+   REVIEW EMPTY STATE
+========================================================= */
+
+#reviewsContainer .no-reviews {
+
+    grid-column: 1 / -1;
+
+    min-height: 180px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border:
+        1px solid
+        rgba(212,175,55,.15);
+
+    background:
+        rgba(255,255,255,.015);
+
+}
+
+
+#reviewsContainer .no-reviews p {
+
+    color: #777;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+}
+
+
+/* =========================================================
+   REVIEW FORM ALIGNMENT
+========================================================= */
+
+#feedbackForm {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+}
+
+
+#feedbackForm input,
+#feedbackForm select,
+#feedbackForm textarea {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+}
+
+
+/* =========================================================
+   REVIEW FORM CARD
+========================================================= */
+
+.feedback-form,
+.review-form {
+
+    position: relative;
+
+    overflow: hidden;
+
+}
+
+
+/* =========================================================
+   STAR INPUT
+========================================================= */
+
+#ratingInput {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    min-height: 42px;
+
+}
+
+
+#ratingInput button {
+
+    width: 30px;
+    height: 30px;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: #555;
+
+    font-size: 22px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        transform .25s ease,
+        color .25s ease;
+
+}
+
+
+#ratingInput button:hover {
+
+    color: #d4af37;
+
+    transform:
+        scale(1.25)
+        rotate(-5deg);
+
+}
+
+
+#ratingInput button.active {
+
+    color: #d4af37;
+
+    text-shadow:
+        0 0 12px
+        rgba(212,175,55,.35);
+
+}
+
+
+/* =========================================================
+   REVIEW BUTTON
+========================================================= */
+
+#feedbackForm button[type="submit"] {
+
+    position: relative;
+
+    overflow: hidden;
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+
+}
+
+
+#feedbackForm button[type="submit"]:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 15px 35px
+        rgba(212,175,55,.2);
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    #reviewsContainer {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 16px;
+
+    }
+
+    #reviewsContainer .review-card {
+
+        min-height: 235px;
+
+        padding:
+            23px 21px 20px !important;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    #reviewsContainer {
+
+        grid-template-columns:
+            1fr !important;
+
+        gap: 16px;
+
+        margin-top: 18px;
+
+    }
+
+
+    #reviewsContainer .review-card {
+
+        width: 100%;
+
+        min-height: auto;
+
+        padding:
+            23px 20px 20px !important;
+
+    }
+
+
+    #reviewsContainer .review-header {
+
+        align-items: center !important;
+
+        margin-bottom: 17px;
+
+    }
+
+
+    #reviewsContainer .reviewer-avatar {
+
+        width: 44px;
+        height: 44px;
+
+        flex-basis: 44px;
+
+        font-size: 13px;
+
+    }
+
+
+    #reviewsContainer .reviewer-name {
+
+        font-size: 14px;
+
+    }
+
+
+    #reviewsContainer .reviewer-event {
+
+        font-size: 8px;
+
+        letter-spacing: 1.5px;
+
+    }
+
+
+    #reviewsContainer .review-stars {
+
+        font-size: 12px;
+
+        letter-spacing: 0;
+
+    }
+
+
+    #reviewsContainer .review-message {
+
+        font-size: 10.5px;
+
+        line-height: 1.75;
+
+        padding:
+            17px 0 16px 0 !important;
+
+    }
+
+
+    #reviewsContainer .review-date {
+
+        margin-top: 12px !important;
+
+        font-size: 8px !important;
+
+    }
+
+
+    #ratingInput button {
+
+        width: 28px;
+        height: 28px;
+
+        font-size: 20px;
+
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+
+    #reviewsContainer .review-header {
+
+        gap: 8px;
+
+    }
+
+
+    #reviewsContainer .reviewer {
+
+        gap: 10px;
+
+    }
+
+
+    #reviewsContainer .reviewer-avatar {
+
+        width: 40px;
+        height: 40px;
+
+        flex-basis: 40px;
+
+    }
+
+
+    #reviewsContainer .reviewer-name {
+
+        font-size: 13px;
+
+    }
+
+
+    #reviewsContainer .review-stars {
+
+        font-size: 10px;
+
+    }
+
+
+    #reviewsContainer .review-message {
+
+        font-size: 10px;
+
+    }
+
+}
+
+
+/* =========================================================
+   REVIEW CARD ENTRANCE ANIMATION
+========================================================= */
+
+@keyframes reviewCardEnter {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(35px)
+            rotateX(8deg);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            rotateX(0);
+
+    }
+
+}
+
+
+#reviewsContainer .review-card {
+
+    animation:
+        reviewCardEnter
+        .8s
+        cubic-bezier(.2,.8,.2,1)
+        both;
+
+}
+
+
+#reviewsContainer .review-card:nth-child(2) {
+
+    animation-delay: .08s;
+
+}
+
+
+#reviewsContainer .review-card:nth-child(3) {
+
+    animation-delay: .16s;
+
+}
+
+
+#reviewsContainer .review-card:nth-child(4) {
+
+    animation-delay: .24s;
+
+}
+
+
+#reviewsContainer .review-card:nth-child(5) {
+
+    animation-delay: .32s;
+
+}
+
+
+#reviewsContainer .review-card:nth-child(6) {
+
+    animation-delay: .40s;
+
 }

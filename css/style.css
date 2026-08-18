@@ -8024,13 +8024,7 @@ img {
    ADD THIS AT THE VERY BOTTOM OF CSS
    ========================================================= */
 
-@media (max-width: 768px) {
 
-    .premium-gallery-section,
-    .gallery {
-        perspective: 1200px;
-        perspective-origin: center center;
-    }
 
     .gallery-item {
         transform-style: preserve-3d;

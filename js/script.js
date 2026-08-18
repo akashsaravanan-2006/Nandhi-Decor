@@ -2961,4 +2961,360 @@ console.log(
 
 console.log(
     "Premium cinematic UI loaded successfully."
-);
+);/* =========================================================
+   🔥 ULTRA CINEMATIC SCROLL GALLERY ENGINE
+   ADD ONLY — DO NOT REMOVE EXISTING JS
+   ========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const galleryItems =
+        document.querySelectorAll(".gallery-item");
+
+    if (!galleryItems.length) return;
+
+
+    /* -----------------------------------------------------
+       INITIAL SETUP
+       ----------------------------------------------------- */
+
+    galleryItems.forEach((item, index) => {
+
+        item.classList.add("scroll-rotate");
+
+        item.style.setProperty(
+            "--scroll-x",
+            "0deg"
+        );
+
+        item.style.setProperty(
+            "--scroll-y",
+            "0deg"
+        );
+
+        item.style.setProperty(
+            "--scroll-z",
+            "0deg"
+        );
+
+        item.style.setProperty(
+            "--scroll-move-y",
+            "0px"
+        );
+
+        item.style.setProperty(
+            "--scroll-move-x",
+            "0px"
+        );
+
+        item.style.setProperty(
+            "--scroll-depth",
+            "0px"
+        );
+
+        item.style.setProperty(
+            "--scroll-scale",
+            "1"
+        );
+
+    });
+
+
+    /* -----------------------------------------------------
+       SCROLL ENGINE
+       ----------------------------------------------------- */
+
+    let ticking = false;
+
+
+    function updateGalleryScroll() {
+
+        const windowHeight =
+            window.innerHeight;
+
+
+        galleryItems.forEach((item, index) => {
+
+            const rect =
+                item.getBoundingClientRect();
+
+
+            /*
+             * CENTER POSITION
+             */
+
+            const itemCenter =
+                rect.top +
+                rect.height / 2;
+
+
+            const screenCenter =
+                windowHeight / 2;
+
+
+            /*
+             * DISTANCE FROM SCREEN CENTER
+             */
+
+            const distance =
+                itemCenter -
+                screenCenter;
+
+
+            /*
+             * NORMALIZED VALUE
+             * -1 = top
+             *  0 = center
+             * +1 = bottom
+             */
+
+            let progress =
+                distance /
+                (windowHeight * .75);
+
+
+            progress =
+                Math.max(
+                    -1,
+                    Math.min(
+                        1,
+                        progress
+                    )
+                );
+
+
+            /*
+             * ABSOLUTE POSITION
+             */
+
+            const absProgress =
+                Math.abs(progress);
+
+
+            /*
+             * DIFFERENT ROTATION
+             */
+
+            const direction =
+                index % 2 === 0
+                    ? 1
+                    : -1;
+
+
+            /*
+             * X ROTATION
+             */
+
+            const rotateX =
+                progress *
+                -16;
+
+
+            /*
+             * Y ROTATION
+             */
+
+            const rotateY =
+                progress *
+                13 *
+                direction;
+
+
+            /*
+             * Z ROTATION
+             */
+
+            const rotateZ =
+                progress *
+                4 *
+                direction;
+
+
+            /*
+             * VERTICAL MOVEMENT
+             */
+
+            const moveY =
+                progress *
+                -35;
+
+
+            /*
+             * HORIZONTAL MOVEMENT
+             */
+
+            const moveX =
+                progress *
+                15 *
+                direction;
+
+
+            /*
+             * 3D DEPTH
+             */
+
+            const depth =
+                (1 - absProgress) *
+                35;
+
+
+            /*
+             * SCALE
+             */
+
+            const scale =
+                1.02 -
+                absProgress * .08;
+
+
+            /*
+             * APPLY VALUES
+             */
+
+            item.style.setProperty(
+                "--scroll-x",
+                `${rotateX}deg`
+            );
+
+            item.style.setProperty(
+                "--scroll-y",
+                `${rotateY}deg`
+            );
+
+            item.style.setProperty(
+                "--scroll-z",
+                `${rotateZ}deg`
+            );
+
+            item.style.setProperty(
+                "--scroll-move-y",
+                `${moveY}px`
+            );
+
+            item.style.setProperty(
+                "--scroll-move-x",
+                `${moveX}px`
+            );
+
+            item.style.setProperty(
+                "--scroll-depth",
+                `${depth}px`
+            );
+
+            item.style.setProperty(
+                "--scroll-scale",
+                scale
+            );
+
+
+            /*
+             * ACTIVE CARD
+             */
+
+            if (
+                Math.abs(distance) <
+                windowHeight * .38
+            ) {
+
+                item.classList.add(
+                    "scroll-active"
+                );
+
+            } else {
+
+                item.classList.remove(
+                    "scroll-active"
+                );
+
+            }
+
+        });
+
+
+        ticking = false;
+
+    }
+
+
+    /* -----------------------------------------------------
+       SCROLL EVENT
+       ----------------------------------------------------- */
+
+    window.addEventListener(
+        "scroll",
+        () => {
+
+            if (!ticking) {
+
+                window.requestAnimationFrame(
+                    updateGalleryScroll
+                );
+
+                ticking = true;
+
+            }
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    /* -----------------------------------------------------
+       RESIZE EVENT
+       ----------------------------------------------------- */
+
+    window.addEventListener(
+        "resize",
+        updateGalleryScroll
+    );
+
+
+    /* -----------------------------------------------------
+       FIRST RUN
+       ----------------------------------------------------- */
+
+    updateGalleryScroll();
+
+
+    /* -----------------------------------------------------
+       ENTER VIEWPORT ANIMATION
+       ----------------------------------------------------- */
+
+    const galleryObserver =
+        new IntersectionObserver(
+            (entries) => {
+
+                entries.forEach(
+                    (entry) => {
+
+                        if (
+                            entry.isIntersecting
+                        ) {
+
+                            entry.target.classList.add(
+                                "scroll-enter"
+                            );
+
+                        }
+
+                    }
+                );
+
+            },
+            {
+                threshold: .15
+            }
+        );
+
+
+    galleryItems.forEach(
+        (item) => {
+
+            galleryObserver.observe(item);
+
+        }
+    );
+
+});

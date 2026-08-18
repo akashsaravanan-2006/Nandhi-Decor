@@ -1,127 +1,285 @@
 /* =========================================================
    NANDHI DECOR
-   COMPLETE WEBSITE JAVASCRIPT
+   COMPLETE JAVASCRIPT
+   FIREBASE REALTIME DATABASE REVIEWS
 ========================================================= */
-
-"use strict";
 
 
 /* =========================================================
-   WAIT FOR PAGE
+   FIREBASE IMPORTS
 ========================================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
+import { initializeApp } from
+    "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
 
-    initLoader();
-    initMobileMenu();
-    initNavbar();
-    initScrollReveal();
-    initHeroSlider();
-    initGallery();
-    initFeedback();
-    initRating();
-    initFAQ();
-    initBackToTop();
-    initParticles();
-
-});
+import {
+    getDatabase,
+    ref,
+    push,
+    onValue
+} from
+    "https://www.gstatic.com/firebasejs/12.16.0/firebase-database.js";
 
 
 /* =========================================================
-   1. PAGE LOADER
+   FIREBASE CONFIGURATION
+========================================================= */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyAdCk7iH6dzAfheRTJxgjBdeSJzIwruh48",
+
+    authDomain:
+        "nandhidecor-c719e.firebaseapp.com",
+
+    projectId:
+        "nandhidecor-c719e",
+
+    storageBucket:
+        "nandhidecor-c719e.firebasestorage.app",
+
+    messagingSenderId:
+        "956796053723",
+
+    appId:
+        "1:956796053723:web:9c72fa0d956658d53184fe",
+
+    measurementId:
+        "G-56EM207FYY"
+};
+
+
+/* =========================================================
+   INITIALIZE FIREBASE
+========================================================= */
+
+const app =
+    initializeApp(firebaseConfig);
+
+
+/* =========================================================
+   INITIALIZE REALTIME DATABASE
+========================================================= */
+
+const database =
+    getDatabase(app);
+
+
+/* =========================================================
+   REVIEWS DATABASE REFERENCE
+========================================================= */
+
+const reviewsRef =
+    ref(database, "reviews");
+
+
+console.log(
+    "Firebase connected successfully"
+);
+
+
+/* =========================================================
+   GLOBAL VARIABLES
+========================================================= */
+
+let selectedRating = 0;
+
+
+/* =========================================================
+   DOM READY
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        initLoader();
+
+        initMobileMenu();
+
+        initNavbar();
+
+        initScrollReveal();
+
+        initHeroSlider();
+
+        initGallery();
+
+        initRating();
+
+        initFeedback();
+
+        initFAQ();
+
+        initBackToTop();
+
+        initParticles();
+
+    }
+);
+
+
+/* =========================================================
+   PAGE LOADER
 ========================================================= */
 
 function initLoader() {
 
-    const loader = document.getElementById("pageLoader");
+    const loader =
+        document.getElementById(
+            "pageLoader"
+        );
 
-    if (!loader) return;
 
-    window.addEventListener("load", function () {
+    if (!loader) {
+        return;
+    }
 
-        setTimeout(function () {
 
-            loader.classList.add("hidden");
+    window.addEventListener(
+        "load",
+        function () {
 
-        }, 900);
+            setTimeout(
+                function () {
 
-    });
+                    loader.classList.add(
+                        "hidden"
+                    );
+
+                },
+                800
+            );
+
+        }
+    );
 
 }
 
 
 /* =========================================================
-   2. MOBILE MENU
+   MOBILE MENU
 ========================================================= */
 
 function initMobileMenu() {
 
     const menuButton =
-        document.getElementById("mobileMenuButton");
+        document.getElementById(
+            "mobileMenuButton"
+        );
+
 
     const navMenu =
-        document.getElementById("navMenu");
-
-    if (!menuButton || !navMenu) return;
-
-
-    menuButton.addEventListener("click", function () {
-
-        menuButton.classList.toggle("active");
-
-        navMenu.classList.toggle("open");
-
-        document.body.classList.toggle("menu-open");
-
-    });
+        document.getElementById(
+            "navMenu"
+        );
 
 
-    /* Close menu when clicking a link */
+    if (
+        !menuButton ||
+        !navMenu
+    ) {
+        return;
+    }
+
+
+    menuButton.addEventListener(
+        "click",
+        function () {
+
+            menuButton.classList.toggle(
+                "active"
+            );
+
+
+            navMenu.classList.toggle(
+                "open"
+            );
+
+
+            document.body.classList.toggle(
+                "menu-open"
+            );
+
+        }
+    );
+
 
     const navLinks =
-        navMenu.querySelectorAll(".nav-link");
+        navMenu.querySelectorAll(
+            ".nav-link"
+        );
 
-    navLinks.forEach(function (link) {
 
-        link.addEventListener("click", function () {
+    navLinks.forEach(
+        function (link) {
 
-            menuButton.classList.remove("active");
+            link.addEventListener(
+                "click",
+                function () {
 
-            navMenu.classList.remove("open");
+                    menuButton.classList.remove(
+                        "active"
+                    );
 
-            document.body.classList.remove("menu-open");
 
-        });
+                    navMenu.classList.remove(
+                        "open"
+                    );
 
-    });
+
+                    document.body.classList.remove(
+                        "menu-open"
+                    );
+
+                }
+            );
+
+        }
+    );
 
 }
 
 
 /* =========================================================
-   3. NAVBAR
+   NAVBAR
 ========================================================= */
 
 function initNavbar() {
 
     const header =
-        document.querySelector(".header");
+        document.querySelector(
+            ".header"
+        );
+
 
     const navLinks =
-        document.querySelectorAll(".nav-link");
+        document.querySelectorAll(
+            ".nav-link"
+        );
 
-    if (!header) return;
+
+    if (!header) {
+        return;
+    }
 
 
     function updateNavbar() {
 
-        if (window.scrollY > 60) {
+        if (
+            window.scrollY > 50
+        ) {
 
-            header.classList.add("scrolled");
+            header.classList.add(
+                "scrolled"
+            );
 
         } else {
 
-            header.classList.remove("scrolled");
+            header.classList.remove(
+                "scrolled"
+            );
 
         }
 
@@ -131,115 +289,162 @@ function initNavbar() {
     window.addEventListener(
         "scroll",
         updateNavbar,
-        { passive: true }
+        {
+            passive: true
+        }
     );
+
 
     updateNavbar();
 
 
-    /* Active menu based on section */
+    /* =====================================================
+       ACTIVE NAVIGATION
+    ===================================================== */
 
     const sections = [
+
         "home",
+
         "about",
+
         "services",
+
         "events",
+
         "gallery",
+
         "feedback",
+
         "contact"
+
     ];
 
 
-    function updateActiveLink() {
+    function updateActiveNavigation() {
 
-        let currentSection = "home";
-
-        const scrollPosition =
-            window.scrollY + 180;
+        let current =
+            "home";
 
 
-        sections.forEach(function (sectionId) {
-
-            const section =
-                document.getElementById(sectionId);
-
-            if (!section) return;
-
-            if (
-                section.offsetTop <=
-                scrollPosition
-            ) {
-
-                currentSection = sectionId;
-
-            }
-
-        });
+        const position =
+            window.scrollY + 200;
 
 
-        navLinks.forEach(function (link) {
+        sections.forEach(
+            function (sectionId) {
 
-            link.classList.remove("active");
+                const section =
+                    document.getElementById(
+                        sectionId
+                    );
 
-            const href =
-                link.getAttribute("href");
 
-            if (
-                href ===
-                "#" + currentSection
-            ) {
+                if (!section) {
+                    return;
+                }
 
-                link.classList.add("active");
+
+                if (
+                    section.offsetTop <=
+                    position
+                ) {
+
+                    current =
+                        sectionId;
+
+                }
 
             }
+        );
 
-        });
+
+        navLinks.forEach(
+            function (link) {
+
+                link.classList.remove(
+                    "active"
+                );
+
+
+                const href =
+                    link.getAttribute(
+                        "href"
+                    );
+
+
+                if (
+                    href ===
+                    "#" + current
+                ) {
+
+                    link.classList.add(
+                        "active"
+                    );
+
+                }
+
+            }
+        );
 
     }
 
 
     window.addEventListener(
         "scroll",
-        updateActiveLink,
-        { passive: true }
+        updateActiveNavigation,
+        {
+            passive: true
+        }
     );
 
-    updateActiveLink();
+
+    updateActiveNavigation();
 
 }
 
 
 /* =========================================================
-   4. SCROLL REVEAL ANIMATION
+   SCROLL REVEAL
 ========================================================= */
 
 function initScrollReveal() {
 
-    const revealElements =
-        document.querySelectorAll(".reveal");
+    const elements =
+        document.querySelectorAll(
+            ".reveal"
+        );
 
-    if (!revealElements.length) return;
+
+    if (!elements.length) {
+        return;
+    }
 
 
     const observer =
         new IntersectionObserver(
             function (entries) {
 
-                entries.forEach(function (entry) {
+                entries.forEach(
+                    function (entry) {
 
-                    if (entry.isIntersecting) {
+                        if (
+                            entry.isIntersecting
+                        ) {
 
-                        entry.target.classList.add(
-                            "active"
-                        );
+                            entry.target.classList.add(
+                                "active"
+                            );
 
-                        observer.unobserve(
-                            entry.target
-                        );
+
+                            observer.unobserve(
+                                entry.target
+                            );
+
+                        }
 
                     }
-
-                });
+                );
 
             },
             {
@@ -251,65 +456,79 @@ function initScrollReveal() {
         );
 
 
-    revealElements.forEach(function (element) {
+    elements.forEach(
+        function (element) {
 
-        observer.observe(element);
+            observer.observe(
+                element
+            );
 
-    });
+        }
+    );
 
 }
 
 
 /* =========================================================
-   5. HERO IMAGE + TEXT SLIDER
+   HERO SLIDER
+   IMPORTANT:
+   USE .jpeg
 ========================================================= */
 
 function initHeroSlider() {
 
     const heroImage =
-        document.getElementById("heroImage");
+        document.getElementById(
+            "heroImage"
+        );
+
 
     const heroDescription =
         document.getElementById(
             "heroDescription"
         );
 
-    if (!heroImage) return;
 
+    if (!heroImage) {
+        return;
+    }
 
-    /*
-       CHANGE THESE IMAGES
-       IF YOU WANT DIFFERENT HERO IMAGES
-    */
 
     const heroSlides = [
 
         {
-            image: "../img/img2.jpg",
+            image:
+                "../img/img2.jpeg",
 
             text:
                 "We transform ordinary spaces into extraordinary celebrations filled with beauty, elegance and unforgettable memories."
         },
 
+
         {
-            image: "../img/img5.jpg",
+            image:
+                "../img/img5.jpeg",
 
             text:
                 "Beautiful wedding decorations designed to make every moment feel magical, elegant and unforgettable."
         },
 
+
         {
-            image: "../img/img3.jpg",
+            image:
+                "../img/img3.jpeg",
 
             text:
                 "From birthdays to grand celebrations, we create colorful spaces filled with joy, creativity and beautiful memories."
         },
 
+
         {
-            image: "../img/img13.jpg",
+            image:
+                "../img/img4.jpeg",
 
             text:
-                "Traditional Haldi celebrations brought to life with flowers, colors, lighting and creative decoration."
+                "Elegant event decoration designed around your vision, your style and your special moments."
         }
 
     ];
@@ -318,9 +537,14 @@ function initHeroSlider() {
     let currentSlide = 0;
 
 
-    function changeHeroSlide() {
+    heroImage.style.transition =
+        "opacity 0.6s ease";
+
+
+    function changeSlide() {
 
         currentSlide++;
+
 
         if (
             currentSlide >=
@@ -333,37 +557,44 @@ function initHeroSlider() {
 
 
         const slide =
-            heroSlides[currentSlide];
+            heroSlides[
+                currentSlide
+            ];
 
 
-        heroImage.style.opacity = "0";
+        heroImage.style.opacity =
+            "0";
 
 
-        setTimeout(function () {
+        setTimeout(
+            function () {
 
-            heroImage.src =
-                slide.image;
+                heroImage.src =
+                    slide.image;
 
-            if (heroDescription) {
 
-                heroDescription.textContent =
-                    slide.text;
+                if (
+                    heroDescription
+                ) {
 
-            }
+                    heroDescription.textContent =
+                        slide.text;
 
-            heroImage.style.opacity = "1";
+                }
 
-        }, 300);
+
+                heroImage.style.opacity =
+                    "1";
+
+            },
+            300
+        );
 
     }
 
 
-    heroImage.style.transition =
-        "opacity 0.6s ease";
-
-
     setInterval(
-        changeHeroSlide,
+        changeSlide,
         6000
     );
 
@@ -371,7 +602,7 @@ function initHeroSlider() {
 
 
 /* =========================================================
-   6. GALLERY FILTER
+   GALLERY
 ========================================================= */
 
 function initGallery() {
@@ -381,175 +612,109 @@ function initGallery() {
             ".filter-button"
         );
 
+
     const galleryItems =
         document.querySelectorAll(
             ".gallery-item"
         );
 
-    const loadMoreButton =
-        document.getElementById(
-            "loadMoreGallery"
-        );
+
+    if (!galleryItems.length) {
+        return;
+    }
 
 
-    if (!galleryItems.length) return;
+    filterButtons.forEach(
+        function (button) {
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    const filter =
+                        button.dataset.filter;
 
 
-    /* -----------------------------------------------------
-       GALLERY FILTER
-    ----------------------------------------------------- */
+                    filterButtons.forEach(
+                        function (btn) {
 
-    filterButtons.forEach(function (button) {
-
-        button.addEventListener(
-            "click",
-            function () {
-
-                const filter =
-                    button.dataset.filter;
-
-
-                filterButtons.forEach(
-                    function (btn) {
-
-                        btn.classList.remove(
-                            "active"
-                        );
-
-                    }
-                );
-
-
-                button.classList.add(
-                    "active"
-                );
-
-
-                galleryItems.forEach(
-                    function (item) {
-
-                        if (
-                            filter === "all" ||
-                            item.classList.contains(
-                                filter
-                            )
-                        ) {
-
-                            item.style.display =
-                                "block";
-
-                            setTimeout(
-                                function () {
-
-                                    item.style.opacity =
-                                        "1";
-
-                                    item.style.transform =
-                                        "scale(1)";
-
-                                },
-                                20
-                            );
-
-                        } else {
-
-                            item.style.opacity =
-                                "0";
-
-                            item.style.transform =
-                                "scale(0.92)";
-
-                            setTimeout(
-                                function () {
-
-                                    item.style.display =
-                                        "none";
-
-                                },
-                                300
+                            btn.classList.remove(
+                                "active"
                             );
 
                         }
-
-                    }
-                );
-
-            }
-        );
-
-    });
-
-
-    /* -----------------------------------------------------
-       VIEW MORE
-    ----------------------------------------------------- */
-
-    if (loadMoreButton) {
-
-        let expanded = false;
-
-
-        loadMoreButton.addEventListener(
-            "click",
-            function () {
-
-                expanded =
-                    !expanded;
-
-
-                const hiddenItems =
-                    document.querySelectorAll(
-                        ".gallery-item.hidden-gallery"
                     );
 
 
-                if (expanded) {
+                    button.classList.add(
+                        "active"
+                    );
 
-                    hiddenItems.forEach(
+
+                    galleryItems.forEach(
                         function (item) {
 
-                            item.classList.add(
-                                "show-gallery"
-                            );
+                            if (
+                                filter ===
+                                "all" ||
+                                item.classList.contains(
+                                    filter
+                                )
+                            ) {
+
+                                item.style.display =
+                                    "block";
+
+
+                                setTimeout(
+                                    function () {
+
+                                        item.style.opacity =
+                                            "1";
+
+                                        item.style.transform =
+                                            "scale(1)";
+
+                                    },
+                                    30
+                                );
+
+                            } else {
+
+                                item.style.opacity =
+                                    "0";
+
+                                item.style.transform =
+                                    "scale(0.95)";
+
+
+                                setTimeout(
+                                    function () {
+
+                                        item.style.display =
+                                            "none";
+
+                                    },
+                                    300
+                                );
+
+                            }
 
                         }
                     );
-
-                    loadMoreButton.innerHTML =
-                        'Show Less <i class="fa-solid fa-arrow-up"></i>';
-
-
-                } else {
-
-                    hiddenItems.forEach(
-                        function (item) {
-
-                            item.classList.remove(
-                                "show-gallery"
-                            );
-
-                        }
-                    );
-
-                    loadMoreButton.innerHTML =
-                        'View More Work <i class="fa-solid fa-arrow-down"></i>';
 
                 }
+            );
 
-            }
-        );
-
-    }
+        }
+    );
 
 }
 
 
 /* =========================================================
-   7. STAR RATING
+   STAR RATING
 ========================================================= */
-
-let selectedRating = 0;
-
 
 function initRating() {
 
@@ -558,17 +723,23 @@ function initRating() {
             "ratingInput"
         );
 
-    if (!ratingInput) return;
+
+    if (!ratingInput) {
+        return;
+    }
 
 
-    const ratingButtons =
+    const buttons =
         ratingInput.querySelectorAll(
             "button"
         );
 
 
-    ratingButtons.forEach(
+    buttons.forEach(
         function (button) {
+
+
+            /* CLICK */
 
             button.addEventListener(
                 "click",
@@ -581,14 +752,14 @@ function initRating() {
 
 
                     updateStars(
-                        ratingButtons
+                        buttons
                     );
 
                 }
             );
 
 
-            /* Hover */
+            /* HOVER */
 
             button.addEventListener(
                 "mouseenter",
@@ -600,17 +771,17 @@ function initRating() {
                         );
 
 
-                    ratingButtons.forEach(
+                    buttons.forEach(
                         function (star) {
 
-                            const starRating =
+                            const rating =
                                 Number(
                                     star.dataset.rating
                                 );
 
 
                             if (
-                                starRating <=
+                                rating <=
                                 hoverRating
                             ) {
 
@@ -620,7 +791,7 @@ function initRating() {
                             } else {
 
                                 star.style.color =
-                                    "#444";
+                                    "#555";
 
                             }
 
@@ -639,7 +810,7 @@ function initRating() {
         function () {
 
             updateStars(
-                ratingButtons
+                buttons
             );
 
         }
@@ -648,7 +819,13 @@ function initRating() {
 }
 
 
-function updateStars(buttons) {
+/* =========================================================
+   UPDATE RATING STARS
+========================================================= */
+
+function updateStars(
+    buttons
+) {
 
     buttons.forEach(
         function (button) {
@@ -678,7 +855,7 @@ function updateStars(buttons) {
                 );
 
                 button.style.color =
-                    "#444";
+                    "#555";
 
             }
 
@@ -689,7 +866,7 @@ function updateStars(buttons) {
 
 
 /* =========================================================
-   8. FEEDBACK SYSTEM
+   FIREBASE REVIEW SYSTEM
 ========================================================= */
 
 function initFeedback() {
@@ -699,28 +876,156 @@ function initFeedback() {
             "feedbackForm"
         );
 
+
     const reviewsContainer =
         document.getElementById(
             "reviewsContainer"
         );
 
 
-    if (!form || !reviewsContainer)
+    if (
+        !form ||
+        !reviewsContainer
+    ) {
         return;
+    }
 
 
-    /* Load existing reviews */
+    /* =====================================================
+       READ REVIEWS FROM FIREBASE
+    ===================================================== */
 
-    loadReviews(
-        reviewsContainer
+    onValue(
+        reviewsRef,
+        function (snapshot) {
+
+            const data =
+                snapshot.val();
+
+
+            let reviews = [];
+
+
+            if (data) {
+
+                reviews =
+                    Object.keys(data)
+                        .map(
+                            function (key) {
+
+                                return {
+
+                                    id:
+                                        key,
+
+                                    name:
+                                        data[key].name ||
+                                        "",
+
+                                    event:
+                                        data[key].event ||
+                                        "",
+
+                                    rating:
+                                        Number(
+                                            data[key].rating
+                                        ) || 0,
+
+                                    message:
+                                        data[key].message ||
+                                        "",
+
+                                    date:
+                                        data[key].date ||
+                                        "",
+
+                                    createdAt:
+                                        Number(
+                                            data[key].createdAt
+                                        ) || 0
+
+                                };
+
+                            }
+                        );
+
+
+                /* Newest review first */
+
+                reviews.sort(
+                    function (a, b) {
+
+                        return (
+                            b.createdAt -
+                            a.createdAt
+                        );
+
+                    }
+                );
+
+            }
+
+
+            /* =================================================
+               DISPLAY REVIEWS
+            ================================================= */
+
+            if (
+                reviews.length === 0
+            ) {
+
+                displayReviews(
+                    reviewsContainer,
+                    getDefaultReviews()
+                );
+
+            } else {
+
+                displayReviews(
+                    reviewsContainer,
+                    reviews
+                );
+
+            }
+
+        },
+
+
+        function (error) {
+
+            console.error(
+                "Firebase read error:",
+                error
+            );
+
+
+            reviewsContainer.innerHTML = `
+
+                <div
+                    style="
+                        text-align:center;
+                        padding:30px;
+                        color:#999;
+                    "
+                >
+
+                    Unable to load reviews.
+
+                </div>
+
+            `;
+
+        }
     );
 
 
-    /* Submit feedback */
+    /* =====================================================
+       SUBMIT REVIEW
+    ===================================================== */
 
     form.addEventListener(
         "submit",
-        function (event) {
+        async function (event) {
 
             event.preventDefault();
 
@@ -730,10 +1035,12 @@ function initFeedback() {
                     "feedbackName"
                 );
 
+
             const eventInput =
                 document.getElementById(
                     "feedbackEvent"
                 );
+
 
             const messageInput =
                 document.getElementById(
@@ -742,16 +1049,26 @@ function initFeedback() {
 
 
             const name =
-                nameInput.value.trim();
+                nameInput
+                    ? nameInput.value.trim()
+                    : "";
+
 
             const eventType =
-                eventInput.value.trim();
+                eventInput
+                    ? eventInput.value.trim()
+                    : "";
+
 
             const message =
-                messageInput.value.trim();
+                messageInput
+                    ? messageInput.value.trim()
+                    : "";
 
 
-            /* Validation */
+            /* =================================================
+               VALIDATION
+            ================================================= */
 
             if (!name) {
 
@@ -780,8 +1097,7 @@ function initFeedback() {
 
 
             if (
-                selectedRating <
-                1
+                selectedRating < 1
             ) {
 
                 showNotification(
@@ -806,12 +1122,11 @@ function initFeedback() {
             }
 
 
-            /* Create review */
+            /* =================================================
+               REVIEW OBJECT
+            ================================================= */
 
             const review = {
-
-                id:
-                    Date.now(),
 
                 name:
                     name,
@@ -827,88 +1142,135 @@ function initFeedback() {
 
                 date:
                     new Date()
-                    .toLocaleDateString(
-                        "en-IN",
-                        {
-                            day: "2-digit",
-                            month: "short",
-                            year: "numeric"
-                        }
-                    )
+                        .toLocaleDateString(
+                            "en-IN",
+                            {
+                                day:
+                                    "2-digit",
+
+                                month:
+                                    "short",
+
+                                year:
+                                    "numeric"
+                            }
+                        ),
+
+                createdAt:
+                    Date.now()
 
             };
 
 
-            /* Get old reviews */
+            /* =================================================
+               SAVE TO FIREBASE
+            ================================================= */
 
-            let reviews =
-                JSON.parse(
-                    localStorage.getItem(
-                        "nandhiDecorReviews"
-                    )
-                ) || [];
+            try {
 
-
-            /* Add newest review first */
-
-            reviews.unshift(review);
+                await push(
+                    reviewsRef,
+                    review
+                );
 
 
-            /* Keep latest 20 reviews */
-
-            reviews =
-                reviews.slice(0, 20);
-
-
-            /* Save */
-
-            localStorage.setItem(
-                "nandhiDecorReviews",
-                JSON.stringify(
-                    reviews
-                )
-            );
+                console.log(
+                    "Review successfully saved:",
+                    review
+                );
 
 
-            /* Display */
+                /* Reset form */
 
-            loadReviews(
-                reviewsContainer
-            );
+                form.reset();
 
 
-            /* Reset */
-
-            form.reset();
-
-            selectedRating = 0;
-
-            updateStars(
-                document.querySelectorAll(
-                    "#ratingInput button"
-                )
-            );
+                selectedRating =
+                    0;
 
 
-            showNotification(
-                "Thank you! Your feedback has been added."
-            );
-
-
-            /* Scroll to reviews */
-
-            setTimeout(
-                function () {
-
-                    reviewsContainer.scrollIntoView(
-                        {
-                            behavior: "smooth",
-                            block: "center"
-                        }
+                const stars =
+                    document.querySelectorAll(
+                        "#ratingInput button"
                     );
 
-                },
-                500
+
+                updateStars(
+                    stars
+                );
+
+
+                showNotification(
+                    "Thank you! Your feedback has been added."
+                );
+
+
+                /* Scroll to review section */
+
+                setTimeout(
+                    function () {
+
+                        reviewsContainer.scrollIntoView(
+                            {
+                                behavior:
+                                    "smooth",
+
+                                block:
+                                    "center"
+                            }
+                        );
+
+                    },
+                    500
+                );
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    "Firebase write error:",
+                    error
+                );
+
+
+                showNotification(
+                    "Unable to submit review."
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   DISPLAY ALL REVIEWS
+========================================================= */
+
+function displayReviews(
+    container,
+    reviews
+) {
+
+    container.innerHTML =
+        "";
+
+
+    reviews.forEach(
+        function (review) {
+
+            const card =
+                createReviewElement(
+                    review
+                );
+
+
+            container.appendChild(
+                card
             );
 
         }
@@ -918,111 +1280,82 @@ function initFeedback() {
 
 
 /* =========================================================
-   LOAD REVIEWS
+   DEFAULT REVIEWS
 ========================================================= */
 
-function loadReviews(
-    reviewsContainer
-) {
+function getDefaultReviews() {
 
-    let reviews =
-        JSON.parse(
-            localStorage.getItem(
-                "nandhiDecorReviews"
-            )
-        ) || [];
+    return [
 
+        {
 
-    /* Default reviews */
+            name:
+                "Priya & Arun",
 
-    if (
-        reviews.length === 0
-    ) {
+            event:
+                "Wedding",
 
-        reviews = [
+            rating:
+                5,
 
-            {
-                id: 1,
+            message:
+                "The decoration was absolutely beautiful. Every detail looked elegant and perfect. Thank you for making our wedding so memorable!",
 
-                name:
-                    "Priya & Arun",
+            date:
+                "12 Aug 2025",
 
-                event:
-                    "Wedding",
+            createdAt:
+                0
 
-                rating:
-                    5,
-
-                message:
-                    "The decoration was absolutely beautiful. Every detail looked elegant and perfect. Thank you for making our wedding so memorable!",
-
-                date:
-                    "12 Aug 2025"
-            },
+        },
 
 
-            {
-                id: 2,
+        {
 
-                name:
-                    "Karthik",
+            name:
+                "Karthik",
 
-                event:
-                    "Birthday",
+            event:
+                "Birthday",
 
-                rating:
-                    5,
+            rating:
+                5,
 
-                message:
-                    "Amazing birthday decoration! The team understood exactly what we wanted and created a wonderful setup.",
+            message:
+                "Amazing birthday decoration! The team understood exactly what we wanted and created a wonderful setup.",
 
-                date:
-                    "05 Jul 2025"
-            },
+            date:
+                "05 Jul 2025",
 
+            createdAt:
+                0
 
-            {
-                id: 3,
-
-                name:
-                    "Divya",
-
-                event:
-                    "Engagement",
-
-                rating:
-                    4,
-
-                message:
-                    "Beautiful work and very professional team. The stage and floral decoration looked fantastic.",
-
-                date:
-                    "28 Jun 2025"
-            }
-
-        ];
-
-    }
+        },
 
 
-    reviewsContainer.innerHTML = "";
+        {
 
+            name:
+                "Divya",
 
-    reviews.forEach(
-        function (review) {
+            event:
+                "Engagement",
 
-            const reviewElement =
-                createReviewElement(
-                    review
-                );
+            rating:
+                4,
 
+            message:
+                "Beautiful work and very professional team. The stage and floral decoration looked fantastic.",
 
-            reviewsContainer.appendChild(
-                reviewElement
-            );
+            date:
+                "28 Jun 2025",
+
+            createdAt:
+                0
 
         }
-    );
+
+    ];
 
 }
 
@@ -1045,7 +1378,7 @@ function createReviewElement(
         "review-card";
 
 
-    const avatar =
+    const initials =
         getInitials(
             review.name
         );
@@ -1064,43 +1397,67 @@ function createReviewElement(
             <div class="reviewer">
 
                 <div class="reviewer-avatar">
-                    ${avatar}
+
+                    ${initials}
+
                 </div>
+
 
                 <div>
 
                     <div class="reviewer-name">
-                        ${escapeHTML(review.name)}
+
+                        ${escapeHTML(
+                            review.name
+                        )}
+
                     </div>
 
+
                     <div class="reviewer-event">
-                        ${escapeHTML(review.event)}
+
+                        ${escapeHTML(
+                            review.event
+                        )}
+
                     </div>
 
                 </div>
 
             </div>
 
+
             <div class="review-stars">
+
                 ${stars}
+
             </div>
 
         </div>
 
 
         <p class="review-message">
-            "${escapeHTML(review.message)}"
+
+            "${escapeHTML(
+                review.message
+            )}"
+
         </p>
 
 
         <div
+            class="review-date"
             style="
                 margin-top:14px;
-                color:#555;
-                font-size:8px;
+                color:#777;
+                font-size:9px;
             "
         >
-            ${escapeHTML(review.date)}
+
+            ${escapeHTML(
+                review.date
+            )}
+
         </div>
 
     `;
@@ -1112,14 +1469,16 @@ function createReviewElement(
 
 
 /* =========================================================
-   CREATE STARS
+   CREATE STAR DISPLAY
 ========================================================= */
 
 function createStars(
     rating
 ) {
 
-    let stars = "";
+    let stars =
+        "";
+
 
     for (
         let i = 1;
@@ -1128,18 +1487,22 @@ function createStars(
     ) {
 
         if (
-            i <= rating
+            i <=
+            Number(rating)
         ) {
 
-            stars += "★";
+            stars +=
+                '<span style="color:#d4af37;">★</span>';
 
         } else {
 
-            stars += "☆";
+            stars +=
+                '<span style="color:#555;">☆</span>';
 
         }
 
     }
+
 
     return stars;
 
@@ -1147,7 +1510,7 @@ function createStars(
 
 
 /* =========================================================
-   INITIALS
+   GET INITIALS
 ========================================================= */
 
 function getInitials(
@@ -1155,20 +1518,30 @@ function getInitials(
 ) {
 
     const words =
-        name
+        String(name)
             .trim()
-            .split(" ")
+            .split(/\s+/)
             .filter(Boolean);
 
 
-    if (!words.length)
+    if (
+        words.length === 0
+    ) {
+
         return "?";
 
+    }
 
-    if (words.length === 1) {
+
+    if (
+        words.length === 1
+    ) {
 
         return words[0]
-            .substring(0, 2)
+            .substring(
+                0,
+                2
+            )
             .toUpperCase();
 
     }
@@ -1176,14 +1549,16 @@ function getInitials(
 
     return (
         words[0][0] +
-        words[words.length - 1][0]
+        words[
+            words.length - 1
+        ][0]
     ).toUpperCase();
 
 }
 
 
 /* =========================================================
-   HTML SECURITY
+   ESCAPE HTML
 ========================================================= */
 
 function escapeHTML(
@@ -1221,7 +1596,7 @@ function escapeHTML(
 
 
 /* =========================================================
-   9. FAQ ACCORDION
+   FAQ
 ========================================================= */
 
 function initFAQ() {
@@ -1241,21 +1616,20 @@ function initFAQ() {
                 );
 
 
-            if (!question) return;
+            if (!question) {
+                return;
+            }
 
 
             question.addEventListener(
                 "click",
                 function () {
 
-
-                    const wasActive =
+                    const wasOpen =
                         item.classList.contains(
                             "active"
                         );
 
-
-                    /* Close all */
 
                     faqItems.forEach(
                         function (faq) {
@@ -1268,9 +1642,7 @@ function initFAQ() {
                     );
 
 
-                    /* Open clicked */
-
-                    if (!wasActive) {
+                    if (!wasOpen) {
 
                         item.classList.add(
                             "active"
@@ -1288,7 +1660,7 @@ function initFAQ() {
 
 
 /* =========================================================
-   10. BACK TO TOP
+   BACK TO TOP
 ========================================================= */
 
 function initBackToTop() {
@@ -1299,7 +1671,9 @@ function initBackToTop() {
         );
 
 
-    if (!button) return;
+    if (!button) {
+        return;
+    }
 
 
     window.addEventListener(
@@ -1324,7 +1698,9 @@ function initBackToTop() {
             }
 
         },
-        { passive: true }
+        {
+            passive: true
+        }
     );
 
 
@@ -1334,7 +1710,8 @@ function initBackToTop() {
 
             window.scrollTo(
                 {
-                    top: 0,
+                    top:
+                        0,
 
                     behavior:
                         "smooth"
@@ -1348,7 +1725,7 @@ function initBackToTop() {
 
 
 /* =========================================================
-   11. BACKGROUND PARTICLES
+   BACKGROUND PARTICLES
 ========================================================= */
 
 function initParticles() {
@@ -1359,15 +1736,15 @@ function initParticles() {
         );
 
 
-    if (!container) return;
+    if (!container) {
+        return;
+    }
 
-
-    /* Don't create too many particles */
 
     const count =
         window.innerWidth < 600
-            ? 18
-            : 35;
+            ? 15
+            : 30;
 
 
     for (
@@ -1387,32 +1764,42 @@ function initParticles() {
 
 
         const size =
-            Math.random() * 3 + 1;
+            Math.random() *
+            3 +
+            1;
 
 
         particle.style.width =
-            size + "px";
+            size +
+            "px";
 
 
         particle.style.height =
-            size + "px";
+            size +
+            "px";
 
 
         particle.style.left =
-            Math.random() * 100 + "%";
+            Math.random() *
+            100 +
+            "%";
 
 
         particle.style.animationDuration =
             (
-                Math.random() * 10 +
+                Math.random() *
+                10 +
                 8
-            ) + "s";
+            ) +
+            "s";
 
 
         particle.style.animationDelay =
             (
-                Math.random() * 10
-            ) + "s";
+                Math.random() *
+                10
+            ) +
+            "s";
 
 
         container.appendChild(
@@ -1425,7 +1812,7 @@ function initParticles() {
 
 
 /* =========================================================
-   12. NOTIFICATION
+   NOTIFICATION
 ========================================================= */
 
 function showNotification(
@@ -1452,15 +1839,16 @@ function showNotification(
 
         notification.innerHTML = `
 
-            <div
-                class="notification-icon"
-            >
+            <div class="notification-icon">
+
                 <i class="fa-solid fa-check"></i>
+
             </div>
 
-            <div
-                class="notification-message"
-            ></div>
+
+            <div class="notification-message">
+
+            </div>
 
         `;
 
@@ -1480,49 +1868,43 @@ function showNotification(
 
             #siteNotification {
 
-                position: fixed;
+                position:fixed;
 
-                right: 25px;
+                top:90px;
 
-                top: 100px;
+                right:25px;
 
-                z-index: 99999;
+                z-index:99999;
 
-                max-width: 360px;
+                display:flex;
 
-                min-width: 280px;
+                align-items:center;
 
-                display: flex;
+                gap:12px;
 
-                align-items: center;
+                min-width:280px;
 
-                gap: 13px;
+                max-width:360px;
 
-                padding: 15px 18px;
+                padding:15px 18px;
 
                 background:
-                    rgba(18,18,18,0.97);
+                    rgba(20,20,20,0.97);
 
                 border:
                     1px solid
-                    rgba(212,175,55,0.4);
+                    rgba(212,175,55,0.5);
+
+                color:#fff;
 
                 box-shadow:
                     0 20px 50px
                     rgba(0,0,0,0.5);
 
-                color: #fff;
-
-                font-family:
-                    "Poppins",
-                    sans-serif;
-
-                font-size: 10px;
-
                 transform:
                     translateX(120%);
 
-                opacity: 0;
+                opacity:0;
 
                 transition:
                     all 0.4s ease;
@@ -1535,38 +1917,43 @@ function showNotification(
                 transform:
                     translateX(0);
 
-                opacity: 1;
+                opacity:1;
 
             }
 
 
             .notification-icon {
 
-                width: 32px;
+                width:32px;
 
-                height: 32px;
+                height:32px;
 
-                flex-shrink: 0;
+                border-radius:50%;
 
-                display: flex;
+                display:flex;
 
-                align-items: center;
+                align-items:center;
 
-                justify-content: center;
+                justify-content:center;
 
-                border-radius: 50%;
+                background:#d4af37;
 
-                background:
-                    #d4af37;
+                color:#111;
 
-                color: #111;
+                flex-shrink:0;
 
             }
 
 
             .notification-message {
 
-                line-height: 1.5;
+                font-family:
+                    Poppins,
+                    sans-serif;
+
+                font-size:10px;
+
+                line-height:1.5;
 
             }
 
@@ -1575,15 +1962,15 @@ function showNotification(
 
                 #siteNotification {
 
-                    left: 15px;
+                    left:15px;
 
-                    right: 15px;
+                    right:15px;
 
-                    top: 85px;
+                    top:80px;
 
-                    min-width: 0;
+                    min-width:0;
 
-                    max-width: none;
+                    max-width:none;
 
                 }
 
@@ -1615,11 +2002,11 @@ function showNotification(
 
 
     clearTimeout(
-        window.notificationTimer
+        window.nandhiNotificationTimer
     );
 
 
-    window.notificationTimer =
+    window.nandhiNotificationTimer =
         setTimeout(
             function () {
 
@@ -1635,7 +2022,7 @@ function showNotification(
 
 
 /* =========================================================
-   13. IMAGE ERROR HANDLING
+   IMAGE ERROR HANDLER
 ========================================================= */
 
 document.addEventListener(
@@ -1643,12 +2030,15 @@ document.addEventListener(
     function (event) {
 
         if (
+            event.target &&
             event.target.tagName ===
             "IMG"
         ) {
 
-            event.target.style.background =
-                "#151515";
+            console.error(
+                "Image not found:",
+                event.target.src
+            );
 
         }
 
@@ -1658,7 +2048,7 @@ document.addEventListener(
 
 
 /* =========================================================
-   14. SMOOTH ANCHOR SCROLL
+   SMOOTH SCROLL
 ========================================================= */
 
 document.addEventListener(
@@ -1671,7 +2061,9 @@ document.addEventListener(
             );
 
 
-        if (!link) return;
+        if (!link) {
+            return;
+        }
 
 
         const targetId =
@@ -1686,7 +2078,6 @@ document.addEventListener(
         ) {
 
             return;
-
         }
 
 
@@ -1696,7 +2087,9 @@ document.addEventListener(
             );
 
 
-        if (!target) return;
+        if (!target) {
+            return;
+        }
 
 
         event.preventDefault();
@@ -1704,9 +2097,11 @@ document.addEventListener(
 
         target.scrollIntoView(
             {
-                behavior: "smooth",
+                behavior:
+                    "smooth",
 
-                block: "start"
+                block:
+                    "start"
             }
         );
 
@@ -1715,7 +2110,7 @@ document.addEventListener(
 
 
 /* =========================================================
-   15. PAGE VISIBILITY
+   PAGE VISIBILITY
 ========================================================= */
 
 document.addEventListener(
@@ -1727,7 +2122,7 @@ document.addEventListener(
         ) {
 
             document.title =
-                "Nandhi Decor | Beautiful Events";
+                "Nandhi Decor";
 
         } else {
 
@@ -1737,4 +2132,25 @@ document.addEventListener(
         }
 
     }
+);
+
+
+/* =========================================================
+   FINAL CONSOLE MESSAGE
+========================================================= */
+
+console.log(
+    "===================================="
+);
+
+console.log(
+    "NANDHI DECOR WEBSITE"
+);
+
+console.log(
+    "Firebase Review System Active"
+);
+
+console.log(
+    "===================================="
 );

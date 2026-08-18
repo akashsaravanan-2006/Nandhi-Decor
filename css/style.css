@@ -3640,4 +3640,11 @@ button {
         transition-duration: 0.01ms !important;
     }
 
+}/* =========================================================
+   GALLERY FILTER — HIDE WEDDING / BIRTHDAY / ENGAGEMENT
+   Show all gallery images only
+========================================================= */
+
+.gallery-filter {
+    display: none !important;
 }

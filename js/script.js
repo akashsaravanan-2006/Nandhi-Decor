@@ -5,9 +5,13 @@
    ========================================================= */
 
 
+
+   
+
 /* =========================================================
-   FIREBASE IMPORTS
-   ========================================================= */
+   FIREBASE CONNECTION
+   NANDHI DECOR
+========================================================= */
 
 import {
     initializeApp
@@ -23,22 +27,27 @@ import {
 
 /* =========================================================
    FIREBASE CONFIGURATION
-   ========================================================= */
+========================================================= */
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAdCk7iH6dzAfheRTJxgjBdeSJzIwruh48",
-    authDomain: "nandhidecor-c719e.firebaseapp.com",
-    databaseURL: "https://nandhidecor-c719e-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "nandhidecor-c719e",
-    storageBucket: "nandhidecor-c719e.firebasestorage.app",
-    messagingSenderId: "956796053723",
-    appId: "1:956796053723:web:9c72fa0d956658d53184fe",
-    measurementId: "G-56EM207FYY"
+  apiKey: "AIzaSyAdCk7iH6dzAfheRTJxgjBdeSJzIwruh48",
+  authDomain: "nandhidecor-c719e.firebaseapp.com",
+  databaseURL: "https://nandhidecor-c719e-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "nandhidecor-c719e",
+  storageBucket: "nandhidecor-c719e.firebasestorage.app",
+  messagingSenderId: "956796053723",
+  appId: "1:956796053723:web:9c72fa0d956658d53184fe",
+  measurementId: "G-56EM207FYY"
 };
 
 
+/* =========================================================
+   INITIALIZE FIREBASE
+========================================================= */
+
 let firebaseApp = null;
 let database = null;
+let reviewsReference = null;
 
 
 try {
@@ -46,22 +55,60 @@ try {
     firebaseApp =
         initializeApp(firebaseConfig);
 
+
     database =
         getDatabase(firebaseApp);
+
+
+    /* Main reviews location */
+
+    reviewsReference =
+        ref(
+            database,
+            "reviews"
+        );
+
+
+    console.log(
+        "===================================="
+    );
 
     console.log(
         "Firebase initialized successfully"
     );
 
+    console.log(
+        "Realtime Database connected"
+    );
+
+    console.log(
+        "Reviews path connected: /reviews"
+    );
+
+    console.log(
+        "===================================="
+    );
+
+
 } catch (error) {
 
     console.error(
-        "Firebase initialization error:",
+        "===================================="
+    );
+
+    console.error(
+        "Firebase initialization failed"
+    );
+
+    console.error(
         error
     );
 
-}
+    console.error(
+        "===================================="
+    );
 
+}
 
 /* =========================================================
    DOM READY

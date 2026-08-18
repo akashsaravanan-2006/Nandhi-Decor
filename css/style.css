@@ -610,6 +610,7 @@ button {
 
 /* =========================================================
    MOBILE MENU BUTTON
+   (FIX: removed border box around the 3 lines)
 ========================================================= */
 
 .mobile-menu-button {
@@ -618,9 +619,7 @@ button {
     width: 43px;
     height: 43px;
 
-    border: 1px solid
-        rgba(212,175,55,0.45);
-
+    border: none;
     background: transparent;
 
     align-items: center;
@@ -662,10 +661,6 @@ button {
 /* =========================================================
    HERO
 ========================================================= */
-/* =========================================================
-   HERO - IMG2.jpeg
-   SMOOTH CONTINUOUS ZOOM IN / OUT
-========================================================= */
 
 .hero {
     position: relative;
@@ -703,56 +698,54 @@ button {
 
 /* =========================================================
    HERO IMAGE
+   (FIX: single smooth zoom in/out/in/out loop, oversized
+   image so no edge ever goes black)
 ========================================================= */
 
 .hero-background img {
     position: absolute;
 
-    inset: -5%;
+    top: -8%;
+    left: -8%;
 
-    width: 110%;
-    height: 110%;
+    width: 116%;
+    height: 116%;
+
+    max-width: none;
 
     display: block;
 
     object-fit: cover;
-    object-position: center;
-
-    /* Original image */
-    filter: none;
+    object-position: center center;
 
     opacity: 1;
 
-    /*
-       IMPORTANT:
-       The image is slightly larger than
-       the container so the edges never
-       become black during zoom.
-    */
+    transform: scale(1);
+    transform-origin: center center;
 
     animation:
-        heroZoomLoop 12s ease-in-out infinite;
+        heroSmoothZoom 8s ease-in-out infinite alternate;
 
     will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 
 /* =========================================================
-   CONTINUOUS ZOOM
+   CONTINUOUS ZOOM (single direction, alternate handles
+   the zoom-in / zoom-out / zoom-in / zoom-out loop with
+   no jump at the loop point)
 ========================================================= */
 
-@keyframes heroZoomLoop {
+@keyframes heroSmoothZoom {
 
-    0% {
+    from {
         transform: scale(1);
     }
 
-    50% {
-        transform: scale(1.10);
-    }
-
-    100% {
-        transform: scale(1);
+    to {
+        transform: scale(1.15);
     }
 
 }
@@ -768,12 +761,6 @@ button {
     inset: 0;
 
     z-index: 1;
-
-    /*
-       ONLY A SMALL BLACK SHADE
-       No gold glow
-       No heavy darkness
-    */
 
     background:
         rgba(0, 0, 0, 0.15);
@@ -1341,7 +1328,7 @@ button {
 
 
 /* =========================================================
-   SERVICES - YOUR UPDATED HTML
+   SERVICES
 ========================================================= */
 
 .services {

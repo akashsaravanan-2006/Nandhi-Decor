@@ -185,39 +185,37 @@ function initializePage() {
 
 /* =========================================================
    PAGE LOADER
-   ========================================================= */
+========================================================= */
 
-function pageLoader() {
+function initLoader() {
 
     const loader =
         document.getElementById(
             "pageLoader"
         );
 
-    if (!loader) return;
-
+    if (!loader) {
+        return;
+    }
 
     window.addEventListener(
         "load",
-        () => {
+        function () {
 
             setTimeout(
-                () => {
+                function () {
 
                     loader.classList.add(
-                        "hidden"
+                        "hide"
                     );
 
                 },
-                500
+                800
             );
 
         }
     );
-
 }
-
-
 /* =========================================================
    MOBILE MENU
    ========================================================= */

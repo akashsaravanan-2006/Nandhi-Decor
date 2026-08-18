@@ -10,11 +10,19 @@
         content="width=device-width, initial-scale=1.0"
     >
 
+    <meta
+        name="description"
+        content="Nandhi Decor - Premium wedding and event decoration."
+    >
+
     <title>
         Nandhi Decor | Premium Events & Weddings
     </title>
 
-    <!-- GOOGLE FONTS -->
+
+    <!-- =====================================================
+         GOOGLE FONTS
+    ====================================================== -->
 
     <link
         rel="preconnect"
@@ -32,14 +40,20 @@
         rel="stylesheet"
     >
 
-    <!-- FONT AWESOME -->
+
+    <!-- =====================================================
+         FONT AWESOME
+    ====================================================== -->
 
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     >
 
-    <!-- YOUR CSS -->
+
+    <!-- =====================================================
+         YOUR CSS
+    ====================================================== -->
 
     <link
         rel="stylesheet"
@@ -52,9 +66,9 @@
 <body>
 
 
-<!-- =====================================================
+<!-- =========================================================
      PAGE LOADER
-===================================================== -->
+========================================================= -->
 
 <div
     class="page-loader"
@@ -81,9 +95,9 @@
 
 
 
-<!-- =====================================================
+<!-- =========================================================
      CUSTOM CURSOR
-===================================================== -->
+========================================================= -->
 
 <div class="cursor-dot"></div>
 
@@ -91,9 +105,9 @@
 
 
 
-<!-- =====================================================
+<!-- =========================================================
      SCROLL PROGRESS
-===================================================== -->
+========================================================= -->
 
 <div
     class="scroll-progress"
@@ -102,9 +116,9 @@
 
 
 
-<!-- =====================================================
+<!-- =========================================================
      HEADER
-===================================================== -->
+========================================================= -->
 
 <header
     class="header"
@@ -170,8 +184,6 @@
                 Services
             </a>
 
-          
-
             <a
                 href="#gallery"
                 class="nav-link"
@@ -184,6 +196,13 @@
                 class="nav-link"
             >
                 Reviews
+            </a>
+
+            <a
+                href="#faq"
+                class="nav-link"
+            >
+                FAQ
             </a>
 
             <a
@@ -207,7 +226,9 @@
 
             Book Event
 
-            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <i
+                class="fa-solid fa-arrow-up-right-from-square"
+            ></i>
 
         </a>
 
@@ -218,12 +239,11 @@
         <button
             class="menu-button"
             id="menuButton"
+            aria-label="Open navigation"
         >
 
             <span></span>
-
             <span></span>
-
             <span></span>
 
         </button>
@@ -235,22 +255,17 @@
 
 
 
-<!-- =====================================================
+<!-- =========================================================
      MAIN
-===================================================== -->
+========================================================= -->
 
 <main>
 
 
 
-<!-- =====================================================
-     HERO SECTION
-     
-     IMPORTANT:
-     ONLY IMG2 IS USED
-     
-     NO IMAGE SLIDER
-===================================================== -->
+<!-- =========================================================
+     HERO
+========================================================= -->
 
 <section
     class="hero"
@@ -258,7 +273,7 @@
 >
 
 
-    <!-- HERO IMAGE -->
+    <!-- BACKGROUND -->
 
     <div class="hero-background">
 
@@ -271,6 +286,29 @@
         <div class="hero-overlay"></div>
 
         <div class="hero-grid"></div>
+
+
+        <!-- HERO LIGHT -->
+
+        <div class="hero-light hero-light-one"></div>
+
+        <div class="hero-light hero-light-two"></div>
+
+
+        <!-- HERO PARTICLES -->
+
+        <div class="hero-particles">
+
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </div>
 
     </div>
 
@@ -288,6 +326,14 @@
             WEDDINGS • EVENTS • CELEBRATIONS
 
             <span></span>
+
+        </div>
+
+
+
+        <div class="hero-mini-title reveal">
+
+            EST. NANDHI DECOR
 
         </div>
 
@@ -319,7 +365,6 @@
 
         <div class="hero-buttons reveal">
 
-
             <a
                 href="#gallery"
                 class="btn btn-gold ripple"
@@ -327,10 +372,11 @@
 
                 Explore Our Work
 
-                <i class="fa-solid fa-arrow-right"></i>
+                <i
+                    class="fa-solid fa-arrow-right"
+                ></i>
 
             </a>
-
 
 
             <a
@@ -341,10 +387,11 @@
 
                 Plan Your Event
 
-                <i class="fa-brands fa-whatsapp"></i>
+                <i
+                    class="fa-brands fa-whatsapp"
+                ></i>
 
             </a>
-
 
         </div>
 
@@ -358,13 +405,23 @@
             <div class="hero-stats">
 
 
-                <div>
+                <!-- 250+ -->
 
-                    <strong
-                        data-counter="250+"
-                    >
-                        0
-                    </strong>
+                <div class="animated-stat">
+
+                    <div class="stat-number-wrap">
+
+                        <strong
+                            data-counter="250"
+                        >
+                            0
+                        </strong>
+
+                        <b>
+                            +
+                        </b>
+
+                    </div>
 
                     <span>
                         Events
@@ -373,18 +430,26 @@
                 </div>
 
 
-
                 <i></i>
 
 
+                <!-- 5+ -->
 
-                <div>
+                <div class="animated-stat">
 
-                    <strong
-                        data-counter="5"
-                    >
-                        0
-                    </strong>
+                    <div class="stat-number-wrap">
+
+                        <strong
+                            data-counter="5"
+                        >
+                            0
+                        </strong>
+
+                        <b>
+                            +
+                        </b>
+
+                    </div>
 
                     <span>
                         Years Experience
@@ -393,19 +458,27 @@
                 </div>
 
 
-
                 <i></i>
 
 
+                <!-- 4.9 -->
 
-                <div>
+                <div class="animated-stat">
 
-                    <strong
-                        data-counter="4.9+"
-                        data-decimal="1"
-                    >
-                        0
-                    </strong>
+                    <div class="stat-number-wrap">
+
+                        <strong
+                            data-counter="4.9"
+                            data-decimal="1"
+                        >
+                            0
+                        </strong>
+
+                        <b class="star-plus">
+                            ★
+                        </b>
+
+                    </div>
 
                     <span>
                         Client Rating
@@ -418,6 +491,8 @@
 
 
 
+            <!-- SCROLL -->
+
             <a
                 href="#about"
                 class="scroll-down"
@@ -429,7 +504,9 @@
 
                 <b>
 
-                    <i class="fa-solid fa-arrow-down"></i>
+                    <i
+                        class="fa-solid fa-arrow-down"
+                    ></i>
 
                 </b>
 
@@ -442,57 +519,116 @@
     </div>
 
 
+
+    <!-- HERO SIDE NUMBER -->
+
+    <div class="hero-side-number">
+
+        <span>
+            01
+        </span>
+
+        <i></i>
+
+        <span>
+            06
+        </span>
+
+    </div>
+
+
 </section>
 
 
 
-<!-- =====================================================
+<!-- =========================================================
      MARQUEE
-===================================================== -->
+========================================================= -->
 
 <section class="marquee-section">
 
     <div class="marquee-track">
 
-        <span>WEDDINGS</span>
+        <span>
+            WEDDINGS
+        </span>
 
-        <b>✦</b>
+        <b>
+            ✦
+        </b>
 
-        <span>RECEPTIONS</span>
+        <span>
+            RECEPTIONS
+        </span>
 
-        <b>✦</b>
+        <b>
+            ✦
+        </b>
 
-        <span>BIRTHDAYS</span>
+        <span>
+            BIRTHDAYS
+        </span>
 
-        <b>✦</b>
+        <b>
+            ✦
+        </b>
 
-        <span>ENGAGEMENTS</span>
+        <span>
+            ENGAGEMENTS
+        </span>
 
-        <b>✦</b>
+        <b>
+            ✦
+        </b>
 
-        <span>MEHENDI</span>
+        <span>
+            MEHENDI
+        </span>
 
-        <b>✦</b>
+        <b>
+            ✦
+        </b>
 
-        <span>SPECIAL EVENTS</span>
+        <span>
+            HOUSE WARMING
+        </span>
 
-        <b>✦</b>
+        <b>
+            ✦
+        </b>
 
-        <span>WEDDINGS</span>
+        <span>
+            SPECIAL EVENTS
+        </span>
 
-        <b>✦</b>
+        <b>
+            ✦
+        </b>
 
-        <span>RECEPTIONS</span>
 
-        <b>✦</b>
+        <span>
+            WEDDINGS
+        </span>
 
-        <span>BIRTHDAYS</span>
+        <b>
+            ✦
+        </b>
 
-        <b>✦</b>
+        <span>
+            RECEPTIONS
+        </span>
 
-        <span>ENGAGEMENTS</span>
+        <b>
+            ✦
+        </b>
 
-        <b>✦</b>
+        <span>
+            BIRTHDAYS
+        </span>
+
+        <b>
+            ✦
+        </b>
 
     </div>
 
@@ -500,75 +636,256 @@
 
 
 
-<!-- =====================================================
-     ABOUT
-===================================================== -->
+<!-- =========================================================
+     PREMIUM ABOUT
+========================================================= -->
 
 <section
-    class="section about-section"
+    class="section about-section premium-about"
     id="about"
 >
+
+
+    <!-- BACKGROUND ORBS -->
+
+    <div class="about-bg-orb about-orb-1"></div>
+
+    <div class="about-bg-orb about-orb-2"></div>
+
+
+
+    <!-- PARTICLES -->
+
+    <div class="about-particles">
+
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </div>
+
+
 
     <div class="container about-grid">
 
 
-        <!-- IMAGES -->
+        <!-- =================================================
+             ABOUT IMAGES
+        ================================================= -->
 
-        <div class="about-images reveal-left">
+        <div
+            class="about-images premium-about-images reveal-left"
+        >
 
 
-            <div class="about-main-image">
+            <!-- ORBIT -->
+
+            <div
+                class="about-orbit orbit-one"
+            ></div>
+
+            <div
+                class="about-orbit orbit-two"
+            ></div>
+
+
+
+            <!-- MAIN IMAGE -->
+
+            <div
+                class="about-main-image premium-image-card"
+            >
+
+                <div class="image-number">
+                    01
+                </div>
+
+
+                <div
+                    class="image-corner corner-tl"
+                ></div>
+
+                <div
+                    class="image-corner corner-tr"
+                ></div>
+
+                <div
+                    class="image-corner corner-bl"
+                ></div>
+
+                <div
+                    class="image-corner corner-br"
+                ></div>
+
 
                 <img
                     src="../img/img3.jpeg"
-                    alt="Wedding Decoration"
+                    alt="Nandhi Decor Wedding Decoration"
                 >
+
+
+                <div class="image-shine"></div>
+
+
+                <div class="image-hover-content">
+
+                    <span>
+                        NANDHI DECOR
+                    </span>
+
+                    <strong>
+                        Beautifully Designed
+                    </strong>
+
+                </div>
 
             </div>
 
 
 
-            <div class="about-small-image">
+            <!-- SECOND IMAGE -->
+
+            <div
+                class="about-small-image premium-small-image"
+            >
+
+                <div class="image-number">
+                    02
+                </div>
 
                 <img
                     src="../img/img4.jpeg"
-                    alt="Event Decoration"
+                    alt="Nandhi Decor Event Decoration"
                 >
+
+                <div class="image-shine"></div>
 
             </div>
 
 
 
-            <div class="experience-box">
+            <!-- EXPERIENCE -->
 
-                <strong>
-                    05
-                </strong>
+            <div
+                class="experience-box premium-experience"
+            >
+
+                <div class="experience-ring"></div>
+
+
+                <div class="experience-inner">
+
+                    <small>
+                        SINCE
+                    </small>
+
+                    <div>
+
+                        <strong>
+                            05
+                        </strong>
+
+                        <b>
+                            +
+                        </b>
+
+                    </div>
+
+                    <span>
+
+                        YEARS OF
+                        <br>
+                        CREATIVE
+                        <br>
+                        EXPERIENCE
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FLOATING BADGE -->
+
+            <div class="about-floating-badge">
+
+                <i
+                    class="fa-solid fa-sparkles"
+                ></i>
 
                 <span>
-                    YEARS OF<br>
-                    CREATIVE<br>
-                    EXPERIENCE
+
+                    Premium
+                    <br>
+                    Event Decor
+
                 </span>
 
             </div>
+
+
+
+            <!-- FLOATING DOTS -->
+
+            <div
+                class="floating-gold-dot dot-one"
+            ></div>
+
+            <div
+                class="floating-gold-dot dot-two"
+            ></div>
+
+            <div
+                class="floating-gold-dot dot-three"
+            ></div>
 
 
         </div>
 
 
 
-        <!-- TEXT -->
+        <!-- =================================================
+             ABOUT CONTENT
+        ================================================= -->
 
-        <div class="about-content reveal-right">
+        <div
+            class="about-content premium-about-content reveal-right"
+        >
 
 
-            <div class="section-label">
+            <div class="section-label premium-label">
+
+                <span></span>
+
                 OUR STORY
+
+                <span></span>
+
             </div>
 
 
-            <h2>
+            <div class="about-mini-heading">
+
+                <span>
+                    EST.
+                </span>
+
+                <strong>
+                    NANDHI DECOR
+                </strong>
+
+            </div>
+
+
+
+            <h2 class="premium-about-title">
 
                 We don't just
 
@@ -588,7 +905,21 @@
 
 
 
-            <p>
+            <div class="about-title-line">
+
+                <span></span>
+
+                <i
+                    class="fa-solid fa-star"
+                ></i>
+
+                <span></span>
+
+            </div>
+
+
+
+            <p class="premium-about-description">
 
                 At Nandhi Decor, every celebration
                 starts with a vision. We combine
@@ -600,16 +931,82 @@
 
 
 
-            <div class="about-points">
+            <!-- ABOUT STATS -->
+
+            <div class="about-stat-row">
 
 
-                <div>
+                <div class="about-stat">
+
+                    <strong>
+                        250+
+                    </strong>
 
                     <span>
-                        01
+                        Events
                     </span>
 
-                    <div>
+                </div>
+
+
+                <div class="about-stat-line"></div>
+
+
+                <div class="about-stat">
+
+                    <strong>
+                        5+
+                    </strong>
+
+                    <span>
+                        Years
+                    </span>
+
+                </div>
+
+
+                <div class="about-stat-line"></div>
+
+
+                <div class="about-stat">
+
+                    <strong>
+                        4.9
+                    </strong>
+
+                    <span>
+                        Rating
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- ABOUT POINTS -->
+
+            <div
+                class="about-points premium-about-points"
+            >
+
+
+                <div class="about-point">
+
+                    <div class="point-number">
+                        01
+                    </div>
+
+                    <div class="point-icon">
+
+                        <i
+                            class="fa-solid fa-wand-magic-sparkles"
+                        ></i>
+
+                    </div>
+
+                    <div class="point-content">
 
                         <strong>
                             Creative Direction
@@ -621,17 +1018,29 @@
 
                     </div>
 
+                    <i
+                        class="point-arrow fa-solid fa-arrow-right"
+                    ></i>
+
                 </div>
 
 
 
-                <div>
+                <div class="about-point">
 
-                    <span>
+                    <div class="point-number">
                         02
-                    </span>
+                    </div>
 
-                    <div>
+                    <div class="point-icon">
+
+                        <i
+                            class="fa-solid fa-gem"
+                        ></i>
+
+                    </div>
+
+                    <div class="point-content">
 
                         <strong>
                             Premium Execution
@@ -643,17 +1052,29 @@
 
                     </div>
 
+                    <i
+                        class="point-arrow fa-solid fa-arrow-right"
+                    ></i>
+
                 </div>
 
 
 
-                <div>
+                <div class="about-point">
 
-                    <span>
+                    <div class="point-number">
                         03
-                    </span>
+                    </div>
 
-                    <div>
+                    <div class="point-icon">
+
+                        <i
+                            class="fa-solid fa-heart"
+                        ></i>
+
+                    </div>
+
+                    <div class="point-content">
 
                         <strong>
                             Memorable Experience
@@ -665,6 +1086,10 @@
 
                     </div>
 
+                    <i
+                        class="point-arrow fa-solid fa-arrow-right"
+                    ></i>
+
                 </div>
 
 
@@ -674,12 +1099,18 @@
 
             <a
                 href="#services"
-                class="text-link"
+                class="text-link premium-about-button"
             >
 
                 Discover Our Services
 
-                <i class="fa-solid fa-arrow-right"></i>
+                <span>
+
+                    <i
+                        class="fa-solid fa-arrow-right"
+                    ></i>
+
+                </span>
 
             </a>
 
@@ -693,9 +1124,9 @@
 
 
 
-<!-- =====================================================
+<!-- =========================================================
      SERVICES
-===================================================== -->
+========================================================= -->
 
 <section
     class="section dark-section"
@@ -736,9 +1167,11 @@
         <div class="services-grid">
 
 
-            <!-- SERVICE 1 -->
+            <!-- SERVICE 01 -->
 
-            <article class="service-card reveal tilt-card">
+            <article
+                class="service-card reveal tilt-card"
+            >
 
                 <div class="service-image">
 
@@ -758,15 +1191,15 @@
 
                     <div class="service-icon">
 
-                        <i class="fa-solid fa-ring"></i>
+                        <i
+                            class="fa-solid fa-ring"
+                        ></i>
 
                     </div>
-
 
                     <h3>
                         Wedding Decoration
                     </h3>
-
 
                     <p>
 
@@ -806,7 +1239,9 @@
 
                         Enquire Now
 
-                        <i class="fa-brands fa-whatsapp"></i>
+                        <i
+                            class="fa-brands fa-whatsapp"
+                        ></i>
 
                     </a>
 
@@ -816,9 +1251,11 @@
 
 
 
-            <!-- SERVICE 2 -->
+            <!-- SERVICE 02 -->
 
-            <article class="service-card reveal tilt-card">
+            <article
+                class="service-card reveal tilt-card"
+            >
 
                 <div class="service-image">
 
@@ -838,15 +1275,15 @@
 
                     <div class="service-icon">
 
-                        <i class="fa-solid fa-cake-candles"></i>
+                        <i
+                            class="fa-solid fa-cake-candles"
+                        ></i>
 
                     </div>
-
 
                     <h3>
                         Birthday Decoration
                     </h3>
-
 
                     <p>
 
@@ -886,7 +1323,9 @@
 
                         Enquire Now
 
-                        <i class="fa-brands fa-whatsapp"></i>
+                        <i
+                            class="fa-brands fa-whatsapp"
+                        ></i>
 
                     </a>
 
@@ -896,9 +1335,11 @@
 
 
 
-            <!-- SERVICE 3 -->
+            <!-- SERVICE 03 -->
 
-            <article class="service-card reveal tilt-card">
+            <article
+                class="service-card reveal tilt-card"
+            >
 
                 <div class="service-image">
 
@@ -918,15 +1359,15 @@
 
                     <div class="service-icon">
 
-                        <i class="fa-solid fa-palette"></i>
+                        <i
+                            class="fa-solid fa-palette"
+                        ></i>
 
                     </div>
-
 
                     <h3>
                         Mehendi Decoration
                     </h3>
-
 
                     <p>
 
@@ -966,7 +1407,9 @@
 
                         Enquire Now
 
-                        <i class="fa-brands fa-whatsapp"></i>
+                        <i
+                            class="fa-brands fa-whatsapp"
+                        ></i>
 
                     </a>
 
@@ -976,9 +1419,11 @@
 
 
 
-            <!-- SERVICE 4 -->
+            <!-- SERVICE 04 -->
 
-            <article class="service-card reveal tilt-card">
+            <article
+                class="service-card reveal tilt-card"
+            >
 
                 <div class="service-image">
 
@@ -998,15 +1443,15 @@
 
                     <div class="service-icon">
 
-                        <i class="fa-solid fa-heart"></i>
+                        <i
+                            class="fa-solid fa-heart"
+                        ></i>
 
                     </div>
-
 
                     <h3>
                         Engagement Decoration
                     </h3>
-
 
                     <p>
 
@@ -1046,7 +1491,9 @@
 
                         Enquire Now
 
-                        <i class="fa-brands fa-whatsapp"></i>
+                        <i
+                            class="fa-brands fa-whatsapp"
+                        ></i>
 
                     </a>
 
@@ -1056,9 +1503,11 @@
 
 
 
-            <!-- SERVICE 5 -->
+            <!-- SERVICE 05 -->
 
-            <article class="service-card reveal tilt-card">
+            <article
+                class="service-card reveal tilt-card"
+            >
 
                 <div class="service-image">
 
@@ -1078,15 +1527,15 @@
 
                     <div class="service-icon">
 
-                        <i class="fa-solid fa-champagne-glasses"></i>
+                        <i
+                            class="fa-solid fa-champagne-glasses"
+                        ></i>
 
                     </div>
-
 
                     <h3>
                         Reception Decoration
                     </h3>
-
 
                     <p>
 
@@ -1126,7 +1575,9 @@
 
                         Enquire Now
 
-                        <i class="fa-brands fa-whatsapp"></i>
+                        <i
+                            class="fa-brands fa-whatsapp"
+                        ></i>
 
                     </a>
 
@@ -1136,15 +1587,17 @@
 
 
 
-            <!-- SERVICE 6 -->
+            <!-- SERVICE 06 -->
 
-            <article class="service-card reveal tilt-card">
+            <article
+                class="service-card reveal tilt-card"
+            >
 
                 <div class="service-image">
 
                     <img
                         src="../img/img9.1.jpeg"
-                        alt="House Warming"
+                        alt="House Warming Decoration"
                     >
 
                     <span>
@@ -1158,29 +1611,27 @@
 
                     <div class="service-icon">
 
-                        <i class="fa-solid fa-building"></i>
+                        <i
+                            class="fa-solid fa-building"
+                        ></i>
 
                     </div>
-
 
                     <h3>
                         House Warming
                     </h3>
 
-
                     <p>
 
-                       Warm wishes for a beautiful new beginning,
-celebrating the joy of your housewarming ceremony
-and the memories to be created in your new home.
+                        Warm wishes for a beautiful new beginning,
+                        celebrating the joy of your housewarming
+                        ceremony and the memories to be created
+                        in your new home.
+
                     </p>
 
 
                     <div class="service-tags">
-
-                        <span>
-                            Branding
-                        </span>
 
                         <span>
                             Stage
@@ -1191,6 +1642,10 @@ and the memories to be created in your new home.
                         </span>
 
                         <span>
+                            Florals
+                        </span>
+
+                        <span>
                             Venue
                         </span>
 
@@ -1198,14 +1653,16 @@ and the memories to be created in your new home.
 
 
                     <a
-                        href="https://wa.me/919159034572?text=Hello%20Nandhi%20Decor,%20I%20would%20like%20to%20enquire%20about%20Special%20Events."
+                        href="https://wa.me/919159034572?text=Hello%20Nandhi%20Decor,%20I%20would%20like%20to%20enquire%20about%20House%20Warming."
                         target="_blank"
                         class="service-link"
                     >
 
                         Enquire Now
 
-                        <i class="fa-brands fa-whatsapp"></i>
+                        <i
+                            class="fa-brands fa-whatsapp"
+                        ></i>
 
                     </a>
 
@@ -1222,82 +1679,197 @@ and the memories to be created in your new home.
 
 
 
-<!-- =====================================================
-     EVENTS
-===================================================== -->
- 
-
-
-
-<!-- =====================================================
-     GALLERY
-===================================================== -->
+<!-- =========================================================
+     PREMIUM GALLERY
+========================================================= -->
 
 <section
-    class="section dark-section"
+    class="section dark-section premium-gallery-section"
     id="gallery"
 >
+
+
+    <!-- BACKGROUND GLOW -->
+
+    <div
+        class="gallery-bg-glow gallery-glow-one"
+    ></div>
+
+    <div
+        class="gallery-bg-glow gallery-glow-two"
+    ></div>
+
+
 
     <div class="container">
 
 
-        <div class="section-heading reveal">
+        <!-- GALLERY HEADER -->
 
-            <div class="section-label">
+        <div
+            class="section-heading premium-gallery-heading reveal"
+        >
+
+            <div class="section-label premium-label">
+
+                <span></span>
+
                 OUR PORTFOLIO
+
+                <span></span>
+
             </div>
 
-            <h2>
 
-                Moments we've
+            <div class="gallery-heading-flex">
 
-                <em>
-                    created.
-                </em>
+                <div>
 
-            </h2>
+                    <h2>
 
-            <p>
-                Click an image for a full-screen preview.
-            </p>
+                        Moments we've
+
+                        <em>
+                            created.
+                        </em>
+
+                    </h2>
+
+
+                    <p>
+
+                        A glimpse into the celebrations,
+                        emotions and beautiful spaces
+                        we've created.
+
+                    </p>
+
+                </div>
+
+
+                <div class="gallery-heading-number">
+
+                    <span>
+                        01
+                    </span>
+
+                    <i></i>
+
+                    <span>
+                        06
+                    </span>
+
+                </div>
+
+            </div>
 
         </div>
 
 
 
-        
-
-
-        <!-- GALLERY -->
+        <!-- FILTERS -->
 
         <div
-            class="gallery-grid"
+            class="gallery-filters premium-gallery-filters"
+        >
+
+            <button
+                class="filter-button active"
+                data-filter="all"
+                type="button"
+            >
+                All
+            </button>
+
+            <button
+                class="filter-button"
+                data-filter="wedding"
+                type="button"
+            >
+                Weddings
+            </button>
+
+            <button
+                class="filter-button"
+                data-filter="birthday"
+                type="button"
+            >
+                Birthdays
+            </button>
+
+            <button
+                class="filter-button"
+                data-filter="engagement"
+                type="button"
+            >
+                Engagements
+            </button>
+
+        </div>
+
+
+
+        <!-- GALLERY GRID -->
+
+        <div
+            class="gallery-grid premium-gallery-grid"
             id="galleryGrid"
         >
 
 
+            <!-- IMAGE 01 -->
+
             <button
-                class="gallery-item large wedding reveal"
+                type="button"
+                class="gallery-item large wedding premium-gallery-item reveal"
                 data-title="Royal Wedding"
                 data-category="WEDDING"
             >
 
-                <img
-                    src="../img/img18.jpeg"
-                    alt="Royal Wedding"
-                >
+                <div class="gallery-image-wrap">
+
+                    <img
+                        src="../img/img18.jpeg"
+                        alt="Royal Wedding"
+                    >
+
+                    <div
+                        class="gallery-image-shine"
+                    ></div>
+
+                </div>
+
+
+                <div class="gallery-frame"></div>
+
+
+                <div class="gallery-number">
+                    01
+                </div>
+
 
                 <div class="gallery-overlay">
 
-                    <small>
+                    <div class="gallery-category">
                         WEDDING
-                    </small>
+                    </div>
 
                     <h3>
                         Royal Wedding
                     </h3>
 
-                    <i class="fa-solid fa-expand"></i>
+
+                    <div class="gallery-bottom">
+
+                        <span>
+                            NANDHI DECOR
+                        </span>
+
+                        <i
+                            class="fa-solid fa-arrow-up-right"
+                        ></i>
+
+                    </div>
 
                 </div>
 
@@ -1305,28 +1877,59 @@ and the memories to be created in your new home.
 
 
 
+            <!-- IMAGE 02 -->
+
             <button
-                class="gallery-item birthday reveal"
+                type="button"
+                class="gallery-item birthday premium-gallery-item reveal"
                 data-title="Birthday Celebration"
                 data-category="BIRTHDAY"
             >
 
-                <img
-                    src="../img/img19.jpeg"
-                    alt="Birthday Celebration"
-                >
+                <div class="gallery-image-wrap">
+
+                    <img
+                        src="../img/img19.jpeg"
+                        alt="Birthday Celebration"
+                    >
+
+                    <div
+                        class="gallery-image-shine"
+                    ></div>
+
+                </div>
+
+
+                <div class="gallery-frame"></div>
+
+
+                <div class="gallery-number">
+                    02
+                </div>
+
 
                 <div class="gallery-overlay">
 
-                    <small>
+                    <div class="gallery-category">
                         BIRTHDAY
-                    </small>
+                    </div>
 
                     <h3>
                         Birthday Celebration
                     </h3>
 
-                    <i class="fa-solid fa-expand"></i>
+
+                    <div class="gallery-bottom">
+
+                        <span>
+                            NANDHI DECOR
+                        </span>
+
+                        <i
+                            class="fa-solid fa-arrow-up-right"
+                        ></i>
+
+                    </div>
 
                 </div>
 
@@ -1334,28 +1937,59 @@ and the memories to be created in your new home.
 
 
 
+            <!-- IMAGE 03 -->
+
             <button
-                class="gallery-item engagement reveal"
+                type="button"
+                class="gallery-item engagement premium-gallery-item reveal"
                 data-title="Elegant Engagement"
                 data-category="ENGAGEMENT"
             >
 
-                <img
-                    src="../img/img20.jpeg"
-                    alt="Elegant Engagement"
-                >
+                <div class="gallery-image-wrap">
+
+                    <img
+                        src="../img/img20.jpeg"
+                        alt="Elegant Engagement"
+                    >
+
+                    <div
+                        class="gallery-image-shine"
+                    ></div>
+
+                </div>
+
+
+                <div class="gallery-frame"></div>
+
+
+                <div class="gallery-number">
+                    03
+                </div>
+
 
                 <div class="gallery-overlay">
 
-                    <small>
+                    <div class="gallery-category">
                         ENGAGEMENT
-                    </small>
+                    </div>
 
                     <h3>
                         Elegant Engagement
                     </h3>
 
-                    <i class="fa-solid fa-expand"></i>
+
+                    <div class="gallery-bottom">
+
+                        <span>
+                            NANDHI DECOR
+                        </span>
+
+                        <i
+                            class="fa-solid fa-arrow-up-right"
+                        ></i>
+
+                    </div>
 
                 </div>
 
@@ -1363,28 +1997,59 @@ and the memories to be created in your new home.
 
 
 
+            <!-- IMAGE 04 -->
+
             <button
-                class="gallery-item wedding reveal"
-                data-title="Wedding Details"
+                type="button"
+                class="gallery-item wedding premium-gallery-item reveal"
+                data-title="Wedding Oonjal Ritual"
                 data-category="WEDDING"
             >
 
-                <img
-                    src="../img/img21.jpeg"
-                    alt="Wedding Details"
-                >
+                <div class="gallery-image-wrap">
+
+                    <img
+                        src="../img/img21.jpeg"
+                        alt="Wedding Oonjal Ritual"
+                    >
+
+                    <div
+                        class="gallery-image-shine"
+                    ></div>
+
+                </div>
+
+
+                <div class="gallery-frame"></div>
+
+
+                <div class="gallery-number">
+                    04
+                </div>
+
 
                 <div class="gallery-overlay">
 
-                    <small>
+                    <div class="gallery-category">
                         WEDDING
-                    </small>
+                    </div>
 
                     <h3>
                         Wedding Oonjal Ritual
                     </h3>
 
-                    <i class="fa-solid fa-expand"></i>
+
+                    <div class="gallery-bottom">
+
+                        <span>
+                            NANDHI DECOR
+                        </span>
+
+                        <i
+                            class="fa-solid fa-arrow-up-right"
+                        ></i>
+
+                    </div>
 
                 </div>
 
@@ -1392,28 +2057,59 @@ and the memories to be created in your new home.
 
 
 
+            <!-- IMAGE 05 -->
+
             <button
-                class="gallery-item birthday reveal"
+                type="button"
+                class="gallery-item birthday premium-gallery-item reveal"
                 data-title="Celebration Setup"
                 data-category="BIRTHDAY"
             >
 
-                <img
-                    src="../img/img22.jpeg"
-                    alt="Celebration Setup"
-                >
+                <div class="gallery-image-wrap">
+
+                    <img
+                        src="../img/img22.jpeg"
+                        alt="Celebration Setup"
+                    >
+
+                    <div
+                        class="gallery-image-shine"
+                    ></div>
+
+                </div>
+
+
+                <div class="gallery-frame"></div>
+
+
+                <div class="gallery-number">
+                    05
+                </div>
+
 
                 <div class="gallery-overlay">
 
-                    <small>
+                    <div class="gallery-category">
                         BIRTHDAY
-                    </small>
+                    </div>
 
                     <h3>
                         Celebration Setup
                     </h3>
 
-                    <i class="fa-solid fa-expand"></i>
+
+                    <div class="gallery-bottom">
+
+                        <span>
+                            NANDHI DECOR
+                        </span>
+
+                        <i
+                            class="fa-solid fa-arrow-up-right"
+                        ></i>
+
+                    </div>
 
                 </div>
 
@@ -1421,28 +2117,59 @@ and the memories to be created in your new home.
 
 
 
+            <!-- IMAGE 06 -->
+
             <button
-                class="gallery-item engagement reveal"
+                type="button"
+                class="gallery-item engagement premium-gallery-item reveal"
                 data-title="Engagement Stage"
                 data-category="ENGAGEMENT"
             >
 
-                <img
-                    src="../img/img23.jpeg"
-                    alt="Engagement Stage"
-                >
+                <div class="gallery-image-wrap">
+
+                    <img
+                        src="../img/img23.jpeg"
+                        alt="Engagement Stage"
+                    >
+
+                    <div
+                        class="gallery-image-shine"
+                    ></div>
+
+                </div>
+
+
+                <div class="gallery-frame"></div>
+
+
+                <div class="gallery-number">
+                    06
+                </div>
+
 
                 <div class="gallery-overlay">
 
-                    <small>
+                    <div class="gallery-category">
                         ENGAGEMENT
-                    </small>
+                    </div>
 
                     <h3>
                         Engagement Stage
                     </h3>
 
-                    <i class="fa-solid fa-expand"></i>
+
+                    <div class="gallery-bottom">
+
+                        <span>
+                            NANDHI DECOR
+                        </span>
+
+                        <i
+                            class="fa-solid fa-arrow-up-right"
+                        ></i>
+
+                    </div>
 
                 </div>
 
@@ -1450,6 +2177,23 @@ and the memories to be created in your new home.
 
 
         </div>
+
+
+
+        <!-- GALLERY FOOTER -->
+
+        <div class="gallery-footer">
+
+            <div class="gallery-footer-line"></div>
+
+            <span>
+                EVERY FRAME TELLS A STORY
+            </span>
+
+            <div class="gallery-footer-line"></div>
+
+        </div>
+
 
     </div>
 
@@ -1457,9 +2201,9 @@ and the memories to be created in your new home.
 
 
 
-<!-- =====================================================
-     FEEDBACK
-===================================================== -->
+<!-- =========================================================
+     FEEDBACK / REVIEWS
+========================================================= -->
 
 <section
     class="section feedback-section"
@@ -1504,10 +2248,11 @@ and the memories to be created in your new home.
                 </h3>
 
                 <p>
+
                     Your feedback helps us create
                     even better celebrations.
-                </p>
 
+                </p>
 
 
                 <input
@@ -1516,7 +2261,6 @@ and the memories to be created in your new home.
                     placeholder="Your name"
                     required
                 >
-
 
 
                 <select
@@ -1549,6 +2293,10 @@ and the memories to be created in your new home.
                     </option>
 
                     <option>
+                        House Warming
+                    </option>
+
+                    <option>
                         Other
                     </option>
 
@@ -1556,7 +2304,7 @@ and the memories to be created in your new home.
 
 
 
-                <!-- STARS -->
+                <!-- RATING -->
 
                 <div
                     class="rating-input"
@@ -1601,14 +2349,12 @@ and the memories to be created in your new home.
                 </div>
 
 
-
                 <textarea
                     id="feedbackMessage"
                     rows="5"
                     placeholder="Tell us about your celebration..."
                     required
                 ></textarea>
-
 
 
                 <button
@@ -1618,7 +2364,9 @@ and the memories to be created in your new home.
 
                     Publish Review
 
-                    <i class="fa-solid fa-paper-plane"></i>
+                    <i
+                        class="fa-solid fa-paper-plane"
+                    ></i>
 
                 </button>
 
@@ -1628,8 +2376,9 @@ and the memories to be created in your new home.
 
             <!-- REVIEWS -->
 
-            <div class="reviews-side reveal-right">
-
+            <div
+                class="reviews-side reveal-right"
+            >
 
                 <div class="rating-summary">
 
@@ -1652,12 +2401,10 @@ and the memories to be created in your new home.
                 </div>
 
 
-
                 <div
                     class="reviews-container"
                     id="reviewsContainer"
                 ></div>
-
 
             </div>
 
@@ -1670,9 +2417,9 @@ and the memories to be created in your new home.
 
 
 
-<!-- =====================================================
+<!-- =========================================================
      FAQ
-===================================================== -->
+========================================================= -->
 
 <section
     class="section dark-section"
@@ -1682,7 +2429,9 @@ and the memories to be created in your new home.
     <div class="container faq-grid">
 
 
-        <div class="section-heading left reveal-left">
+        <div
+            class="section-heading left reveal-left"
+        >
 
             <div class="section-label">
                 QUESTIONS
@@ -1699,7 +2448,9 @@ and the memories to be created in your new home.
             </h2>
 
             <p>
+
                 Tap a question to reveal the answer.
+
             </p>
 
         </div>
@@ -1711,15 +2462,20 @@ and the memories to be created in your new home.
         >
 
 
+            <!-- FAQ 01 -->
+
             <article class="faq-item">
 
                 <button
                     class="faq-question"
+                    type="button"
                 >
 
                     How early should I book?
 
-                    <i class="fa-solid fa-plus"></i>
+                    <i
+                        class="fa-solid fa-plus"
+                    ></i>
 
                 </button>
 
@@ -1737,15 +2493,20 @@ and the memories to be created in your new home.
 
 
 
+            <!-- FAQ 02 -->
+
             <article class="faq-item">
 
                 <button
                     class="faq-question"
+                    type="button"
                 >
 
                     Can you work with my theme?
 
-                    <i class="fa-solid fa-plus"></i>
+                    <i
+                        class="fa-solid fa-plus"
+                    ></i>
 
                 </button>
 
@@ -1762,15 +2523,20 @@ and the memories to be created in your new home.
 
 
 
+            <!-- FAQ 03 -->
+
             <article class="faq-item">
 
                 <button
                     class="faq-question"
+                    type="button"
                 >
 
                     Do you provide lighting and stage setup?
 
-                    <i class="fa-solid fa-plus"></i>
+                    <i
+                        class="fa-solid fa-plus"
+                    ></i>
 
                 </button>
 
@@ -1787,15 +2553,20 @@ and the memories to be created in your new home.
 
 
 
+            <!-- FAQ 04 -->
+
             <article class="faq-item">
 
                 <button
                     class="faq-question"
+                    type="button"
                 >
 
                     How do I get a quote?
 
-                    <i class="fa-solid fa-plus"></i>
+                    <i
+                        class="fa-solid fa-plus"
+                    ></i>
 
                 </button>
 
@@ -1811,6 +2582,36 @@ and the memories to be created in your new home.
             </article>
 
 
+
+            <!-- FAQ 05 -->
+
+            <article class="faq-item">
+
+                <button
+                    class="faq-question"
+                    type="button"
+                >
+
+                    Do you provide house warming decoration?
+
+                    <i
+                        class="fa-solid fa-plus"
+                    ></i>
+
+                </button>
+
+                <div class="faq-answer">
+
+                    Yes. We can create elegant,
+                    traditional and modern decoration
+                    concepts for your housewarming
+                    ceremony.
+
+                </div>
+
+            </article>
+
+
         </div>
 
     </div>
@@ -1819,24 +2620,29 @@ and the memories to be created in your new home.
 
 
 
-<!-- =====================================================
+<!-- =========================================================
      CONTACT CTA
-===================================================== -->
+========================================================= -->
 
 <section
     class="contact-section"
     id="contact"
 >
 
+
     <div class="contact-circle circle-one"></div>
 
     <div class="contact-circle circle-two"></div>
 
 
-    <div class="container contact-content reveal">
+    <div
+        class="container contact-content reveal"
+    >
 
         <div class="section-label">
+
             LET'S CREATE
+
         </div>
 
 
@@ -1865,18 +2671,20 @@ and the memories to be created in your new home.
 
         <div class="contact-buttons">
 
+
             <a
                 href="https://wa.me/919159034572?text=Hello%20Nandhi%20Decor,%20I%20would%20like%20to%20book%20an%20event."
                 target="_blank"
                 class="btn btn-gold ripple"
             >
 
-                <i class="fa-brands fa-whatsapp"></i>
+                <i
+                    class="fa-brands fa-whatsapp"
+                ></i>
 
                 WhatsApp Us
 
             </a>
-
 
 
             <a
@@ -1884,31 +2692,38 @@ and the memories to be created in your new home.
                 class="btn btn-outline ripple"
             >
 
-                <i class="fa-solid fa-phone"></i>
+                <i
+                    class="fa-solid fa-phone"
+                ></i>
 
                 Call Us
 
             </a>
 
+
         </div>
+
 
     </div>
 
 </section>
 
 
+
 </main>
 
 
 
-<!-- =====================================================
+<!-- =========================================================
      FOOTER
-===================================================== -->
+========================================================= -->
 
 <footer class="footer">
 
     <div class="container footer-grid">
 
+
+        <!-- BRAND -->
 
         <div>
 
@@ -1918,6 +2733,7 @@ and the memories to be created in your new home.
             >
                 Nandhi Decor
             </a>
+
 
             <p>
 
@@ -1930,26 +2746,45 @@ and the memories to be created in your new home.
 
             <div class="social-icons">
 
+
                 <a
                     href="https://www.instagram.com/nandhi_decor"
                     target="_blank"
+                    aria-label="Instagram"
                 >
-                    <i class="fa-brands fa-instagram"></i>
+
+                    <i
+                        class="fa-brands fa-instagram"
+                    ></i>
+
                 </a>
+
 
                 <a
                     href="https://www.facebook.com/share/1GWyga4Ncm/"
                     target="_blank"
+                    aria-label="Facebook"
                 >
-                    <i class="fa-brands fa-facebook-f"></i>
+
+                    <i
+                        class="fa-brands fa-facebook-f"
+                    ></i>
+
                 </a>
+
 
                 <a
                     href="https://wa.me/919159034572"
                     target="_blank"
+                    aria-label="WhatsApp"
                 >
-                    <i class="fa-brands fa-whatsapp"></i>
+
+                    <i
+                        class="fa-brands fa-whatsapp"
+                    ></i>
+
                 </a>
+
 
             </div>
 
@@ -1957,11 +2792,14 @@ and the memories to be created in your new home.
 
 
 
+        <!-- QUICK LINKS -->
+
         <div>
 
             <h4>
                 QUICK LINKS
             </h4>
+
 
             <a href="#about">
                 About
@@ -1979,9 +2817,15 @@ and the memories to be created in your new home.
                 Reviews
             </a>
 
+            <a href="#faq">
+                FAQ
+            </a>
+
         </div>
 
 
+
+        <!-- EVENTS -->
 
         <div>
 
@@ -1989,25 +2833,32 @@ and the memories to be created in your new home.
                 EVENTS
             </h4>
 
-            <a href="#events">
+
+            <a href="#services">
                 Weddings
             </a>
 
-            <a href="#events">
+            <a href="#services">
                 Engagements
             </a>
 
-            <a href="#events">
+            <a href="#services">
                 Birthdays
             </a>
 
-            <a href="#events">
-                Special Events
+            <a href="#services">
+                Reception
+            </a>
+
+            <a href="#services">
+                House Warming
             </a>
 
         </div>
 
 
+
+        <!-- CONTACT -->
 
         <div>
 
@@ -2015,13 +2866,16 @@ and the memories to be created in your new home.
                 CONTACT
             </h4>
 
+
             <p>
                 +91 91590 34572
             </p>
 
+
             <p>
                 Available for bookings & enquiries.
             </p>
+
 
             <a
                 href="https://wa.me/919159034572"
@@ -2031,7 +2885,9 @@ and the memories to be created in your new home.
 
                 Start a conversation
 
-                <i class="fa-solid fa-arrow-right"></i>
+                <i
+                    class="fa-solid fa-arrow-right"
+                ></i>
 
             </a>
 
@@ -2049,7 +2905,7 @@ and the memories to be created in your new home.
         </span>
 
         <span>
-            Designed By Akash Saravanan ❤️.
+            Designed for beautiful celebrations.
         </span>
 
     </div>
@@ -2058,24 +2914,27 @@ and the memories to be created in your new home.
 
 
 
-<!-- =====================================================
+<!-- =========================================================
      BACK TO TOP
-===================================================== -->
+========================================================= -->
 
 <button
     class="back-top"
     id="backToTop"
+    aria-label="Back to top"
 >
 
-    <i class="fa-solid fa-arrow-up"></i>
+    <i
+        class="fa-solid fa-arrow-up"
+    ></i>
 
 </button>
 
 
 
-<!-- =====================================================
+<!-- =========================================================
      LIGHTBOX
-===================================================== -->
+========================================================= -->
 
 <div
     class="lightbox"
@@ -2083,27 +2942,39 @@ and the memories to be created in your new home.
 >
 
 
+    <!-- CLOSE -->
+
     <button
         class="lightbox-close"
         id="lightboxClose"
+        aria-label="Close image"
     >
 
-        <i class="fa-solid fa-xmark"></i>
+        <i
+            class="fa-solid fa-xmark"
+        ></i>
 
     </button>
 
 
+
+    <!-- PREVIOUS -->
 
     <button
         class="lightbox-prev"
         id="lightboxPrev"
+        aria-label="Previous image"
     >
 
-        <i class="fa-solid fa-chevron-left"></i>
+        <i
+            class="fa-solid fa-chevron-left"
+        ></i>
 
     </button>
 
 
+
+    <!-- IMAGE -->
 
     <figure>
 
@@ -2121,12 +2992,17 @@ and the memories to be created in your new home.
 
 
 
+    <!-- NEXT -->
+
     <button
         class="lightbox-next"
         id="lightboxNext"
+        aria-label="Next image"
     >
 
-        <i class="fa-solid fa-chevron-right"></i>
+        <i
+            class="fa-solid fa-chevron-right"
+        ></i>
 
     </button>
 
@@ -2135,9 +3011,9 @@ and the memories to be created in your new home.
 
 
 
-<!-- =====================================================
+<!-- =========================================================
      TOAST
-===================================================== -->
+========================================================= -->
 
 <div
     class="toast"
@@ -2146,9 +3022,9 @@ and the memories to be created in your new home.
 
 
 
-<!-- =====================================================
+<!-- =========================================================
      JAVASCRIPT
-===================================================== -->
+========================================================= -->
 
 <script
     type="module"

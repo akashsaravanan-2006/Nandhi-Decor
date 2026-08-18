@@ -8216,4 +8216,199 @@ img {
             scale(var(--scroll-scale, 1));
     }
 
+}/* =========================================================
+   FINAL MOBILE GALLERY FIX
+   IMAGE ALWAYS VISIBLE + REAL SCROLL ROTATION
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    /* Gallery itself */
+    .gallery,
+    .premium-gallery-section {
+        perspective: 1200px !important;
+        perspective-origin: 50% 50% !important;
+        overflow: visible !important;
+    }
+
+    .gallery-grid {
+        perspective: 1200px !important;
+        transform-style: preserve-3d !important;
+        overflow: visible !important;
+    }
+
+    /* Card */
+    .gallery-item {
+        opacity: 1 !important;
+        visibility: visible !important;
+
+        transform-style: preserve-3d !important;
+        backface-visibility: visible !important;
+
+        /*
+           IMPORTANT:
+           Stop old floating animations from fighting
+           with the scroll rotation.
+        */
+        animation: none !important;
+
+        will-change: transform;
+
+        transition:
+            transform .08s linear,
+            box-shadow .25s ease,
+            border-color .25s ease;
+    }
+
+    /* Scroll-controlled card */
+    .gallery-item.scroll-rotate {
+
+        opacity: 1 !important;
+        visibility: visible !important;
+
+        transform:
+            perspective(1200px)
+            rotateX(var(--scroll-x, 0deg))
+            rotateY(var(--scroll-y, 0deg))
+            rotateZ(var(--scroll-z, 0deg))
+            translate3d(
+                var(--scroll-move-x, 0px),
+                var(--scroll-move-y, 0px),
+                0
+            )
+            scale(var(--scroll-scale, 1))
+            !important;
+    }
+
+    /* Image wrapper */
+    .gallery-image-wrap {
+        position: absolute !important;
+
+        inset: 0 !important;
+
+        width: 100% !important;
+        height: 100% !important;
+
+        overflow: hidden !important;
+
+        visibility: visible !important;
+        opacity: 1 !important;
+
+        transform-style: preserve-3d !important;
+    }
+
+    /* Image */
+    .gallery-image-wrap img,
+    .gallery-item img {
+
+        display: block !important;
+
+        visibility: visible !important;
+        opacity: 1 !important;
+
+        width: 100% !important;
+        height: 100% !important;
+
+        object-fit: cover !important;
+
+        transform:
+            scale(1.07)
+            translateZ(0) !important;
+
+        backface-visibility: visible !important;
+
+        will-change: transform;
+    }
+
+    /* Active card when it reaches screen center */
+    .gallery-item.scroll-active {
+
+        opacity: 1 !important;
+        visibility: visible !important;
+
+        z-index: 50 !important;
+
+        border-color:
+            rgba(212,175,55,.75) !important;
+
+        box-shadow:
+            0 30px 90px rgba(0,0,0,.65),
+            0 0 45px rgba(212,175,55,.18) !important;
+    }
+
+    .gallery-item.scroll-active img,
+    .gallery-item.scroll-active
+    .gallery-image-wrap img {
+
+        opacity: 1 !important;
+        visibility: visible !important;
+
+        transform:
+            scale(1.13)
+            translateZ(20px) !important;
+
+        filter:
+            brightness(1.02)
+            saturate(1.15)
+            contrast(1.05);
+    }
+
+}
+
+
+/* =========================================================
+   SMALL PHONE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .gallery,
+    .premium-gallery-section {
+        perspective: 1000px !important;
+        overflow: visible !important;
+    }
+
+    .gallery-grid {
+        perspective: 1000px !important;
+        overflow: visible !important;
+    }
+
+    .gallery-item {
+
+        opacity: 1 !important;
+        visibility: visible !important;
+
+        animation: none !important;
+
+        transform-style: preserve-3d !important;
+        backface-visibility: visible !important;
+    }
+
+    .gallery-item.scroll-rotate {
+
+        transform:
+            perspective(1000px)
+            rotateX(var(--scroll-x, 0deg))
+            rotateY(var(--scroll-y, 0deg))
+            rotateZ(var(--scroll-z, 0deg))
+            translateY(var(--scroll-move-y, 0px))
+            scale(var(--scroll-scale, 1))
+            !important;
+    }
+
+    .gallery-image-wrap,
+    .gallery-image-wrap img {
+
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .gallery-item.scroll-active img {
+
+        transform:
+            scale(1.11)
+            translateZ(15px)
+            !important;
+    }
+
 }

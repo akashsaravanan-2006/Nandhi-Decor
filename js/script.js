@@ -26,31 +26,14 @@ import {
 ========================================================= */
 
 const firebaseConfig = {
-
-    apiKey:
-        "AIzaSyAdCk7iH6dzAfheRTJxgjBdeSJzIwruh48",
-
-    authDomain:
-        "nandhidecor-c719e.firebaseapp.com",
-
-    projectId:
-        "nandhidecor-c719e",
-
-    storageBucket:
-        "nandhidecor-c719e.firebasestorage.app",
-
-    messagingSenderId:
-        "956796053723",
-
-    appId:
-        "1:956796053723:web:9c72fa0d956658d53184fe",
-
-    measurementId:
-        "G-56EM207FYY",
-
-    databaseURL:
-        databaseURL:
-    "https://nandhidecor-c719e-default-rtdb.asia-southeast1.firebasedatabase.app/"
+  apiKey: "AIzaSyAdCk7iH6dzAfheRTJxgjBdeSJzIwruh48",
+  authDomain: "nandhidecor-c719e.firebaseapp.com",
+  databaseURL: "https://nandhidecor-c719e-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "nandhidecor-c719e",
+  storageBucket: "nandhidecor-c719e.firebasestorage.app",
+  messagingSenderId: "956796053723",
+  appId: "1:956796053723:web:9c72fa0d956658d53184fe",
+  measurementId: "G-56EM207FYY"
 };
 
 

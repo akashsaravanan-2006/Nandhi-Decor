@@ -9419,3 +9419,11 @@ img {
         font-size: 25px !important;
     }
 }
+/* REMOVE ARROW FROM WHATSAPP AREA */
+.whatsapp-float::before,
+.whatsapp-float::after,
+.whatsapp-tooltip::before,
+.whatsapp-tooltip::after {
+    content: none !important;
+    display: none !important;
+}

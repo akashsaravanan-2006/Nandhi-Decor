@@ -9245,18 +9245,18 @@ img {
 
     }
 
-}/* =========================================================
-   FINAL WHATSAPP FLOATING BUTTON - ALIGNMENT FIX
-   ADD THIS AT THE VERY END OF style.css
+}
+    /* =========================================================
+   FINAL WHATSAPP POSITION
+   BOTTOM RIGHT + TOOLTIP ABOVE + DOWN ARROW
    ========================================================= */
 
 .whatsapp-float {
     position: fixed !important;
 
-    /* LEFT BOTTOM */
-    left: 24px !important;
-    right: auto !important;
+    right: 24px !important;
     bottom: 24px !important;
+    left: auto !important;
 
     width: 58px !important;
     height: 58px !important;
@@ -9265,21 +9265,15 @@ img {
     align-items: center !important;
     justify-content: center !important;
 
+    overflow: visible !important;
+
+    z-index: 999999 !important;
+
     border-radius: 50% !important;
-
-    background: #25D366 !important;
-    color: #ffffff !important;
-
-    z-index: 99999 !important;
-
-    box-shadow:
-        0 8px 25px rgba(0,0,0,.45),
-        0 0 0 3px rgba(255,255,255,.10) !important;
-
-    text-decoration: none !important;
 }
 
-/* WhatsApp icon - perfectly centered */
+
+/* WhatsApp icon */
 .whatsapp-float .whatsapp-icon {
     width: 100% !important;
     height: 100% !important;
@@ -9290,93 +9284,93 @@ img {
 
     margin: 0 !important;
     padding: 0 !important;
-
-    line-height: 1 !important;
 }
 
 .whatsapp-float .whatsapp-icon i {
     font-size: 30px !important;
-
-    display: block !important;
-
     line-height: 1 !important;
-
-    transform: translateY(0) !important;
+    margin: 0 !important;
 }
 
-/* Chat tooltip */
+
+/* =========================================================
+   TOOLTIP ABOVE BUTTON
+   ========================================================= */
+
 .whatsapp-float .whatsapp-tooltip {
     position: absolute !important;
 
-    left: 72px !important;
-    top: 50% !important;
+    left: 50% !important;
+    right: auto !important;
 
-    transform: translateY(-50%) translateX(-8px) !important;
+    bottom: calc(100% + 14px) !important;
+    top: auto !important;
 
-    width: max-content !important;
+    transform: translateX(-50%) translateY(8px) !important;
+
+    min-width: 110px !important;
 
     padding: 9px 14px !important;
 
+    background: #111 !important;
+    color: #fff !important;
+
+    border: 1px solid rgba(212,175,55,.45) !important;
     border-radius: 8px !important;
 
-    background: #111111 !important;
-    color: #ffffff !important;
-
-    border: 1px solid rgba(212,175,55,.35) !important;
-
-    font-family: var(--sans) !important;
-    font-size: 10px !important;
-    font-weight: 700 !important;
-
-    letter-spacing: .5px !important;
+    text-align: center !important;
 
     white-space: nowrap !important;
+
+    font-size: 10px !important;
+    line-height: 1.2 !important;
 
     opacity: 0 !important;
     visibility: hidden !important;
 
+    pointer-events: none !important;
+
+    z-index: 1000000 !important;
+
     transition:
         opacity .25s ease,
         transform .25s ease !important;
-
-    pointer-events: none !important;
 }
 
-/* Small arrow pointing toward WhatsApp button */
-.whatsapp-float .whatsapp-tooltip::before {
+
+/* =========================================================
+   ARROW
+   ========================================================= */
+
+.whatsapp-float .whatsapp-tooltip::after {
     content: "" !important;
 
     position: absolute !important;
 
-    left: -6px !important;
-    top: 50% !important;
+    left: 50% !important;
+    bottom: -6px !important;
 
     width: 10px !important;
     height: 10px !important;
 
-    background: #111111 !important;
+    background: #111 !important;
 
-    border-left: 1px solid rgba(212,175,55,.35) !important;
-    border-bottom: 1px solid rgba(212,175,55,.35) !important;
+    border-right: 1px solid rgba(212,175,55,.45) !important;
+    border-bottom: 1px solid rgba(212,175,55,.45) !important;
 
-    transform: translateY(-50%) rotate(45deg) !important;
+    transform: translateX(-50%) rotate(45deg) !important;
 }
 
-/* Show tooltip */
+
+/* =========================================================
+   SHOW
+   ========================================================= */
+
 .whatsapp-float:hover .whatsapp-tooltip {
     opacity: 1 !important;
     visibility: visible !important;
 
-    transform: translateY(-50%) translateX(0) !important;
-}
-
-/* Hover button */
-.whatsapp-float:hover {
-    transform: scale(1.08) !important;
-
-    box-shadow:
-        0 12px 30px rgba(0,0,0,.5),
-        0 0 0 4px rgba(37,211,102,.15) !important;
+    transform: translateX(-50%) translateY(0) !important;
 }
 
 
@@ -9387,9 +9381,9 @@ img {
 @media (max-width: 700px) {
 
     .whatsapp-float {
-        left: 18px !important;
-        right: auto !important;
+        right: 18px !important;
         bottom: 18px !important;
+        left: auto !important;
 
         width: 54px !important;
         height: 54px !important;
@@ -9399,12 +9393,10 @@ img {
         font-size: 27px !important;
     }
 
-    /* Keep tooltip available on mobile */
     .whatsapp-float .whatsapp-tooltip {
-        display: block !important;
+        bottom: calc(100% + 12px) !important;
 
-        left: 66px !important;
-
+        min-width: 100px !important;
         padding: 8px 12px !important;
 
         font-size: 9px !important;
@@ -9412,16 +9404,12 @@ img {
 }
 
 
-/* =========================================================
-   SMALL MOBILE
-   ========================================================= */
-
 @media (max-width: 420px) {
 
     .whatsapp-float {
-        left: 15px !important;
-        right: auto !important;
+        right: 15px !important;
         bottom: 15px !important;
+        left: auto !important;
 
         width: 50px !important;
         height: 50px !important;
@@ -9429,73 +9417,5 @@ img {
 
     .whatsapp-float .whatsapp-icon i {
         font-size: 25px !important;
-    }
-
-    .whatsapp-float .whatsapp-tooltip {
-        left: 61px !important;
-
-        padding: 7px 10px !important;
-
-        font-size: 8px !important;
-    }
-}
-/* =========================================================
-   WHATSAPP - BOTTOM RIGHT + LEFT ARROW
-   ========================================================= */
-
-.whatsapp-float {
-    left: auto !important;
-    right: 24px !important;
-    bottom: 24px !important;
-}
-
-/* Tooltip appears on the LEFT of WhatsApp */
-.whatsapp-float .whatsapp-tooltip {
-    left: auto !important;
-    right: 72px !important;
-    top: 50% !important;
-
-    transform: translateY(-50%) translateX(8px) !important;
-}
-
-/* Arrow points RIGHT toward WhatsApp button */
-.whatsapp-float .whatsapp-tooltip::before {
-    left: auto !important;
-    right: -6px !important;
-    top: 50% !important;
-
-    transform: translateY(-50%) rotate(225deg) !important;
-}
-
-/* Show tooltip */
-.whatsapp-float:hover .whatsapp-tooltip {
-    transform: translateY(-50%) translateX(0) !important;
-}
-
-/* Mobile */
-@media (max-width: 700px) {
-    .whatsapp-float {
-        left: auto !important;
-        right: 18px !important;
-        bottom: 18px !important;
-    }
-
-    .whatsapp-float .whatsapp-tooltip {
-        left: auto !important;
-        right: 66px !important;
-    }
-}
-
-/* Small mobile */
-@media (max-width: 420px) {
-    .whatsapp-float {
-        left: auto !important;
-        right: 15px !important;
-        bottom: 15px !important;
-    }
-
-    .whatsapp-float .whatsapp-tooltip {
-        left: auto !important;
-        right: 61px !important;
     }
 }

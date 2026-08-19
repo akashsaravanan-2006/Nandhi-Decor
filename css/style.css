@@ -9439,3 +9439,63 @@ img {
         font-size: 8px !important;
     }
 }
+/* =========================================================
+   WHATSAPP - BOTTOM RIGHT + LEFT ARROW
+   ========================================================= */
+
+.whatsapp-float {
+    left: auto !important;
+    right: 24px !important;
+    bottom: 24px !important;
+}
+
+/* Tooltip appears on the LEFT of WhatsApp */
+.whatsapp-float .whatsapp-tooltip {
+    left: auto !important;
+    right: 72px !important;
+    top: 50% !important;
+
+    transform: translateY(-50%) translateX(8px) !important;
+}
+
+/* Arrow points RIGHT toward WhatsApp button */
+.whatsapp-float .whatsapp-tooltip::before {
+    left: auto !important;
+    right: -6px !important;
+    top: 50% !important;
+
+    transform: translateY(-50%) rotate(225deg) !important;
+}
+
+/* Show tooltip */
+.whatsapp-float:hover .whatsapp-tooltip {
+    transform: translateY(-50%) translateX(0) !important;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+    .whatsapp-float {
+        left: auto !important;
+        right: 18px !important;
+        bottom: 18px !important;
+    }
+
+    .whatsapp-float .whatsapp-tooltip {
+        left: auto !important;
+        right: 66px !important;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 420px) {
+    .whatsapp-float {
+        left: auto !important;
+        right: 15px !important;
+        bottom: 15px !important;
+    }
+
+    .whatsapp-float .whatsapp-tooltip {
+        left: auto !important;
+        right: 61px !important;
+    }
+}
